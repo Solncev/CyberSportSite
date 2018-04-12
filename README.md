@@ -13,4 +13,9 @@ OR
 You can specify spring profiles with `--spring.profiles.active=` cmd line parameter,
 or `spring.profiles.active` environment variable
 
-* Add `h2` to active profiles to run with disposable h2 DB
+See [the docs](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html) for more detail.
+
+### DB setup
+
+Add `h2` to active profiles to run with disposable h2 DB. Otherwise, specify
+`spring.datasource.url`, `spring.datasource.username` and `spring.datasource.password` as cmd line or env variables.

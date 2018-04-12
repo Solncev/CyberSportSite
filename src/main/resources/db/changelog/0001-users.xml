@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="01" author="krylov">
+        <comment>Create users table</comment>
+        <createTable tableName="user">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="username" type="varchar(45)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="password" type="varchar(45)">
+                <constraints nullable="false" />
+            </column>
+            <column name="email" type="varchar(45)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="02" author="krylov">
+        <createTable tableName="manager">
+            <column name="id" type="int">
+                <constraints primaryKey="true"
+                             foreignKeyName="fk_manager_id" referencedTableName="user" referencedColumnNames="id" />
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
