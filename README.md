@@ -18,4 +18,5 @@ See [the docs](https://docs.spring.io/spring-boot/docs/current/reference/html/ho
 ### DB setup
 
 Add `h2` to active profiles to run with disposable h2 DB. Otherwise, specify
-`spring.datasource.url`, `spring.datasource.username` and `spring.datasource.password` as cmd line or env variables.
+`spring.datasource.url`, `spring.datasource.username` and `spring.datasource.password` as cmd line or env variables,
+or in the `application-local.properties` file that you should create in resources root
