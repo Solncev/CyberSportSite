@@ -55,12 +55,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return configurer.getConfiguration();
     }
 
-    @Bean(name = "multipartResolver")
-    public CommonsMultipartResolver createMultipartResolver() {
-        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-        resolver.setDefaultEncoding("utf-8");
-        return resolver;
-    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
