@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Вход</title>
+    <!-- core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+
+
+</head><!--/head-->
+
+<body id="home" class="homepage">
+
+<header id="header">
+    <nav id="main-menu" class="navbar navbar-default navbar-fixed-top top-nav-collapse" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="tournaments.html"><img src="images/logo.png" style="width: 170px;"
+                                                                     alt="logo"></a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="scroll"><a href="#home">Турниры </a></li>
+                    <li class="scroll"><a href="#services">Команды </a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!--если не авторизован-->
+                    <li class="scroll"><a href="#testimonial"> Регистрация </a></li>
+                    <li class="scroll active"><a href="#get-in-touch">Вход</a></li>
+
+                    <!--если авторизован-->
+                    <li class="scroll"><a href="#portfolio">Профиль</a></li>
+                </ul>
+            </div>
+        </div><!--/.container-->
+    </nav><!--/nav-->
+</header><!--/header-->
+
+<div class="content">
+
+    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 panel panel-danger mar-top-30">
+        <div class="panel-heading">
+            <h4 class="text-center">Вход</h4>
+        </div>
+        <div class="panel-body">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="">Логин</label>
+                    <input type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Пароль</label>
+                    <input type="password" class="form-control">
+                </div>
+
+                <div class="form-group text-right">
+                    <a href="#" data-toggle="modal" data-target="#forgot-modal" tabindex="-1">Забыли пароль?</a>
+                </div>
+
+
+                <p class="error" hidden>Логин или пароль указаны с ошибкой</p>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-block btn-primary">Войти</button>
+                </div>
+
+                <div class="form-group">
+                    <p class="text-center">Нет аккаунта? <a href="#register">Зарегистрируйтесь</a></p>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- FORGOT PASSWORD MODAL -->
+    <div class="modal fade" id="forgot-modal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header no-border">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center">Восстановление пароля</h4>
+                    <br>
+                    <form class="form">
+                        <div class="form-group">
+                            <h5>Укажите адрес электронной почты, на который вам будут высланы инструкции по
+                                восстановлению
+                                пароля.</h5>
+                            <label for="forgot_email_input" class="sr-only">email</label>
+                            <input type="email" class="form-control " id="forgot_email_input"
+                                   placeholder="example@mail.ru">
+                        </div>
+                        <div class="form-group error" id="forgot-error">
+                            <h5 class="text-center" style="display: none;">Пользователя с таким e-mail нет в нашей базе
+                                данных</h5>
+                        </div>
+                        <div class="form-group success" style="display: none;" id="forgot-success">
+                            <h5 class="text-center">На ваш e-mail отправлено письмо</h5>
+                        </div>
+                        <div class="btn btn-block btn-lg btn-danger" id="forgot-submit">Восстановить пароль</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FORGOT PASSWORD MODAL -->
+</div>
+
+
+<footer id="footer">
+    <div class="container text-center">
+        Управление проектами © 2018 | <a href="">Высшая Школа ИТИС </a> <a
+            href="http://kpfu.ru">КФУ</a>
+    </div>
+</footer><!--/#footer-->
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+</html> 
