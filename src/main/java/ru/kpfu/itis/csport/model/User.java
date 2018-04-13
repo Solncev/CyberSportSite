@@ -3,10 +3,6 @@ package ru.kpfu.itis.csport.model;
 import javax.persistence.*;
 import java.util.Objects;
 
-/**
- * By Anton Krylov (anthony.kryloff@gmail.com)
- * Date: 4/12/18 10:01 PM
- */
 @Entity
 @Table(name = "\"user\"")
 @Inheritance(strategy = InheritanceType.JOINED)

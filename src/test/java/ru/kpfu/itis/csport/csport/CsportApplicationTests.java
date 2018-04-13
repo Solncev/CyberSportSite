@@ -1,4 +1,4 @@
-package ru.kpfu.itis.csport;
+package ru.kpfu.itis.csport.csport;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
