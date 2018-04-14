@@ -1,0 +1,31 @@
+.tournaments .nav-tabs > li > a {
+    border-radius: 0;
+    margin-left: 10px;
+}
+
+.tournaments .nav-tabs > li > a {
+    border-color: #959595;
+    background: #959595;
+    color: white;
+}
+
+.tournaments .nav-tabs > li.active > a {
+    background: #ba0100;
+    border-color: #ba0100;
+    color: white;
+}
+
+.tournaments .nav-tabs > li > a:hover {
+    background: #c50100;
+    border-color: #c50100;
+    color: white;
+}
+
+.shadowed {
+    border: none;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+}
+
+.shadowed > a {
+    border: none;
+}
