@@ -23,8 +23,8 @@ public class SecurityUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return user instanceof Manager
-                ? Collections.singletonList(new SimpleGrantedAuthority("MANAGER"))
-                : Collections.emptyList();
+                ? Collections.singletonList(new SimpleGrantedAuthority("ROLE_MANAGER"))
+                : Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override

@@ -1,6 +1,8 @@
 <#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 <#assign form=JspTaglibs["http://www.springframework.org/tags/form"]/>
 <#assign spring=JspTaglibs["http://www.springframework.org/tags"]/>
+<#assign sf=JspTaglibs["http://www.springframework.org/tags/form"]>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,6 +65,9 @@
                     <@security.authorize access="isAuthenticated()">
                         <li class="scroll <#if springMacroRequestContext.requestUri?starts_with("/profile")>active</#if>">
                             <a href="/profile">Профиль</a>
+                        </li>
+                        <li class="scroll">
+                            <a href="/logout">Выход</a>
                         </li>
                     </@security.authorize>
                 </ul>

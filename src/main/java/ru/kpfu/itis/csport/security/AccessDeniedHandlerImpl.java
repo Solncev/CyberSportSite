@@ -16,7 +16,7 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response,
                        AccessDeniedException e) throws IOException, ServletException {
-        response.sendRedirect("/home");
+        response.sendRedirect("/profile");
     }
 
 }

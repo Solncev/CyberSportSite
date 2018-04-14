@@ -27,8 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login", "/registration", "/profile").anonymous()
-//                .antMatchers("/profile").hasAnyRole()
+                .antMatchers("/login", "/registration").anonymous()
+                .antMatchers("/profile").hasAnyRole("MANAGER", "USER")
         ;
 
 
@@ -36,9 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login/process")
-                .usernameParameter("login")
+                .usernameParameter("username")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/home", true)
+                .defaultSuccessUrl("/profile", true)
                 .failureUrl("/login?error=true")
                 .and()
                 .logout().logoutSuccessUrl("/login")

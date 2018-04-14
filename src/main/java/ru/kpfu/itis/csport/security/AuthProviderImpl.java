@@ -28,8 +28,8 @@ public class AuthProviderImpl implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String login = authentication.getName();
-        UserDetails userDetails = userService.getUser(login);
+        String username = authentication.getName();
+        UserDetails userDetails = userService.getUser(username);
         if (userDetails == null) {
             throw new UsernameNotFoundException("User not found");
         }
