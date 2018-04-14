@@ -27,7 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login", "/registration", "/profile").anonymous();
+                .antMatchers("/login", "/registration", "/profile").anonymous()
+//                .antMatchers("/profile").hasAnyRole()
+        ;
 
 
         http.csrf().disable()
