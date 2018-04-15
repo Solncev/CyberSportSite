@@ -22,8 +22,18 @@ public class UserServiceImpl implements UserService {
     public UserDetails getUser(String login) {
         User user = userRepository.findByUsername(login);
         if (user == null) {
-            throw new UsernameNotFoundException(String.format("User %s not found", login));
+            return null;
         }
         return new SecurityUser(user);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
     }
 }

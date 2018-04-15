@@ -11,7 +11,7 @@ import ru.kpfu.itis.csport.util.AuthForm;
 public class SignInController {
 
     @RequestMapping("/login")
-    public String loginPage(@RequestParam(value = "error", required = false) Boolean error,
+    public String getLoginPage(@RequestParam(value = "error", required = false) Boolean error,
                             Model model) {
         if (Boolean.TRUE.equals(error)) {
             model.addAttribute("error", error);

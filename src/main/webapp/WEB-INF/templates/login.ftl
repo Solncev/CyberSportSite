@@ -1,5 +1,5 @@
 <#include "base.ftl">
-<#macro title>Профиль</#macro>
+<#macro title>Вход</#macro>
 <#macro content>
 
 <div class="content">
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="form-group">
-                    <p class="text-center">Нет аккаунта? <a href="#register">Зарегистрируйтесь</a></p>
+                    <p class="text-center">Нет аккаунта? <a href="/registration">Зарегистрируйтесь</a></p>
                 </div>
             </@sf.form>
         </div>

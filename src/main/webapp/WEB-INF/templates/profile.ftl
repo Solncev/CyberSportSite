@@ -1,5 +1,5 @@
 <#include "base.ftl">
-<#macro title>Вход</#macro>
+<#macro title>Профиль</#macro>
 <#macro content>
 
 <div class="content">
