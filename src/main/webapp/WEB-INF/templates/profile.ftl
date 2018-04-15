@@ -13,20 +13,27 @@
                     <div class="form-group row">
                         <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Никнейм:</label>
                         <div class="col-sm-8">
-                            <label id="colFormLabelSm">cool_nickname</label>
+                            <label id="colFormLabelSm">
+                                ${currentUser.username}
+                            </label>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Email:</label>
                         <div class="col-sm-8">
-                            <label id="colFormLabelSm">info@companyname.com</label>
+                            <label id="colFormLabelSm">
+                                ${currentUser.email}
+                            </label>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-8 col-sm-offset-3">
-                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Редактировать</button>
+                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
+                                Редактировать
+                            </button>
                         </div>
-                        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+                        <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+                             aria-labelledby="editModalLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
 
@@ -34,20 +41,23 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                                        <h4 class="modal-title" id="editModalLabel">Modal title</h4>
+                                        <h4 class="modal-title" id="editModalLabel">Редактировать профиль</h4>
                                     </div>
-                                    <form action="#" method="post" name="editProfileForm" id="editProfileForm">
+                                    <form action="/profile/edit" method="post" name="editProfileForm" id="editProfileForm">
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <input type="text" placeholder="Name" class="form-control" name="name" max="30">
+                                                <input type="text" value="${currentUser.username}" class="form-control" name="newusername"
+                                                       max="30" required>
                                             </div>
                                             <div class="form-group">
-                                                <input type="email" placeholder="Email" class="form-control" name="email" data-validation="email">
+                                                <input type="email" value="${currentUser.email}" class="form-control"
+                                                       name="email" data-validation="email" required>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Отменить
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Сохранить</button>
                                         </div>
                                     </form>
 
@@ -57,45 +67,56 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-8 col-sm-offset-3">
-                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editPassModal">Сменить пароль</button>
+                            <button type="submit" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#editPassModal">Сменить пароль
+                            </button>
                         </div>
-                        <div class="modal fade" id="editPassModal" tabindex="-1" role="dialog" aria-labelledby="passLabel">
+                        <div class="modal fade" id="editPassModal" tabindex="-1" role="dialog"
+                             aria-labelledby="passLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
-                                    <form class="form-horizontal" action="..." method="POST" id="editPassForm">
+                                    <form class="form-horizontal" action="/profile/changePassword" method="POST" id="editPassForm">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
-                                            <h4 class="modal-title" id="passLabel">Modal title</h4>
+                                            <h4 class="modal-title" id="passLabel">Изменить пароль</h4>
                                         </div>
                                         <div class="modal-body">
 
                                             <div class="form-group">
-                                                <label for="password" class="col-xs-3 control-label">Старый пароль</label>
+                                                <label for="password" class="col-xs-3 control-label">Старый
+                                                    пароль</label>
 
                                                 <div class="col-xs-6">
-                                                    <input type="password" class="form-control" name="oldPassword" id="oldPassword" min="1" maxlength="50" />
+                                                    <input type="password" class="form-control" name="oldPassword"
+                                                           id="oldPassword" min="1" maxlength="50" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="password" class="col-xs-3 control-label">Новый пароль</label>
+                                                <label for="password" class="col-xs-3 control-label">Новый
+                                                    пароль</label>
 
                                                 <div class="col-xs-6">
-                                                    <input type="password" class="form-control" name="password" id="password" max="50" data-validation-strength="1" />
+                                                    <input type="password" class="form-control" name="newPassword"
+                                                           id="password" max="50" data-validation-strength="1" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="repeatedPassword" class="col-xs-3 control-label">Повторите пароль</label>
+                                                <label for="repeatedPassword" class="col-xs-3 control-label">Повторите
+                                                    пароль</label>
                                                 <div class="col-xs-6">
-                                                    <input type="password" class="form-control" equalTo="password" name="repeatedPassword" id="repeatedPassword" max="50" data-validation-strength="1"
+                                                    <input type="password" class="form-control" equalTo="password"
+                                                           name="repeatedPassword" id="repeatedPassword" max="50"
+                                                           data-validation-strength="1" required
                                                     />
                                                 </div>
                                             </div>
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Отмена
+                                            </button>
                                             <button class="btn-primary btn" type="submit">Изменить пароль</button>
                                         </div>
                                     </form>
