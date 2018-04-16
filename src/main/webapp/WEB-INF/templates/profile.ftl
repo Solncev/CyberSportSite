@@ -8,7 +8,7 @@
     <section id="get-in-touch">
         <div class="container">
 
-            <div class="row">
+            <div class="row mar-top-30">
                 <div class="col-sm-4">
                     <div class="form-group row">
                         <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Никнейм:</label>
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-8 col-sm-offset-3">
+                        <div class="col-sm-4">
                             <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
                                 Редактировать
                             </button>
@@ -72,9 +72,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-8 col-sm-offset-3">
+                    
+                    
+                        <div class="col-sm-5">
                             <button type="submit" class="btn btn-primary" data-toggle="modal"
                                     data-target="#editPassModal">Сменить пароль
                             </button>

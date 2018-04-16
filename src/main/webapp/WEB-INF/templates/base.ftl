@@ -90,18 +90,13 @@
 </footer>
 <!--/#footer-->
 
-<script src="/js/jquery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.form-validator.min.js"></script>
-<script>
-    //wtf
-    var edit = $("#edit");
-    edit.validate();
-    // $("form[name='edit']").validate();
-    // $('#editPassForm').validate();
-    // $('#editProfileForm').validate();
-
+<script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.form-validator.min.js"></script>
+    <script>
+        $.validate();
 </script>
+
 </body>
 
 </html>
