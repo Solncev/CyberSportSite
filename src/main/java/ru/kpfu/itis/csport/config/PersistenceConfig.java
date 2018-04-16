@@ -3,10 +3,7 @@ package ru.kpfu.itis.csport.config;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.EnvironmentAware;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -50,6 +47,7 @@ public class PersistenceConfig implements EnvironmentAware {
     }
 
     @Bean
+    @DependsOn("liquibase")
     public EntityManagerFactory entityManagerFactory() throws PropertyVetoException {
         // Jpa vendor adapter
         HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
