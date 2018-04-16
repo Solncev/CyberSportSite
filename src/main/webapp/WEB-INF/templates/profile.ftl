@@ -129,6 +129,10 @@
 
             <div class="col-sm-8">
 
+                <#--ошибки-->
+                <#if userAlreadyExistError??>userAlreadyExistError</#if>
+                <#if wrongPassword??>wrongPassword</#if>
+
                 <label>Commands here</label>
                 <!-- <form action="#" method="post" name="edit" id="edit">
                     <label for="username">Uname</label>
