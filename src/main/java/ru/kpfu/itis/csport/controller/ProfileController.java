@@ -24,9 +24,16 @@ public class ProfileController {
     }
 
     @GetMapping(value = "/profile")
-    public String getProfilePage(Model model) {
+    public String getProfilePage(Model model, @RequestParam(value = "userAlreadyExistError", required = false) String userAlreadyExistError,
+                                 @RequestParam(value = "wrongPassword", required = false) String wrongPassword) {
         User currentUser = userService.findUser(SecurityContextHolder.getContext().getAuthentication().getName());
         model.addAttribute("currentUser", currentUser);
+        if (wrongPassword != null) {
+            model.addAttribute("wrongPassword", wrongPassword);
+        }
+        if (userAlreadyExistError != null) {
+            model.addAttribute("userAlreadyExistError", userAlreadyExistError);
+        }
         return "profile";
     }
 

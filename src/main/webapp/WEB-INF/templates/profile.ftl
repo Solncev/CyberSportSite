@@ -8,7 +8,7 @@
     <section id="get-in-touch">
         <div class="container">
 
-            <div class="row">
+            <div class="row mar-top-30">
                 <div class="col-sm-4">
                     <div class="form-group row">
                         <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Никнейм:</label>
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-8 col-sm-offset-3">
+                        <div class="col-sm-4">
                             <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
                                 Редактировать
                             </button>
@@ -45,6 +45,14 @@
                                     </div>
                                     <form action="/profile/edit" method="post" name="editProfileForm" id="editProfileForm">
                                         <div class="modal-body">
+                                            <#if userAlreadyExistError??>
+                                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    Пользователь с таким username или email уже существует.
+                                                </div>
+                                            </#if>
                                             <div class="form-group">
                                                 <input type="text" value="${currentUser.username}" class="form-control" name="newusername"
                                                        max="30" required>
@@ -64,9 +72,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-8 col-sm-offset-3">
+                    
+                    
+                        <div class="col-sm-5">
                             <button type="submit" class="btn btn-primary" data-toggle="modal"
                                     data-target="#editPassModal">Сменить пароль
                             </button>
@@ -83,7 +91,14 @@
                                             <h4 class="modal-title" id="passLabel">Изменить пароль</h4>
                                         </div>
                                         <div class="modal-body">
-
+                                            <#if wrongPassword??>
+                                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    Старый пароль указан неправильно.
+                                                </div>
+                                            </#if>
                                             <div class="form-group">
                                                 <label for="password" class="col-xs-3 control-label">Старый
                                                     пароль</label>
@@ -125,22 +140,25 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-8">
+                <#--ошибки-->
+                   
+                    <#if wrongPassword??>wrongPassword</#if>
+
+                    <label>Commands here</label>
+                    <!-- <form action="#" method="post" name="edit" id="edit">
+                        <label for="username">Uname</label>
+                        <input type="text" id="username" placeholder="Name" class="form-control" name="username" />
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Email" class="form-control" name="email" />
+                        <button type="button" class="btn btn-primary">Save changes</button>
+
+                    </form> -->
+                </div>
+
             </div>
 
-            <div class="col-sm-8">
-
-                <label>Commands here</label>
-                <!-- <form action="#" method="post" name="edit" id="edit">
-                    <label for="username">Uname</label>
-                    <input type="text" id="username" placeholder="Name" class="form-control" name="username" />
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Email" class="form-control" name="email" />
-                    <button type="button" class="btn btn-primary">Save changes</button>
-
-                </form> -->
-
-            </div>
-
+            
 
         </div>
 
