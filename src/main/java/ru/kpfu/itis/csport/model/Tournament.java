@@ -1,6 +1,7 @@
 package ru.kpfu.itis.csport.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -34,6 +35,9 @@ public class Tournament {
 
     @Lob
     private String description;
+
+    @OneToMany(mappedBy = "tournament_id")
+    private Collection<TournamentMatch> matches;
 
     public int getId() {
         return id;
@@ -90,4 +94,13 @@ public class Tournament {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Collection<TournamentMatch> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(Collection<TournamentMatch> matches) {
+        this.matches = matches;
+    }
+
 }
