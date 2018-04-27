@@ -10,6 +10,8 @@ import ru.kpfu.itis.csport.service.UserService;
 /**
  * By Anton Krylov (anthony.kryloff@gmail.com)
  * Date: 4/26/18 11:48 PM
+ *
+ * Injects current into models of those controllers that need it
  */
 @ControllerAdvice(annotations = {AuthController.class})
 public class CurrentUserAdvice {

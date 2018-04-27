@@ -3,7 +3,12 @@ package ru.kpfu.itis.csport.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import ru.kpfu.itis.csport.model.Team;
 import ru.kpfu.itis.csport.model.Tournament;
+import ru.kpfu.itis.csport.service.TeamService;
 import ru.kpfu.itis.csport.service.TournamentService;
 
 import java.util.Comparator;
@@ -15,16 +20,19 @@ import java.util.stream.Collectors;
  * Date: 4/26/18 11:04 PM
  */
 @AuthController
+@RequestMapping(path = "/tournament")
 public class TournamentController {
 
     private TournamentService tournamentService;
+    private TeamService teamService;
 
     @Autowired
-    public TournamentController(TournamentService tournamentService) {
+    public TournamentController(TournamentService tournamentService, TeamService teamService) {
         this.tournamentService = tournamentService;
+        this.teamService = teamService;
     }
 
-    @GetMapping
+    @GetMapping({"/", "/all"})
     public String list(ModelMap modelMap) {
         modelMap.addAttribute("all_games", tournamentService.getAllGames());
 
@@ -33,6 +41,14 @@ public class TournamentController {
                 .addAttribute("past", processList(tournamentService.getPast()));
 
         return "tournaments";
+    }
+
+    @GetMapping("/{id}")
+    public String getOne(ModelMap map, @PathVariable("id") int id) {
+        Tournament tournament = tournamentService.findById(id);
+        //todo matches
+        map.addAttribute("tournament", tournament);
+        return "tournament";
     }
 
     private List<Tournament> processList(List<Tournament> source) {
