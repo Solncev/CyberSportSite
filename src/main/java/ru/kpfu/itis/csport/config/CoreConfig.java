@@ -1,34 +1,22 @@
 package ru.kpfu.itis.csport.config;
 
-import org.springframework.context.annotation.*;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @ComponentScan("ru.kpfu.itis.csport")
 public class CoreConfig {
 
-  @Bean
-  public PropertySourcesPlaceholderConfigurer globalProperties() {
-    return propertiesBean(
-        new ClassPathResource("application.properties"),
-        new ClassPathResource("application-local.properties")
-    );
-  }
-
-  @Bean
+  @Configuration
   @Profile("heroku")
-  public PropertySourcesPlaceholderConfigurer herokuProperties() {
-    return propertiesBean(
-        new ClassPathResource("application-heroku.properties")
-    );
-  }
+  @PropertySource(value = {"classpath:application.properties", "classpath:application-heroku.properties"})
+  static class Heroku{}
 
-  private PropertySourcesPlaceholderConfigurer propertiesBean(Resource... resources) {
-    PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
-    configurer.setLocations(resources);
-    configurer.setIgnoreResourceNotFound(true);
-    return configurer;
-  }
+  @Configuration
+  @Profile("default")
+  @PropertySource(value = {"classpath:application.properties", "classpath:application-local.properties"}, ignoreResourceNotFound = true)
+  static class Defaults{}
+
 }
