@@ -2,6 +2,8 @@
 <#macro title>Вход</#macro>
 <#macro content>
 
+<h5 class="text-center" <#if registrationSuccessfulMessage??><#else>hidden</#if>>Регистрация прошла успешно!</h5>
+
 <div class="content">
 
     <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 panel panel-danger mar-top-30">

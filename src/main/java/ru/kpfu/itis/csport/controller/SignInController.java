@@ -12,9 +12,13 @@ public class SignInController {
 
     @RequestMapping("/login")
     public String getLoginPage(@RequestParam(value = "error", required = false) Boolean error,
+                               @RequestParam(value = "registrationSuccessful", required = false) String registrationSuccessfulMessage,
                             Model model) {
         if (Boolean.TRUE.equals(error)) {
             model.addAttribute("error", error);
+        }
+        if (registrationSuccessfulMessage != null) {
+            model.addAttribute("registrationSuccessfulMessage", registrationSuccessfulMessage);
         }
         model.addAttribute("authForm", new AuthForm());
         return "login";
