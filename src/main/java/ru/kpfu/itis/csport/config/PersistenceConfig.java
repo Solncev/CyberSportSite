@@ -32,10 +32,12 @@ public class PersistenceConfig implements EnvironmentAware {
     }
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource() throws ClassNotFoundException {
         String url = env.getProperty("spring.datasource.url");
         String user = env.getProperty("spring.datasource.username");
         String password = env.getProperty("spring.datasource.password");
+
+        Class.forName("org.postgresql.Driver");
 
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         dataSource.setJdbcUrl(url);
@@ -46,7 +48,7 @@ public class PersistenceConfig implements EnvironmentAware {
 
     @Bean
     @DependsOn("liquibase")
-    public EntityManagerFactory entityManagerFactory() {
+    public EntityManagerFactory entityManagerFactory(DataSource dataSource) {
         // Jpa vendor adapter
         HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         jpaVendorAdapter.setShowSql(true);
@@ -56,7 +58,8 @@ public class PersistenceConfig implements EnvironmentAware {
         LocalContainerEntityManagerFactoryBean entityManagerFactory =
                 new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter);
-        entityManagerFactory.setDataSource(dataSource());
+        entityManagerFactory.setDataSource(dataSource);
+        entityManagerFactory.setPackagesToScan("ru.kpfu.itis.csport");
         entityManagerFactory.afterPropertiesSet();
         return entityManagerFactory.getObject();
     }
