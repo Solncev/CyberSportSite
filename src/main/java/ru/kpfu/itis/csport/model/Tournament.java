@@ -10,6 +10,8 @@ import java.util.Date;
 @Entity
 public class Tournament {
 
+    public enum Status {UPCOMING, ACTIVE, PAST}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -24,10 +26,8 @@ public class Tournament {
     private String name;
 
     @Column(nullable = false)
-    private String type;    //todo
-
-    @Column(nullable = false)
-    private String status = "upcoming"; //todo
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.UPCOMING;
 
     @Column(nullable = false)
     private Date date = new Date();
@@ -67,19 +67,11 @@ public class Tournament {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

@@ -16,4 +16,6 @@ public interface TournamentService {
     List<Tournament> getUpcoming();
     List<Tournament> getActive();
     List<Tournament> getPast();
+
+    Tournament findById(int id);
 }
