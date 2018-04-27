@@ -20,7 +20,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableJpaRepositories("ru.kpfu.itis.csport.repository")
+@EnableJpaRepositories("ru.kpfu.itis.csport")
 @EnableTransactionManagement
 public class PersistenceConfig implements EnvironmentAware {
 
@@ -72,11 +72,6 @@ public class PersistenceConfig implements EnvironmentAware {
     @Bean
     public PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslator() {
         return new PersistenceExceptionTranslationPostProcessor();
-    }
-
-    @Bean
-    public PersistenceAnnotationBeanPostProcessor persistenceAnnotationBean() {
-        return new PersistenceAnnotationBeanPostProcessor();
     }
 
     @Bean

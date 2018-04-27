@@ -29,7 +29,6 @@ public class CoreConfig {
     PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
     configurer.setLocations(resources);
     configurer.setIgnoreResourceNotFound(true);
-    //configurer.setIgnoreUnresolvablePlaceholders(true);
     return configurer;
   }
 }
