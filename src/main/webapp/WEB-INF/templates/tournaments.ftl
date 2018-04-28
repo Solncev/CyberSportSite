@@ -19,14 +19,82 @@
                         <option value="${game.id}">${game.name}</option>
                     </#list>
                 </select>
+
+                <button class="btn btn-primary btn-block mar-top-30" data-toggle="modal"
+                        data-target="#createModal" id="createModalBtn" name="openModal">Создать турнир
+                </button>
+
+
+            </div>
+            <div class="modal fade" id="createModal" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header no-border">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="text-center">Создание турнира </h4>
+                            <br>
+
+                            <form class="form" action="/tournaments/new" method="POST">
+                                <div class="form-group">
+                                    <label>Дисциплина</label>
+                                    <select name="discipline" class="form-control" id="discipline">
+                                        <option value="create">Выбрать дисциплину</option>
+                                        <#list all_games as game>
+                                            <option value="${game.id}">${game.name}</option>
+                                        </#list>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Название турнира</label>
+                                    <input type="text" class="form-control" required name="name" id="name">
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label for="photo">Фото</label>
+                                            <#-- TODO file upload -->
+                                            <#--<input type="file" id="photo" name="photo">-->
+                                            <input type="text" id="photo" name="photo">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <label for="start_date">Дата начала</label> <!--format: "dd.mm.yyyy" look at script below-->
+                                        <input id="start_date" name="start_date" type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Описание</label>
+                                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                                </div>
+
+                                <div class="form-group error" id="forgot-error">
+                                    <h5 class="text-center" style="display: none;">ERROR MESSAGE</h5>
+                                </div>
+
+                                <button class="btn btn-block btn-primary" id="forgot-submit">Создать турнир</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!--вкладки с типами турниров-->
             <div class="col-md-10 col-md-pull-2">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#future" data-toggle="tab">Предстоящие</a></li>
-                    <li class=""><a href="#progress" data-toggle="tab">Начавшиеся</a></li>
-                    <li class=""><a href="#past" data-toggle="tab">Завершенные</a></li>
+                    <li class="active">
+                        <a href="#future" data-toggle="tab">Предстоящие</a>
+                    </li>
+                    <li class="">
+                        <a href="#progress" data-toggle="tab">Начавшиеся</a>
+                    </li>
+                    <li class="">
+                        <a href="#past" data-toggle="tab">Завершенные</a>
+                    </li>
                 </ul>
 
                 <div id="tabs" class="tab-content">
@@ -87,8 +155,9 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header no-border">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">×</span></button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <h4 class="text-center" id="modalTournamentName">Заявка на участие в турнире </h4>
@@ -136,9 +205,7 @@
                             </div>
 
                             <div class="form-group error" id="forgot-error">
-                                <h5 class="text-center" style="display: none;">Пользователя с таким e-mail нет в нашей
-                                    базе
-                                    данных</h5>
+                                <h5 class="text-center" style="display: none;">Пользователя с таким e-mail нет в нашей базе данных</h5>
                             </div>
 
                             <button class="btn btn-block btn-primary" id="forgot-submit">Подать заявку</button>
@@ -149,7 +216,8 @@
         </div>
 
 
-    </div><!--/.container-->
+    </div>
+    <!--/.container-->
 </div>
 
 </#macro>

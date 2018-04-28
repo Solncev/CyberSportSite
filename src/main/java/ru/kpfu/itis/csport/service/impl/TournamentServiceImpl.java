@@ -34,6 +34,11 @@ public class TournamentServiceImpl implements TournamentService {
     }
 
     @Override
+    public ComputerGame getGameById(int id) {
+        return computerGameRepository.findOne(id);
+    }
+
+    @Override
     public List<Tournament> getUpcoming() {
         return tournamentRepository.getAllByStatus(UPCOMING);
     }
@@ -48,8 +53,13 @@ public class TournamentServiceImpl implements TournamentService {
         return tournamentRepository.getAllByStatus(PAST);
     }
 
-  @Override
-  public Tournament findById(int id) {
-    return tournamentRepository.findOne(id);
-  }
+    @Override
+    public Tournament create(Tournament tournament) {
+        return tournamentRepository.save(tournament);
+    }
+
+    @Override
+    public Tournament findById(int id) {
+        return tournamentRepository.findOne(id);
+    }
 }

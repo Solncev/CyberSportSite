@@ -2,13 +2,15 @@ package ru.kpfu.itis.csport.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.csport.model.Tournament;
 import ru.kpfu.itis.csport.service.TeamService;
 import ru.kpfu.itis.csport.service.TournamentService;
+import ru.kpfu.itis.csport.util.TournamentForm;
+import ru.kpfu.itis.csport.util.TournamentTransformer;
 
+import javax.validation.Valid;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,11 +25,13 @@ public class TournamentController {
 
     private TournamentService tournamentService;
     private TeamService teamService;
+    private TournamentTransformer transformer;
 
     @Autowired
     public TournamentController(TournamentService tournamentService, TeamService teamService) {
         this.tournamentService = tournamentService;
         this.teamService = teamService;
+        this.transformer = new TournamentTransformer(tournamentService);
     }
 
     @GetMapping({"", "/", "/all"})
@@ -47,6 +51,16 @@ public class TournamentController {
         //todo matches
         map.addAttribute("tournament", tournament);
         return "tournament";
+    }
+
+    @PostMapping({"/new", "/create"})
+    public String create(@RequestBody @Valid TournamentForm form, BindingResult result, ModelMap modelMap) {
+        if(result.hasErrors()) {
+            modelMap.addAttribute("error", result.getAllErrors().get(0).getCode());
+        }
+        Tournament tournament = transformer.apply(form);
+        tournamentService.create(tournament);
+        return "tournaments";
     }
 
     private List<Tournament> processList(List<Tournament> source) {

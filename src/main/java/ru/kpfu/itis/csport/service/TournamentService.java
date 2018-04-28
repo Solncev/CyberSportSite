@@ -12,10 +12,13 @@ import java.util.List;
 public interface TournamentService {
 
     List<ComputerGame> getAllGames();
+    ComputerGame getGameById(int id);
 
     List<Tournament> getUpcoming();
     List<Tournament> getActive();
     List<Tournament> getPast();
+
+    Tournament create(Tournament tournament);
 
     Tournament findById(int id);
 }
