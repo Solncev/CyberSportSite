@@ -29,8 +29,10 @@
       <column name="id" type="int" autoIncrement="true">
         <constraints primaryKey="true"/>
       </column>
-      <column name="game" type="int">
-        <constraints referencedTableName="computer_game" referencedColumnNames="id" nullable="false"/>
+      <column name="game_id" type="int">
+        <constraints
+            foreignKeyName="fk_tournament_game" referencedTableName="computer_game" referencedColumnNames="id"
+            nullable="false"/>
       </column>
       <column name="team_count" type="int">
         <constraints nullable="false"/>
@@ -48,6 +50,29 @@
         <constraints nullable="false"/>
       </column>
       <column name="description" type="text"/>
+    </createTable>
+  </changeSet>
+
+  <!-- todo teams -->
+  <changeSet id="003" author="krylov">
+    <comment>Create tournament matches</comment>
+    <createTable tableName="tournament_match">
+      <column name="id" type="int" autoIncrement="true">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="tournament_id" type="int">
+        <constraints nullable="false"
+                     foreignKeyName="fk_match_tournament" referencedTableName="tournament" referencedColumnNames="id"/>
+      </column>
+      <column name="team1_id" type="int"/>
+      <column name="team2_id" type="int"/>
+      <column name="description" type="text"/>
+      <column name="winner" type="int" remarks="Real winner team (1 or 2 or none)"/>
+      <column name="team1_winner" type="int" remarks="Winner as signaled by team1"/>
+      <column name="team2_winner" type="int" remarks="Winner as signaled by team2"/>
+      <column name="next_match" type="int">
+        <constraints foreignKeyName="fk_match_next" referencedTableName="tournament_match" referencedColumnNames="id"/>
+      </column>
     </createTable>
   </changeSet>
 </databaseChangeLog>

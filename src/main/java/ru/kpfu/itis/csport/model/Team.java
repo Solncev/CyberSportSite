@@ -1,7 +1,7 @@
 package ru.kpfu.itis.csport.model;
 
-import java.util.Collection;
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * @author krylov
@@ -16,13 +16,13 @@ public class Team {
   @Column(nullable = false)
   private String name;
 
-  @Column(nullable = false)
+  @Column(name = "member_count", nullable = false)
   private int memberCount;
 
   @ManyToOne(optional = false)
   private User leader;
 
-  @OneToMany(mappedBy = "team_id")
+  @OneToMany(mappedBy = "team")
   private Collection<TeamMember> members;
 
   public int getId() {

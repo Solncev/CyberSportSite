@@ -20,10 +20,10 @@ public class ComputerGame {
     @Lob
     private String description;
 
-    @Column(nullable = false)
+    @Column(name = "team_size", nullable = false)
     private int teamSize;
 
-    @Column(nullable = false)
+    @Column(name = "photo_link", nullable = false)
     private String photoLink;
 
     public int getId() {

@@ -20,7 +20,7 @@ public class Tournament {
     @ManyToOne(optional = false)
     private ComputerGame game;
 
-    @Column(nullable = false)
+    @Column(name = "team_count", nullable = false)
     private int teamCount;
 
     @Column(nullable = false)
@@ -36,7 +36,7 @@ public class Tournament {
     @Lob
     private String description;
 
-    @OneToMany(mappedBy = "tournament_id")
+    @OneToMany(mappedBy = "tournament")
     private Collection<TournamentMatch> matches;
 
     public int getId() {

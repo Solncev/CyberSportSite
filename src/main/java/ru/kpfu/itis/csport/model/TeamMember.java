@@ -1,15 +1,17 @@
 package ru.kpfu.itis.csport.model;
 
+import javax.persistence.*;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 /**
  * @author krylov
  */
 @Entity
 public class TeamMember {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id; //todo move to composite key (team, username)
 
   @ManyToOne
   private Team team;
@@ -19,6 +21,14 @@ public class TeamMember {
 
   @Column
   private String fullName;
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
 
   public Team getTeam() {
     return team;
