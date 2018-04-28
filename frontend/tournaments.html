@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,275 +13,372 @@
 
     <link href="css/main.css" rel="stylesheet">
     <link href="css/tournaments.css" rel="stylesheet">
+    <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
 
-</head><!--/head-->
+
+
+
+</head>
+<!--/head-->
 
 <body id="home" class="homepage">
 
-<header id="header">
-    <nav id="main-menu" class="navbar navbar-default navbar-fixed-top top-nav-collapse" role="banner">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="tournaments.html"><img src="images/logo.png" style="width: 170px;"
-                                                                     alt="logo"></a>
+    <header id="header">
+        <nav id="main-menu" class="navbar navbar-default navbar-fixed-top top-nav-collapse" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="tournaments.html">
+                        <img src="images/logo.png" style="width: 170px;" alt="logo">
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="scroll active">
+                            <a href="#home">Турниры </a>
+                        </li>
+                        <li class="scroll">
+                            <a href="#services">Команды </a>
+                        </li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <!--если не авторизован-->
+                        <li class="scroll">
+                            <a href="#testimonial"> Регистрация </a>
+                        </li>
+                        <li class="scroll">
+                            <a href="#get-in-touch">Вход</a>
+                        </li>
+
+                        <!--если авторизован-->
+                        <li class="scroll">
+                            <a href="#portfolio">Профиль</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.container-->
+        </nav>
+        <!--/nav-->
+    </header>
+    <!--/header-->
+
+    <div class="content">
+        <div class="container mar-top-30 tournaments">
+            <div class="section-header">
+                <h2 class="section-title text-center">Турниры</h2>
             </div>
 
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="scroll active"><a href="#home">Турниры </a></li>
-                    <li class="scroll"><a href="#services">Команды </a></li>
+            <div class="row">
 
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <!--если не авторизован-->
-                    <li class="scroll"><a href="#testimonial"> Регистрация </a></li>
-                    <li class="scroll"><a href="#get-in-touch">Вход</a></li>
+                <!--Выбор дисциплины-->
+                <div class="col-md-2 col-md-push-10 col-sm-4 col-xs-12 mar-bot-10">
+                    <label>Дисциплина</label>
+                    <select name="" class="form-control" id="disciplineSelect">
+                        <option selected value="all">Все</option>
+                        <option value="1">Дисциплина 1</option>
+                        <option value="1">Дисциплина 2</option>
+                        <option value="1">Кантрстрайк</option>
+                    </select>
 
-                    <!--если авторизован-->
-                    <li class="scroll"><a href="#portfolio">Профиль</a></li>
-                </ul>
-            </div>
-        </div><!--/.container-->
-    </nav><!--/nav-->
-</header><!--/header-->
+                    <button class="btn btn-primary btn-block mar-top-30" data-toggle="modal"
+                     data-target="#createModal" id="createModalBtn" name="openModal">Создать турнир
+                    </button>
 
-<div class="content">
-    <div class="container mar-top-30 tournaments">
-        <div class="section-header">
-            <h2 class="section-title text-center">Турниры</h2>
-        </div>
 
-        <div class="row">
-
-            <!--Выбор дисциплины-->
-            <div class="col-md-2 col-md-push-10 col-sm-4 col-xs-12 mar-bot-10">
-                <label>Дисциплина</label>
-                <select name="" class="form-control" id="disciplineSelect">
-                    <option selected value="all">Все</option>
-                    <option value="1">Дисциплина 1</option>
-                    <option value="1">Дисциплина 2</option>
-                    <option value="1">Кантрстрайк</option>
-                </select>
-            </div>
-
-            <!--вкладки с типами турниров-->
-            <div class="col-md-10 col-md-pull-2">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#future" data-toggle="tab">Предстоящие</a></li>
-                    <li class=""><a href="#progress" data-toggle="tab">Начавшиеся</a></li>
-                    <li class=""><a href="#past" data-toggle="tab">Завершенные</a></li>
-                </ul>
-
-                <div id="tabs" class="tab-content">
-
-                    <!--Предстоящие турниры-->
-                    <div class="tab-pane fade active in" id="future">
-                        <div class="list-group shadowed">
-                            <a href="#" class="list-group-item list-group-item-action ov-h">
-                                <span class="square" style="background-image: url('images/work_4.jpg')"></span>
-                                <h4 id="tName1">Название турнира 1</h4>
-                                <p>Описание Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis cum
-                                    excepturi
-                                    expedita laboriosam, minus nam odio placeat quisquam rem similique?
-                                    Consequatur deserunt eligendi ipsam necessitatibus perferendis quibusdam sit soluta
-                                    voluptatem?</p>
-                                <input type="hidden" name="tournamentId" value="1">
-                                <button class="btn btn-primary right" data-toggle="modal" data-target="#requestModal"
-                                        id="requestModalBtn1" name="openModal">Подать заявку
+                </div>
+                //модалка создания турнира
+                <div class="modal fade" id="createModal" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header no-border">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
                                 </button>
-                            </a>
+                            </div>
+                            <div class="modal-body">
+                                <h4 class="text-center">Создание турнира </h4>
+                                <br>
 
-                            <a href="#" class="list-group-item list-group-item-action ov-h">
-                                <span class="square" style="background-image: url('images/work_3.jpg')"></span>
-                                <h4>Название турнира 2</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis cum excepturi
-                                    expedita laboriosam, minus nam odio placeat quisquam rem similique? Consequatur
-                                    deserunt eligendi ipsam necessitatibus perferendis
-                                    quibusdam sit soluta voluptatem? Lorem ipsum dolor sit amet, consectetur adipisicing
-                                    elit. Alias aliquid, animi corporis culpa dolor eius eos esse est hic laudantium
-                                    neque praesentium tempore vero? Ad aliquid laboriosam laudantium sint sunt.</p>
-                                <input type="hidden" name="tournamentId" value="2">
-                                <button class="btn btn-primary right" data-toggle="modal" data-target="#requestModal"
-                                        id="requestModalBtn2" name="openModal">Подать заявку
-                                </button>
-                            </a>
+                                <form class="form" action="..." method="POST">
 
+                                    <div class="form-group">
+                                        <label>Дисциплина</label>
+                                        <select name="discipline" class="form-control" id="discipline">
+                                            <option value="create">Выбрать дисциплину</option>
+
+                                            <!--list of disc-->
+                                            <option value="1">Дисциплина 1</option>
+                                            <option value="1">Дисциплина 2</option>
+                                            <option value="1">Кантрстрайк</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Название турнира</label>
+                                        <input type="text" class="form-control" required name="tournamentName" id="tournamentName">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="form-group">
+                                                <label for="tournamentPhoto">Фото</label>
+                                                <input type="file" id="tournamentPhoto" name="tournamentPhoto">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <label for="tournamentPhoto">Дата начала</label> <!--format: "dd.mm.yyyy" look at script below-->
+                                            <input id="tournamentStartDate" name="tournamentStartDate" type="text" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="description">Описание</label>
+                                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                                    </div>
+
+                                    <div class="form-group error" id="forgot-error">
+                                        <h5 class="text-center" style="display: none;">ERROR MESSAGE</h5>
+                                    </div>
+
+                                    <button class="btn btn-block btn-primary" id="forgot-submit">Создать турнир</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <!--Начавшиеся турниры-->
-                    <div class="tab-pane fade" id="progress">
-                        <div class="list-group shadowed">
-                            <a href="#" class="list-group-item list-group-item-action ov-h">
-                                <span class="square" style="background-image: url('images/work_2.jpg')"></span>
-                                <h4>Название турнира</h4>
-                                <p>laboriosam, minus nam odio placeat quisquam rem similique? Consequatur deserunt
-                                    eligendi ipsam necessitatibus perferendis quibusdam sit soluta voluptatem?</p>
-                            </a>
+                <!--вкладки с типами турниров-->
+                <div class="col-md-10 col-md-pull-2">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#future" data-toggle="tab">Предстоящие</a>
+                        </li>
+                        <li class="">
+                            <a href="#progress" data-toggle="tab">Начавшиеся</a>
+                        </li>
+                        <li class="">
+                            <a href="#past" data-toggle="tab">Завершенные</a>
+                        </li>
+                    </ul>
+
+                    <div id="tabs" class="tab-content">
+
+                        <!--Предстоящие турниры-->
+                        <div class="tab-pane fade active in" id="future">
+                            <div class="list-group shadowed">
+                                <a href="#" class="list-group-item list-group-item-action ov-h">
+                                    <span class="square" style="background-image: url('images/work_4.jpg')"></span>
+                                    <h4 id="tName1">Название турнира 1</h4>
+                                    <p>Описание Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis cum excepturi
+                                        expedita laboriosam, minus nam odio placeat quisquam rem similique? Consequatur deserunt
+                                        eligendi ipsam necessitatibus perferendis quibusdam sit soluta voluptatem?
+                                    </p>
+                                    <input type="hidden" name="tournamentId" value="1">
+                                    <button class="btn btn-primary right" data-toggle="modal" data-target="#requestModal" id="requestModalBtn1" name="openModal">Подать заявку
+                                    </button>
+                                </a>
+
+                                <a href="#" class="list-group-item list-group-item-action ov-h">
+                                    <span class="square" style="background-image: url('images/work_3.jpg')"></span>
+                                    <h4>Название турнира 2</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis cum excepturi expedita
+                                        laboriosam, minus nam odio placeat quisquam rem similique? Consequatur deserunt eligendi
+                                        ipsam necessitatibus perferendis quibusdam sit soluta voluptatem? Lorem ipsum dolor
+                                        sit amet, consectetur adipisicing elit. Alias aliquid, animi corporis culpa dolor
+                                        eius eos esse est hic laudantium neque praesentium tempore vero? Ad aliquid laboriosam
+                                        laudantium sint sunt.</p>
+                                    <input type="hidden" name="tournamentId" value="2">
+                                    <button class="btn btn-primary right" data-toggle="modal" data-target="#requestModal" id="requestModalBtn2" name="openModal">Подать заявку
+                                    </button>
+                                </a>
+
+                            </div>
                         </div>
-                    </div>
 
-                    <!--Завершенные турниры-->
-                    <div class="tab-pane fade" id="past">
-                        <h4 class="mar-top-30">Турниров пока нет...</h4>
+                        <!--Начавшиеся турниры-->
+                        <div class="tab-pane fade" id="progress">
+                            <div class="list-group shadowed">
+                                <a href="#" class="list-group-item list-group-item-action ov-h">
+                                    <span class="square" style="background-image: url('images/work_2.jpg')"></span>
+                                    <h4>Название турнира</h4>
+                                    <p>laboriosam, minus nam odio placeat quisquam rem similique? Consequatur deserunt eligendi
+                                        ipsam necessitatibus perferendis quibusdam sit soluta voluptatem?</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!--Завершенные турниры-->
+                        <div class="tab-pane fade" id="past">
+                            <h4 class="mar-top-30">Турниров пока нет...</h4>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="modal fade" id="requestModal" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header no-border">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">×</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <h4 class="text-center" id="modalTournamentName">Заявка на участие в турнире </h4>
-                        <br>
+            <div class="modal fade" id="requestModal" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header no-border">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="text-center" id="modalTournamentName">Заявка на участие в турнире </h4>
+                            <br>
 
-                        <form class="form">
-                            <!--tournament id-->
-                            <input type="hidden" name="" id="modalTournamentId">
-
-                            <div class="form-group">
-                                <h5>Для участия в турнире выберите свою команду или создайте новую</h5>
-                                <label class="sr-only">Team</label>
-                                <select name="" class="form-control" id="teamSelect">
-                                    <option value="create">Создать команду</option>
-
-                                    <!--list of teams-->
-                                    <option value="1">Team 1</option>
-                                    <option value="2">Team 2</option>
-                                    <option value="3">Team 3</option>
-                                    <option value="4">Team 4</option>
-                                </select>
-                            </div>
-
-                            <div class="team-create" id="createTeamForm">
-                                <div class="form-group">
-                                    <label>Название команды</label>
-                                    <input type="text" class="form-control" required name="teamName" id="teamName">
-                                </div>
+                            <form class="form">
+                                <!--tournament id-->
+                                <input type="hidden" name="" id="modalTournamentId">
 
                                 <div class="form-group">
-                                    <label>Никнеймы игроков</label>
-                                    <input type="text" class="form-control mar-bot-10" placeholder="Первый игрок"
-                                           required name="player1" id="player1">
-                                    <input type="text" class="form-control mar-bot-10" placeholder="Второй игрок"
-                                           required name="player2" id="player2">
-                                    <input type="text" class="form-control mar-bot-10" placeholder="Третий игрок"
-                                           required name="player3" id="player3">
-                                    <input type="text" class="form-control mar-bot-10" placeholder="Четвертый игрок"
-                                           required name="player4" id="player4">
-                                    <input type="text" class="form-control mar-bot-10" placeholder="Пятый игрок"
-                                           required name="player5" id="player5">
+                                    <h5>Для участия в турнире выберите свою команду или создайте новую</h5>
+                                    <label class="sr-only">Team</label>
+                                    <select name="" class="form-control" id="teamSelect">
+                                        <option value="create">Создать команду</option>
+
+                                        <!--list of teams-->
+                                        <option value="1">Team 1</option>
+                                        <option value="2">Team 2</option>
+                                        <option value="3">Team 3</option>
+                                        <option value="4">Team 4</option>
+                                    </select>
                                 </div>
 
-                            </div>
+                                <div class="team-create" id="createTeamForm">
+                                    <div class="form-group">
+                                        <label>Название команды</label>
+                                        <input type="text" class="form-control" required name="teamName" id="teamName">
+                                    </div>
 
-                            <div class="form-group error" id="forgot-error">
-                                <h5 class="text-center" style="display: none;">Пользователя с таким e-mail нет в нашей
-                                    базе
-                                    данных</h5>
-                            </div>
+                                    <div class="form-group">
+                                        <label>Никнеймы игроков</label>
+                                        <input type="text" class="form-control mar-bot-10" placeholder="Первый игрок" required name="player1" id="player1">
+                                        <input type="text" class="form-control mar-bot-10" placeholder="Второй игрок" required name="player2" id="player2">
+                                        <input type="text" class="form-control mar-bot-10" placeholder="Третий игрок" required name="player3" id="player3">
+                                        <input type="text" class="form-control mar-bot-10" placeholder="Четвертый игрок" required name="player4" id="player4">
+                                        <input type="text" class="form-control mar-bot-10" placeholder="Пятый игрок" required name="player5" id="player5">
+                                    </div>
 
-                            <button class="btn btn-block btn-primary" id="forgot-submit">Подать заявку</button>
-                        </form>
+                                </div>
+
+                                <div class="form-group error" id="forgot-error">
+                                    <h5 class="text-center" style="display: none;">Пользователя с таким e-mail нет в нашей базе данных
+                                    </h5>
+                                </div>
+
+                                <button class="btn btn-block btn-primary" id="forgot-submit">Подать заявку</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
-
-
-    </div><!--/.container-->
-</div>
-<!--Турниры - tournaments -->
-
-
-<footer id="footer">
-    <div class="container text-center">
-        Управление проектами © 2018 | <a href="">Высшая Школа ИТИС </a> <a
-            href="http://kpfu.ru">КФУ</a>
+        <!--/.container-->
     </div>
-</footer><!--/#footer-->
+    <!--Турниры - tournaments -->
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 
-<script>
-    $.validate({
-        lang: 'ru'
-    });
-</script>
+    <footer id="footer">
+        <div class="container text-center">
+            Управление проектами © 2018 |
+            <a href="">Высшая Школа ИТИС </a>
+            <a href="http://kpfu.ru">КФУ</a>
+        </div>
+    </footer>
+    <!--/#footer-->
 
-<script>
-    $('button[name="openModal"]').click(insertModalData);
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/bootstrap-datepicker.ru.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 
-    // Вставляем данные турнира в модальное окно (форму отправки заявки)
-    function insertModalData(e) {
-        var selectedTournament = $(e.target).parent();
-        // console.log(selectedTournament);
-        var tournamentName = selectedTournament.find("h4").html();
-        var tournamentId = selectedTournament.find("input[name='tournamentId']").val();
+    <script>
+        //datepicker run
+        $('#tournamentStartDate').datepicker({
+            weekStart: 1,
+            language: "ru",
+            todayHighlight: true
+        });
+    </script>
+    <script>
 
-        $('#modalTournamentName').text('Заявка на участие в турнире "' + tournamentName + '"');
-        $('#modalTournamentId').val(tournamentId);
-    }
+        //form validate
+        $.validate({
+            lang: 'ru'
+        });
+    </script>
 
-    // Прячем форму создания команды, если выбрана существующая команда
-    $('#teamSelect').on('change', function (e) {
-        var selectedOption = $("option:selected", this);
-        var selectedValue = this.value;
+    <script>
+        $('button[name="openModal"]').click(insertModalData);
 
-        if (selectedValue === 'create') {
-            teamFormDisplay(true);
+        // Вставляем данные турнира в модальное окно (форму отправки заявки)
+        function insertModalData(e) {
+            var selectedTournament = $(e.target).parent();
+            // console.log(selectedTournament);
+            var tournamentName = selectedTournament.find("h4").html();
+            var tournamentId = selectedTournament.find("input[name='tournamentId']").val();
+
+            $('#modalTournamentName').text('Заявка на участие в турнире "' + tournamentName + '"');
+            $('#modalTournamentId').val(tournamentId);
         }
-        else {
-            teamFormDisplay(false);
+
+        // Прячем форму создания команды, если выбрана существующая команда
+        $('#teamSelect').on('change', function (e) {
+            var selectedOption = $("option:selected", this);
+            var selectedValue = this.value;
+
+            if (selectedValue === 'create') {
+                teamFormDisplay(true);
+            }
+            else {
+                teamFormDisplay(false);
+            }
+        });
+
+        // Включаем/Выключаем поля формы создания команды
+        function teamFormDisplay(bool) {
+            var form = $('#createTeamForm');
+            if (bool) {
+                form.show('slow');
+                form.find('input[id="teamName"]').prop('disabled', false);
+                form.find('input[id="player1"]').prop('disabled', false);
+                form.find('input[id="player2"]').prop('disabled', false);
+                form.find('input[id="player3"]').prop('disabled', false);
+                form.find('input[id="player4"]').prop('disabled', false);
+                form.find('input[id="player5"]').prop('disabled', false);
+            }
+            else {
+                form.hide('slow');
+                form.find('input[id="teamName"]').prop('disabled', true);
+                form.find('input[id="player1"]').prop('disabled', true);
+                form.find('input[id="player2"]').prop('disabled', true);
+                form.find('input[id="player3"]').prop('disabled', true);
+                form.find('input[id="player4"]').prop('disabled', true);
+                form.find('input[id="player5"]').prop('disabled', true);
+            }
         }
-    });
 
-    // Включаем/Выключаем поля формы создания команды
-    function teamFormDisplay(bool) {
-        var form = $('#createTeamForm');
-        if (bool) {
-            form.show('slow');
-            form.find('input[id="teamName"]').prop('disabled', false);
-            form.find('input[id="player1"]').prop('disabled', false);
-            form.find('input[id="player2"]').prop('disabled', false);
-            form.find('input[id="player3"]').prop('disabled', false);
-            form.find('input[id="player4"]').prop('disabled', false);
-            form.find('input[id="player5"]').prop('disabled', false);
-        }
-        else {
-            form.hide('slow');
-            form.find('input[id="teamName"]').prop('disabled', true);
-            form.find('input[id="player1"]').prop('disabled', true);
-            form.find('input[id="player2"]').prop('disabled', true);
-            form.find('input[id="player3"]').prop('disabled', true);
-            form.find('input[id="player4"]').prop('disabled', true);
-            form.find('input[id="player5"]').prop('disabled', true);
-        }
-    }
-
-    // Обновляем страницу при изменении дисциплины
-    $('#disciplineSelect').on('change', function (e) {
-        var selectedValue = this.value;
-        var currentURL = 'http://' + window.location.hostname + window.location.pathname;
-        // window.location.href = currentURL + '?discipline=' + selectedValue;
-    });
+        // Обновляем страницу при изменении дисциплины
+        $('#disciplineSelect').on('change', function (e) {
+            var selectedValue = this.value;
+            var currentURL = 'http://' + window.location.hostname + window.location.pathname;
+            // window.location.href = currentURL + '?discipline=' + selectedValue;
+        });
 
 
-</script>
+    </script>
 </body>
-</html> 
+
+</html>
