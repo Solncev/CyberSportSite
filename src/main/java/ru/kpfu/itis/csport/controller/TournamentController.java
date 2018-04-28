@@ -5,7 +5,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.csport.model.Tournament;
-import ru.kpfu.itis.csport.service.TeamService;
 import ru.kpfu.itis.csport.service.TournamentService;
 import ru.kpfu.itis.csport.util.TournamentForm;
 import ru.kpfu.itis.csport.util.TournamentTransformer;
@@ -27,7 +26,7 @@ public class TournamentController {
     private TournamentTransformer transformer;
 
     @Autowired
-    public TournamentController(TournamentService tournamentService, TeamService teamService) {
+    public TournamentController(TournamentService tournamentService) {
         this.tournamentService = tournamentService;
         this.transformer = new TournamentTransformer(tournamentService);
     }
@@ -54,7 +53,7 @@ public class TournamentController {
     @PostMapping({"/new", "/create"})
     public String create(@ModelAttribute("form") @Valid TournamentForm form, BindingResult result, ModelMap modelMap) {
         if(result.hasErrors()) {
-            modelMap.addAttribute("error", result.getAllErrors().get(0).getCode());
+            modelMap.addAttribute("creationError", result.getAllErrors().get(0).getCode());
         }
         Tournament tournament = transformer.apply(form);
         tournamentService.create(tournament);

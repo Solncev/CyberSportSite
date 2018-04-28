@@ -72,9 +72,11 @@
                                     <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                                 </div>
 
-                                <div class="form-group error" id="forgot-error">
-                                    <h5 class="text-center" style="display: none;">ERROR MESSAGE</h5>
-                                </div>
+                                <#if creationError??>
+                                    <div class="form-group error" id="forgot-error">
+                                        <h5 class="text-center">${creationError}</h5>
+                                    </div>
+                                </#if>
 
                                 <button class="btn btn-block btn-primary" id="forgot-submit">Создать турнир</button>
                             </@sf.form>
