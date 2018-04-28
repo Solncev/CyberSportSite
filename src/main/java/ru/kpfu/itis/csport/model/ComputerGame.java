@@ -17,7 +17,7 @@ public class ComputerGame {
     @Column(unique = true, nullable = false)
     private String name;
 
-    @Lob
+    @Column(columnDefinition = "text")
     private String description;
 
     @Column(name = "team_size", nullable = false)

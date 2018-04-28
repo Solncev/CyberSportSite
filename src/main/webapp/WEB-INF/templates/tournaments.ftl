@@ -38,11 +38,11 @@
                             <h4 class="text-center">Создание турнира </h4>
                             <br>
 
-                            <form class="form" action="/tournaments/new" method="POST">
+                            <@sf.form class="form" action="/tournaments/new" method="POST" modelAttribute="form">
                                 <div class="form-group">
                                     <label>Дисциплина</label>
-                                    <select name="discipline" class="form-control" id="discipline">
-                                        <option value="create">Выбрать дисциплину</option>
+                                    <select name="game" class="form-control" id="game">
+                                        <option value="-1">Выбрать дисциплину</option>
                                         <#list all_games as game>
                                             <option value="${game.id}">${game.name}</option>
                                         </#list>
@@ -62,8 +62,8 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-6">
-                                        <label for="start_date">Дата начала</label> <!--format: "dd.mm.yyyy" look at script below-->
-                                        <input id="start_date" name="start_date" type="text" class="form-control">
+                                        <label for="startDate">Дата начала</label> <!--format: "dd.mm.yyyy" look at script below-->
+                                        <input id="startDate" name="startDate" type="text" class="form-control">
                                     </div>
                                 </div>
 
@@ -77,7 +77,7 @@
                                 </div>
 
                                 <button class="btn btn-block btn-primary" id="forgot-submit">Создать турнир</button>
-                            </form>
+                            </@sf.form>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                         <div class="list-group shadowed">
                             <#list upcoming as tournament>
                                 <a href="#" class="list-group-item list-group-item-action ov-h"
-                                   data-player-count="${tournament.game.playerCount}">
+                                   data-player-count="${tournament.game.teamSize}">
                                     <span class="square" style="background-image: url('images/work_4.jpg')"></span>
                                     <h4 class="tName">${tournament.name}</h4>
                                     <p>${tournament.description!""}</p>

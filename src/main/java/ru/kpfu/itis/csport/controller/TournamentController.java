@@ -54,13 +54,13 @@ public class TournamentController {
     }
 
     @PostMapping({"/new", "/create"})
-    public String create(@RequestBody @Valid TournamentForm form, BindingResult result, ModelMap modelMap) {
+    public String create(@ModelAttribute("form") @Valid TournamentForm form, BindingResult result, ModelMap modelMap) {
         if(result.hasErrors()) {
             modelMap.addAttribute("error", result.getAllErrors().get(0).getCode());
         }
         Tournament tournament = transformer.apply(form);
         tournamentService.create(tournament);
-        return "tournaments";
+        return "redirect:/tournaments";
     }
 
     private List<Tournament> processList(List<Tournament> source) {

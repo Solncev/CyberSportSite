@@ -33,7 +33,7 @@ public class Tournament {
     @Column(nullable = false)
     private Date date = new Date();
 
-    @Lob
+    @Column(columnDefinition = "text")
     private String description;
 
     @OneToMany(mappedBy = "tournament")
