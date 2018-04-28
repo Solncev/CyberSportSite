@@ -172,13 +172,9 @@
                                 <label class="sr-only">Team</label>
                                 <select name="" class="form-control" id="teamSelect">
                                     <option value="create">Создать команду</option>
-
-                                    <!--list of teams-->
-                                    <#-- TODO ajaxing by num of players -->
-                                    <option value="1">Team 1</option>
-                                    <option value="2">Team 2</option>
-                                    <option value="3">Team 3</option>
-                                    <option value="4">Team 4</option>
+                                    <#list currentUser.teams as team>
+                                        <option value="${team.id}">${team.name}</option>
+                                    </#list>
                                 </select>
                             </div>
 

@@ -24,13 +24,11 @@ import java.util.stream.Collectors;
 public class TournamentController {
 
     private TournamentService tournamentService;
-    private TeamService teamService;
     private TournamentTransformer transformer;
 
     @Autowired
     public TournamentController(TournamentService tournamentService, TeamService teamService) {
         this.tournamentService = tournamentService;
-        this.teamService = teamService;
         this.transformer = new TournamentTransformer(tournamentService);
     }
 

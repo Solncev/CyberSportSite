@@ -50,7 +50,6 @@
     </createTable>
   </changeSet>
 
-  <!-- todo teams -->
   <changeSet id="003" author="krylov">
     <comment>Create tournament matches</comment>
     <createTable tableName="tournament_match">
