@@ -54,7 +54,7 @@
                     <!--Начавшиеся турниры-->
                     <div class="tab-pane fade" id="progress">
                         <div class="list-group shadowed">
-                            <#list current as tournament>
+                            <#list active as tournament>
                                 <a href="#" class="list-group-item list-group-item-action ov-h">
                                     <span class="square" style="background-image: url('images/work_2.jpg')"></span>
                                     <h4>${tournament.name}</h4>

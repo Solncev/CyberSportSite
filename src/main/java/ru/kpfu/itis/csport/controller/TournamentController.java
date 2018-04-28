@@ -3,10 +3,8 @@ package ru.kpfu.itis.csport.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.kpfu.itis.csport.model.Team;
 import ru.kpfu.itis.csport.model.Tournament;
 import ru.kpfu.itis.csport.service.TeamService;
 import ru.kpfu.itis.csport.service.TournamentService;
@@ -20,7 +18,7 @@ import java.util.stream.Collectors;
  * Date: 4/26/18 11:04 PM
  */
 @AuthController
-@RequestMapping(path = "/tournament")
+@RequestMapping(path = "/tournaments")
 public class TournamentController {
 
     private TournamentService tournamentService;
@@ -32,7 +30,7 @@ public class TournamentController {
         this.teamService = teamService;
     }
 
-    @GetMapping({"/", "/all"})
+    @GetMapping({"", "/", "/all"})
     public String list(ModelMap modelMap) {
         modelMap.addAttribute("all_games", tournamentService.getAllGames());
 
