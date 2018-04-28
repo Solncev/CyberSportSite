@@ -2,6 +2,7 @@ package ru.kpfu.itis.csport.model;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "\"user\"")
@@ -20,6 +21,17 @@ public class User {
 
     @Column(unique = true, nullable = false)
     private String email;
+
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "leader")
+    private Set<Team> teams;
 
     public int getId() {
         return id;
