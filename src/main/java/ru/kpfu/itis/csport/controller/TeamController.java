@@ -59,7 +59,7 @@ public class TeamController {
 
 
     @PostMapping(value = "/teams/update")
-    public String updateTeam(@RequestParam("") int teamId,
+    public String updateTeam(@RequestParam("teamId") int teamId,
                              @RequestParam("teamName") String teamName,
                              @RequestParam("player1") String player1,
                              @RequestParam("player2") String player2,
