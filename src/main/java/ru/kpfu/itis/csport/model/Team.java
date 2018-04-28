@@ -1,67 +1,86 @@
 package ru.kpfu.itis.csport.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 
-/**
- * @author krylov
- */
 @Entity
+@Table(name = "teams")
 public class Team {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+    @Column(unique = true, updatable = true, nullable = false)
+    private String name;
 
-  @Column(nullable = false)
-  private String name;
+    @ManyToOne
+    @JoinColumn(name = "leader_id")
+    private User leader;
 
-  @Column(name = "member_count", nullable = false)
-  private int memberCount;
+    @Column(name = "first_player")
+    private String firstPlayer;
 
-  @ManyToOne(optional = false)
-  private User leader;
+    @Column(name = "second_player")
+    private String secondPlayer;
 
-  @OneToMany(mappedBy = "team")
-  private Collection<TeamMember> members;
+    @Column(name = "third_player")
+    private String thirdPlayer;
 
-  public int getId() {
-    return id;
-  }
+    @Column(name = "fourth_player")
+    private String fourthPlayer;
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public int getMemberCount() {
-    return memberCount;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public void setMemberCount(int memberCount) {
-    this.memberCount = memberCount;
-  }
+    public User getLeader() {
+        return leader;
+    }
 
-  public User getLeader() {
-    return leader;
-  }
+    public void setLeader(User leader) {
+        this.leader = leader;
+    }
 
-  public void setLeader(User leader) {
-    this.leader = leader;
-  }
+    public String getFirstPlayer() {
+        return firstPlayer;
+    }
 
-  public Collection<TeamMember> getMembers() {
-    return members;
-  }
+    public void setFirstPlayer(String firstPlayer) {
+        this.firstPlayer = firstPlayer;
+    }
 
-  public void setMembers(Collection<TeamMember> members) {
-    this.members = members;
-  }
+    public String getSecondPlayer() {
+        return secondPlayer;
+    }
+
+    public void setSecondPlayer(String secondPlayer) {
+        this.secondPlayer = secondPlayer;
+    }
+
+    public String getThirdPlayer() {
+        return thirdPlayer;
+    }
+
+    public void setThirdPlayer(String thirdPlayer) {
+        this.thirdPlayer = thirdPlayer;
+    }
+
+    public String getFourthPlayer() {
+        return fourthPlayer;
+    }
+
+    public void setFourthPlayer(String fourthPlayer) {
+        this.fourthPlayer = fourthPlayer;
+    }
 }

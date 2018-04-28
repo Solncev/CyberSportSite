@@ -1,16 +1,20 @@
 package ru.kpfu.itis.csport.service;
 
-import java.util.List;
-
 import ru.kpfu.itis.csport.model.Team;
 import ru.kpfu.itis.csport.model.User;
 
-/**
- * @author krylov
- */
+import java.util.List;
+
 public interface TeamService {
+    void create(Team team) throws Exception;
 
-  List<Team> findAll();
+    void update(Team team);
 
-  List<Team> findByOwnerAndSize(User owner, int size);
+    void delete(Team team);
+
+    Team getOne(int id);
+
+    List<Team> findAll();
+
+    List<Team> findByOwnerAndSize(User owner, int size);
 }

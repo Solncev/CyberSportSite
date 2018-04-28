@@ -8,5 +8,6 @@
 
     <include file="db/changelog/0001-users.xml"/>
     <include file="db/changelog/0002-tournaments.xml"/>
+    <include file="db/changelog/0003-teams.xml"/>
 
 </databaseChangeLog>

@@ -45,8 +45,8 @@
                     <li class="scroll <#if springMacroRequestContext.requestUri?starts_with("/tournaments")>active</#if>">
                         <a href="/tournaments">Турниры </a>
                     </li>
-                    <li class="scroll <#if springMacroRequestContext.requestUri?starts_with("/commands")>active</#if>">
-                        <a href="/commands">Команды </a>
+                    <li class="scroll <#if springMacroRequestContext.requestUri?starts_with("/teams")>active</#if>">
+                        <a href="/teams">Команды </a>
                     </li>
 
                 </ul>
