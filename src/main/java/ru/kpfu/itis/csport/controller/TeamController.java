@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.csport.model.Team;
 import ru.kpfu.itis.csport.model.User;
 import ru.kpfu.itis.csport.service.TeamService;
@@ -30,9 +27,17 @@ public class TeamController {
         User currentUser = userService.findUser(SecurityContextHolder.getContext().getAuthentication().getName());
         model.addAttribute("currentUser", currentUser);
         if (teamAlreadyExistError != null) {
-            model.addAttribute("userAlreadyExistError", teamAlreadyExistError);
+            model.addAttribute("teamAlreadyExistError", teamAlreadyExistError);
         }
         return "teams";
+    }
+
+    @GetMapping(value = "/teams/check")
+    @ResponseBody
+    public boolean checkTeamExists(Model model,
+                               @RequestParam(value = "name") String teamName) {
+        Team team = teamService.getByName(teamName.toLowerCase());
+        return team == null;
     }
 
     @PostMapping(value = "/teams/new")

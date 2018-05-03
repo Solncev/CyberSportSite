@@ -10,4 +10,6 @@ public interface TeamService {
     void delete(Team team);
 
     Team getOne(int id);
+
+    Team getByName(String name);
 }

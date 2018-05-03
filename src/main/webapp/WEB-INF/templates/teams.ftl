@@ -158,18 +158,13 @@
 <#--</script>-->
 
 <script>
-
     $('button[name="openModal"]').click(insertModalData);
 
     // Вставляем данные команды в модальное окно (форму редактирования команды)
     function insertModalData(e) {
         var selectedTeam = $(e.target).parent().parent();
-        // console.log(selectedTeam);
         var teamName = selectedTeam.find("p[class='teamName']").html();
         var teamId = selectedTeam.find("input[name='teamId']").val();
-
-        // console.log(teamName);
-        // console.log(teamId);
 
         $('#modalTeamName').text('Редактирование команды "' + teamName + '"');
         $('#modalTeamId').val(teamId);
@@ -182,6 +177,30 @@
             $('#player' + value).val(playerName);
         });
     }
+
+    var error_p = $("<p>" + 'Команда с таким названием уже существует' + "</p>");
+    error_p.addClass('error');
+
+    // Проверяем существование команды с введенным названием
+    $('#new_teamName').change(function () {
+        var input = $(this);
+        $.ajax({
+            url: '/teams/check',
+            data: {'name': input.val()},
+            success: function (free) {
+                if (!free) {
+                    input.parent().addClass('has-error');
+                    input.parent().append(error_p);
+                    $('#createSubmit').prop('disabled', true)
+                }
+                else {
+                    input.parent().removeClass('has-error');
+                    error_p.remove();
+                    $('#createSubmit').prop('disabled', false)
+                }
+            }
+        });
+    });
 
 </script>
 
