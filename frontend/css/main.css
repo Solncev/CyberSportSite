@@ -417,3 +417,7 @@ a:hover {
         background-size: cover;
     }
 }
+
+.text-underlined {
+    text-decoration: underline;
+}
