@@ -3,7 +3,8 @@ package ru.kpfu.itis.csport.config;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +16,6 @@ import org.springframework.dao.annotation.PersistenceExceptionTranslationPostPro
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -32,18 +32,19 @@ public class PersistenceConfig implements EnvironmentAware {
     }
 
     @Bean
-    public DataSource dataSource() throws ClassNotFoundException {
+    public DataSource dataSource() {
+        String driver = env.getProperty("spring.datasource.driver-class-name");
         String url = env.getProperty("spring.datasource.url");
         String user = env.getProperty("spring.datasource.username");
         String password = env.getProperty("spring.datasource.password");
 
-        Class.forName("org.postgresql.Driver");
+        HikariConfig config = new HikariConfig();
+        config.setDriverClassName(driver);
+        config.setJdbcUrl(url);
+        config.setUsername(user);
+        config.setPassword(password);
 
-        ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        dataSource.setJdbcUrl(url);
-        dataSource.setUser(user);
-        dataSource.setPassword(password);
-        return dataSource;
+        return new HikariDataSource(config);
     }
 
     @Bean
