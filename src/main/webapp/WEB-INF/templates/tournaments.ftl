@@ -20,10 +20,11 @@
                     </#list>
                 </select>
 
-                <button class="btn btn-primary btn-block mar-top-30" data-toggle="modal"
-                        data-target="#createModal" id="createModalBtn" name="openModal">Создать турнир
-                </button>
-
+                <@security.authorize access="hasRole('ROLE_MANAGER')">
+                  <button class="btn btn-primary btn-block mar-top-30" data-toggle="modal"
+                          data-target="#createModal" id="createModalBtn" name="openModal">Создать турнир
+                  </button>
+                </@security.authorize>
 
             </div>
             <div class="modal fade" id="createModal" role="dialog">
