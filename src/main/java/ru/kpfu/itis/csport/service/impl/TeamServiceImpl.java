@@ -42,4 +42,8 @@ public class TeamServiceImpl implements TeamService {
         return teamRepository.findOne(id);
     }
 
+    @Override
+    public Team getByName(String name) {
+        return teamRepository.findByNameIgnoreCase(name);
+    }
 }

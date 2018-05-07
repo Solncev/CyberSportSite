@@ -11,4 +11,5 @@ public interface TeamService {
 
     Team getOne(int id);
 
+    Team getByName(String name);
 }
