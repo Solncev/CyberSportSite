@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Дисциплины</title>
+    <!-- core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/disciplines.css" rel="stylesheet">
+
+
+</head><!--/head-->
+
+<body id="home" class="homepage">
+
+<header id="header">
+    <nav id="main-menu" class="navbar navbar-default navbar-fixed-top top-nav-collapse" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="tournaments.html"><img src="images/logo.png" style="width: 170px;"
+                                                                     alt="logo"></a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="scroll"><a href="#home">Турниры </a></li>
+                    <li class="scroll"><a href="#services">Команды </a></li>
+                    <li class="scroll active"><a href="#services">Дисциплины </a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!--если не авторизован-->
+                    <li class="scroll"><a href="#testimonial"> Регистрация </a></li>
+                    <li class="scroll"><a href="#get-in-touch">Вход</a></li>
+
+                    <!--если авторизован-->
+                    <li class="scroll"><a href="#portfolio">Профиль</a></li>
+                </ul>
+            </div>
+        </div><!--/.container-->
+    </nav><!--/nav-->
+</header><!--/header-->
+
+<div class="content">
+    <div class="container mar-top-30 tournaments">
+        <div class="section-header">
+            <h2 class="section-title text-center">ДИСЦИПЛИНЫ</h2>
+        </div>
+
+        <div class="row">
+
+            <!--Выбор дисциплины-->
+            <div class="col-md-2 col-md-push-10 col-sm-12 col-xs-12 mar-bot-10">
+                <button class="btn btn-primary fixed-button" data-toggle="modal" data-target="#teamCreateModal">Создать
+                    диспиплину
+                </button>
+            </div>
+
+            <!--вкладки с типами турниров-->
+            <div class="col-md-10 col-md-pull-2">
+
+                <!--for discipline in list-->
+                <div class="col-xs-12 dis-block">
+                    <div class="col-lg-10 col-sm-9 col-xs-12">
+                        <input type="hidden" name="disId" value="42">
+                        <span class="square"
+                              style="background-image:url('images/work_3.jpg');"></span>
+                        <h4 class="dis-name">Discipline name 1</h4>
+                        <h5 class="">Количество человек в команде: <span class="dis-count">5</span></h5>
+                        <p class="dis-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias aliquid aperiam aspernatur blanditiis dolor enim ex facilis incidunt itaque maxime nam odit possimus quisquam quos repudiandae, sint sunt voluptates!</p>
+                    </div>
+                    <div class="col-lg-2 col-sm-3 col-xs-9 mar-top-10">
+                        <button id="edit1" name="openModal" class="btn btn-primary right" data-toggle="modal" data-target="#teamEditModal">Редактировать</button>
+                    </div>
+                    <div class="col-lg-2 col-sm-3 col-xs-3 mar-top-10">
+                        <form action="">
+                            <input type="hidden" name="teamId" value="2">
+                            <button class="btn btn-default right">Удалить</button>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-12 dis-block">
+                    <div class="col-lg-10 col-sm-9 col-xs-12">
+                        <input type="hidden" name="disId" value="42">
+                        <span class="square"
+                              style="background-image:url('images/work_3.jpg');"></span>
+                        <h4 class="dis-name">Кирилл бля!!</h4>
+                        <h5 class="">Количество человек в команде: <span class="dis-count">5</span></h5>
+                        <p class="dis-description">Lorem ipsum dolor sit amet voluptates!</p>
+                    </div>
+                    <div class="col-lg-2 col-sm-3 col-xs-9 mar-top-10">
+                        <button id="edit2" name="openModal" class="btn btn-primary right" data-toggle="modal" data-target="#teamEditModal">Редактировать</button>
+                    </div>
+                    <div class="col-lg-2 col-sm-3 col-xs-3 mar-top-10">
+                        <form action="">
+                            <input type="hidden" name="teamId" value="42">
+                            <button class="btn btn-default right">Удалить</button>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-12 dis-block">
+                    <div class="col-lg-10 col-sm-9 col-xs-12">
+                        <input type="hidden" name="disId" value="42">
+                        <span class="square"
+                              style="background-image:url('images/work_3.jpg');"></span>
+                        <h4 class="dis-name">Сосать</h4>
+                        <h5 class="">Количество человек в команде: <span class="dis-count">5</span></h5>
+                        <p class="dis-description">Maxime nam odit possimus quisquam quos repudiandae, sint sunt voluptates!</p>
+                    </div>
+                    <div class="col-lg-2 col-sm-3 col-xs-9 mar-top-10">
+                        <button id="edit3" name="openModal" class="btn btn-primary right" data-toggle="modal" data-target="#teamEditModal">Редактировать</button>
+                    </div>
+                    <div class="col-lg-2 col-sm-3 col-xs-3 mar-top-10">
+                        <form action="">
+                            <input type="hidden" name="teamId" value="2">
+                            <button class="btn btn-default right">Удалить</button>
+                        </form>
+                    </div>
+                </div>
+                <!--end for-->
+            </div>
+        </div>
+
+        <!--Форма создания команды-->
+        <div class="modal fade" id="teamCreateModal" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header no-border">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <h4 class="text-center" id="modalTournamentName">Создание дисциплины</h4>
+                        <br>
+                        <form class="form">
+                            <div class="discipline-create" id="createForm">
+                                <div class="form-group">
+                                    <label>Название</label>
+                                    <input type="text" class="form-control" required name="" id="new_name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Описание</label>
+                                    <textarea name="" id="new_description" rows="3" class="form-control" style="resize: vertical;
+                                    max-height: 300px; min-height: 40px"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Количество игроков</label>
+                                    <input type="text" class="form-control mar-bot-10" placeholder="Первый игрок"
+                                           required id="new_count" value="5" max="10" min="1" name="">
+                                </div>
+                            </div>
+                            <button class="btn btn-block btn-primary" id="createSubmit">Создать дисциплину</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Форма редактирования команды-->
+        <div class="modal fade" id="teamEditModal" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header no-border">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <h4 class="text-center" id="modalName">Редактирование дисциплины </h4>
+                        <br>
+                        <form class="form">
+                            <!--team id-->
+                            <input type="hidden" name="" id="edit_id">
+
+                            <div class="discipline-create" id="editForm">
+                                <div class="form-group">
+                                    <label>Название</label>
+                                    <input type="text" class="form-control" required name="" id="edit_name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Описание</label>
+                                    <textarea name="" id="edit_description" rows="3" class="form-control" style="resize: vertical;
+                                    max-height: 300px; min-height: 40px"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Количество игроков</label>
+                                    <input type="text" class="form-control mar-bot-10" placeholder="Первый игрок"
+                                           required id="edit_count" max="10" min="1" name="">
+                                </div>
+                            </div>
+                            <button class="btn btn-block btn-primary" id="editSubmit">Сохранить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div><!--/.container-->
+</div>
+<!--Турниры - tournaments -->
+
+
+<footer id="footer">
+    <div class="container text-center">
+        Управление проектами © 2018 | <a href="">Высшая Школа ИТИС </a> <a
+            href="http://kpfu.ru">КФУ</a>
+    </div>
+</footer><!--/#footer-->
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
+<script>
+    $.validate({
+        lang: 'ru'
+    });
+</script>
+
+<script>
+
+    $('button[name="openModal"]').click(insertModalData);
+
+    // Вставляем данные команды в модальное окно (форму редактирования команды)
+    function insertModalData(e) {
+        var selectedDiscipline = $(e.target).parent().parent();
+        // console.log(selectedDiscipline);
+        var disciplineName = selectedDiscipline.find("h4[class='dis-name']").html();
+        var disciplineDescription = selectedDiscipline.find("p[class='dis-description']").html();
+        var disciplineCount = selectedDiscipline.find("span[class='dis-count']").html();
+        var disciplineId = selectedDiscipline.find("input[name='disId']").val();
+
+        console.log(disciplineName);
+        console.log(disciplineId);
+        console.log(disciplineDescription);
+        console.log(disciplineCount);
+
+        $('#modalName').text('Редактирование дисциплины "' + disciplineName + '"');
+        $('#edit_name').val(disciplineName);
+        $('#edit_id').val(disciplineId);
+        $('#edit_count').val(disciplineCount);
+        $('#edit_description').val(disciplineDescription);
+
+    }
+
+</script>
+</body>
+</html>
