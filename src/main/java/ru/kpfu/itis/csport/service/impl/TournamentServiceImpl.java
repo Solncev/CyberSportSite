@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.csport.model.ComputerGame;
 import ru.kpfu.itis.csport.model.Tournament;
+import ru.kpfu.itis.csport.model.TournamentMatch;
 import ru.kpfu.itis.csport.repository.ComputerGameRepository;
+import ru.kpfu.itis.csport.repository.TournamentMatchRepository;
 import ru.kpfu.itis.csport.repository.TournamentRepository;
 import ru.kpfu.itis.csport.service.TournamentService;
 
@@ -21,11 +23,15 @@ public class TournamentServiceImpl implements TournamentService {
 
     private TournamentRepository tournamentRepository;
     private ComputerGameRepository computerGameRepository;
+    private TournamentMatchRepository tournamentMatchRepository;
 
     @Autowired
-    public TournamentServiceImpl(TournamentRepository tournamentRepository, ComputerGameRepository computerGameRepository) {
+    public TournamentServiceImpl(   TournamentRepository tournamentRepository,
+                                    ComputerGameRepository computerGameRepository,
+                                    TournamentMatchRepository tournamentMatchRepository) {
         this.tournamentRepository = tournamentRepository;
         this.computerGameRepository = computerGameRepository;
+        this.tournamentMatchRepository = tournamentMatchRepository;
     }
 
     @Override
@@ -61,5 +67,10 @@ public class TournamentServiceImpl implements TournamentService {
     @Override
     public Tournament findById(int id) {
         return tournamentRepository.findOne(id);
+    }
+
+    @Override
+    public TournamentMatch getMatchById(int id) {
+        return tournamentMatchRepository.findOne(id);
     }
 }

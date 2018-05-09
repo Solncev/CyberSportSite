@@ -18,8 +18,7 @@
 
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/profile.css" rel="stylesheet">
-
-
+    <link href="/css/game.css" rel="stylesheet">
 </head>
 <!--/head-->
 
@@ -91,11 +90,16 @@
 <!--/#footer-->
 
 <script src="/js/jquery.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.form-validator.min.js"></script>
-    <script>
-        $.validate();
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.form-validator.min.js"></script>
+<script src="/js/jquery.challonge.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
+<script>
+    $.validate({
+    });
 </script>
+
 
 </body>
 
