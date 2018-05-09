@@ -11,6 +11,8 @@
         <div class="row">
             <#if match.winner?has_content>
             <h2 class="section-title text-center">Игра завершилась победой команды "<#if match.winner ==1>${match.team1.name}<#else>${match.team2.name}</#if>"</h2>
+            <#elseif match.team1Winner?has_content && match.team2Winner?has_content && match.team1Winner != match.team2Winner>
+            <h2 class="section-title text-center">Спорная ситуация</h2>
             <#else>
             <h2 class="section-title text-center">Игра идет</h2>
             </#if>
@@ -49,13 +51,34 @@
                     <button type="submit" class="btn btn-default col-xs-4 col-md-3">Прикрепить</button>
                 </form>
                 </#if>
+            </#if>
             </div>
-            <div class="col-md-8 col-md-offset-2 mar-top-30 ov-h">
-                <div class="col-xs-12">
-                    <button class="btn btn-success right">&nbsp;Мы выиграли&nbsp;</button>
-                    <button class="btn btn-danger">Мы проиграли</button>
+
+            <#if currentUser.id == match.team1.leader.id || currentUser.id == match.team2.leader.id>
+
+            <#if !match.winner?has_content>
+            <#if (currentUser.id == match.team1.leader.id && !match.team1Winner?has_content) || (currentUser.id == match.team2.leader.id && !match.team2Winner?has_content)>
+                    <div class="col-md-8 col-md-offset-2 mar-top-30 ov-h">
+                    <div class="col-xs-12">
+                        <form class="form" method="post" action="${match.id}/send_result">
+                            <input type="text" name="result" value="win" hidden>
+                            <button type="submit" class="btn btn-success right">&nbsp;Мы выиграли&nbsp;</button>
+                        </form>
+                        <form class="form" method="post" action="${match.id}/send_result">
+                            <input type="text" name="result" value="lose" hidden>
+                            <button type="submit" class="btn btn-danger">Мы проиграли</button>
+                        </form>
+                    </div>
+                    </div>
+            <#elseif !match.team1Winner?has_content || !match.team2Winner?has_content>
+                <div class="col-md-8 col-md-offset-2 mar-top-30 ov-h">
+                    <div class="col-xs-12">
+                        <p class="text-center">В ожидании ответа другой команды</p>
+                    </div>
                 </div>
-            </div>
+            </#if>
+            </#if>
+
             </#if>
         </div>
 

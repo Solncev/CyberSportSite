@@ -12,7 +12,7 @@ import ru.kpfu.itis.csport.service.TournamentService;
 import ru.kpfu.itis.csport.service.UserService;
 
 @AuthController
-@RequestMapping(path = "/tournament_matchs")
+@RequestMapping(path = "/tournament_matches")
 public class TournamentMatchController {
 
     private TournamentService tournamentService;
@@ -57,6 +57,35 @@ public class TournamentMatchController {
             tournamentMatchService.save(match);
         }
 
-        return "redirect:/tournament_matchs/" + matchId;
+        return "redirect:/tournament_matches/" + matchId;
+    }
+
+    @PostMapping("/{match_id}/send_result")
+    public String sendResult(@PathVariable("match_id") int matchId,
+                             @RequestParam("result") String result) {
+
+        User currentUser = userService.findUser(SecurityContextHolder.getContext().getAuthentication().getName());
+
+        TournamentMatch match = tournamentMatchService.getById(matchId);
+
+        if (currentUser.getUsername().equals(match.getTeam1().getLeader().getUsername())) {
+            if (result.equals("win"))
+                match.setTeam1Winner(1);
+            else
+                match.setTeam1Winner(2);
+        }
+
+        if (currentUser.getUsername().equals(match.getTeam2().getLeader().getUsername())) {
+            if (result.equals("win"))
+                match.setTeam1Winner(2);
+            else
+                match.setTeam1Winner(1);
+        }
+
+        if (match.getTeam1Winner().equals(match.getTeam2Winner()))
+            match.setWinner(match.getTeam1Winner());
+
+        tournamentMatchService.save(match);
+        return "redirect:/tournament_matches/" + matchId;
     }
 }
