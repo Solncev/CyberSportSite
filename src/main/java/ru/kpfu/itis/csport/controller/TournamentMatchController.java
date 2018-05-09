@@ -65,7 +65,6 @@ public class TournamentMatchController {
                              @RequestParam("result") String result) {
 
         User currentUser = userService.findUser(SecurityContextHolder.getContext().getAuthentication().getName());
-
         TournamentMatch match = tournamentMatchService.getById(matchId);
 
         if (currentUser.getUsername().equals(match.getTeam1().getLeader().getUsername())) {
@@ -84,6 +83,19 @@ public class TournamentMatchController {
 
         if (match.getTeam1Winner().equals(match.getTeam2Winner()))
             match.setWinner(match.getTeam1Winner());
+
+        tournamentMatchService.save(match);
+        return "redirect:/tournament_matches/" + matchId;
+    }
+
+
+    @PostMapping("/{match_id}/resolve_conflict")
+    public String resolveConflict(@PathVariable("match_id") int matchId,
+                             @RequestParam("result") int result) {
+        User currentUser = userService.findUser(SecurityContextHolder.getContext().getAuthentication().getName());
+        TournamentMatch match = tournamentMatchService.getById(matchId);
+
+        match.setWinner(result);
 
         tournamentMatchService.save(match);
         return "redirect:/tournament_matches/" + matchId;

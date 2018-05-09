@@ -1,5 +1,5 @@
 <#include "base.ftl">
-<#macro title>Матч</#macro>
+<#macro title>${tournament.name} | ${match.team1.name} - ${match.team2.name}</#macro>
 <#macro content>
 
 <div class="content">
@@ -35,31 +35,30 @@
                         <p>${match.team2.fourthPlayer}</p>
                     </div>
                 </div>
-            <#if match.description?has_content>
-            <div class="col-xs-12">
-                <p class="text-center text-underlined mar-top-10">
-                    <a href="${match.description}">Ссылка на твич: ${match.description}</a>
-                </p>
-            </div>
-            </#if>
-            <#if currentUser.id == match.team1.leader.id || currentUser.id == match.team2.leader.id>
-                <#if !match.description?has_content>
-                <form class="form" method="post" action="${match.id}/attach">
-                    <div class="col-xs-8 col-md-9">
-                        <input type="text" name="link" class="form-control" placeholder="Введите ссылку на твич">
-                    </div>
-                    <button type="submit" class="btn btn-default col-xs-4 col-md-3">Прикрепить</button>
-                </form>
+                <#if match.description?has_content>
+                <div class="col-xs-12">
+                    <p class="text-center text-underlined mar-top-10">
+                        <a href="${match.description}">Ссылка на твич: ${match.description}</a>
+                    </p>
+                </div>
                 </#if>
-            </#if>
+                <#if currentUser.id == match.team1.leader.id || currentUser.id == match.team2.leader.id>
+                    <#if !match.description?has_content>
+                    <form class="form" method="post" action="${match.id}/attach">
+                        <div class="col-xs-8 col-md-9">
+                            <input type="text" name="link" class="form-control" placeholder="Введите ссылку на твич">
+                        </div>
+                        <button type="submit" class="btn btn-default col-xs-4 col-md-3">Прикрепить</button>
+                    </form>
+                    </#if>
+                </#if>
             </div>
 
-            <#if currentUser.id == match.team1.leader.id || currentUser.id == match.team2.leader.id>
 
             <#if !match.winner?has_content>
-            <#if (currentUser.id == match.team1.leader.id && !match.team1Winner?has_content) || (currentUser.id == match.team2.leader.id && !match.team2Winner?has_content)>
-                    <div class="col-md-8 col-md-offset-2 mar-top-30 ov-h">
+                <div class="col-md-8 col-md-offset-2 mar-top-30 ov-h">
                     <div class="col-xs-12">
+                    <#if (currentUser.id == match.team1.leader.id && !match.team1Winner?has_content) || (currentUser.id == match.team2.leader.id && !match.team2Winner?has_content)>
                         <form class="form" method="post" action="${match.id}/send_result">
                             <input type="text" name="result" value="win" hidden>
                             <button type="submit" class="btn btn-success right">&nbsp;Мы выиграли&nbsp;</button>
@@ -68,18 +67,20 @@
                             <input type="text" name="result" value="lose" hidden>
                             <button type="submit" class="btn btn-danger">Мы проиграли</button>
                         </form>
-                    </div>
-                    </div>
-            <#elseif !match.team1Winner?has_content || !match.team2Winner?has_content>
-                <div class="col-md-8 col-md-offset-2 mar-top-30 ov-h">
-                    <div class="col-xs-12">
-                        <p class="text-center">В ожидании ответа другой команды</p>
+                    <#elseif (currentUser.id == match.team1.leader.id || currentUser.id == match.team2.leader.id) && (!match.team1Winner?has_content || !match.team2Winner?has_content)>
+                         <p class="text-center">В ожидании ответа другой команды</p>
+                    <#elseif match.team1Winner?has_content && match.team2Winner?has_content>
+                        <@security.authorize access="hasAnyRole('ROLE_MANAGER')">
+                        <form class="form" method="post" action="${match.id}/resolve_conflict">
+                            <button name="result" value="1" type="submit" class="btn btn-success">Победили "${match.team1.name}"</button>
+                            <button name="result" value="2" type="submit" class="btn btn-success right">Победили "${match.team2.name}"</button>
+                        </form>
+                        </@security.authorize>
+                    </#if>
                     </div>
                 </div>
             </#if>
-            </#if>
 
-            </#if>
         </div>
 
         <div class="row outer">
