@@ -9,7 +9,11 @@
         </div>
 
         <div class="row">
+            <#if match.winner?has_content>
+            <h2 class="section-title text-center">Игра завершилась победой команды "<#if match.winner ==1>${match.team1.name}<#else>${match.team2.name}</#if>"</h2>
+            <#else>
             <h2 class="section-title text-center">Игра идет</h2>
+            </#if>
             <div class="col-md-8 col-md-offset-2 ov-h">
                 <div class="col-sm-6 col-xs-12">
                     <h4>Команда "${match.team1.name}"</h4>
@@ -29,18 +33,30 @@
                         <p>${match.team2.fourthPlayer}</p>
                     </div>
                 </div>
-                <div class="col-xs-8 col-md-9">
-                    <input type="text" class="form-control" placeholder="Введите ссылку на твич">
-                </div>
-                <button class="btn btn-default col-xs-4 col-md-3">Прикрепить</button>
+            <#if match.description?has_content>
+            <div class="col-xs-12">
+                <p class="text-center text-underlined mar-top-10">
+                    <a href="${match.description}">Ссылка на твич: ${match.description}</a>
+                </p>
             </div>
-
+            </#if>
+            <#if currentUser.id == match.team1.leader.id || currentUser.id == match.team2.leader.id>
+                <#if !match.description?has_content>
+                <form class="form" method="post" action="${match.id}/attach">
+                    <div class="col-xs-8 col-md-9">
+                        <input type="text" name="link" class="form-control" placeholder="Введите ссылку на твич">
+                    </div>
+                    <button type="submit" class="btn btn-default col-xs-4 col-md-3">Прикрепить</button>
+                </form>
+                </#if>
+            </div>
             <div class="col-md-8 col-md-offset-2 mar-top-30 ov-h">
                 <div class="col-xs-12">
                     <button class="btn btn-success right">&nbsp;Мы выиграли&nbsp;</button>
                     <button class="btn btn-danger">Мы проиграли</button>
                 </div>
             </div>
+            </#if>
         </div>
 
         <div class="row outer">
