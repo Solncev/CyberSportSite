@@ -66,5 +66,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/images/*")
                 .addResourceLocations("/resources/static/images/")
                 .setCachePeriod(86400);
+        registry.addResourceHandler("/fonts/*")
+                .addResourceLocations("/resources/static/fonts/")
+                .setCachePeriod(86400);
     }
 }
