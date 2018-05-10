@@ -11,6 +11,9 @@ import ru.kpfu.itis.csport.service.TournamentMatchService;
 import ru.kpfu.itis.csport.service.TournamentService;
 import ru.kpfu.itis.csport.service.UserService;
 
+import java.util.Collection;
+import java.util.List;
+
 @AuthController
 @RequestMapping(path = "/tournament_matches")
 public class TournamentMatchController {
@@ -39,6 +42,8 @@ public class TournamentMatchController {
 
         Tournament tournament = match.getTournament();
         modelMap.addAttribute("tournament", tournament);
+
+        List<TournamentMatch> tournamentMatches = tournament.getMatches();
 
         return "tournament_match";
     }

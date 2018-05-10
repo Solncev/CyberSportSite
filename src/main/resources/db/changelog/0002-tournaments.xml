@@ -71,4 +71,11 @@
       </column>
     </createTable>
   </changeSet>
+
+  <changeSet id="004" author="svintenok">
+    <comment>Add round to tournament matches</comment>
+    <addColumn tableName="tournament_match">
+      <column name="round" type="int"  defaultValue="1"/>
+    </addColumn>
+  </changeSet>
 </databaseChangeLog>

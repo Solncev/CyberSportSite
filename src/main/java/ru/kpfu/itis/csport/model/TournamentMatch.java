@@ -26,6 +26,9 @@ public class TournamentMatch {
   private String description;
 
   @Column
+  private int round;
+
+  @Column
   private Integer winner;
 
   @Column(name = "team1_winner")
@@ -108,5 +111,13 @@ public class TournamentMatch {
 
   public void setNextMatch(TournamentMatch nextMatch) {
     this.nextMatch = nextMatch;
+  }
+
+  public int getRound() {
+    return round;
+  }
+
+  public void setRound(int round) {
+    this.round = round;
   }
 }
