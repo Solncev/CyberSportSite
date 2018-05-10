@@ -150,12 +150,7 @@
 
 </#macro>
 
-
-<#--<script>-->
-<#--$.validate({-->
-<#--lang: 'ru'-->
-<#--});-->
-<#--</script>-->
+<#macro scripts>
 
 <script>
     $('button[name="openModal"]').click(insertModalData);
@@ -204,3 +199,4 @@
 
 </script>
 
+</#macro>

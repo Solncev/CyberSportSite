@@ -145,7 +145,7 @@
 
 </#macro>
 
-
+<#macro scripts>
 <script>
 
     $('button[name="openModal"]').click(insertModalData);
@@ -182,4 +182,4 @@
         );
     });
 </script>
-
+</#macro>
