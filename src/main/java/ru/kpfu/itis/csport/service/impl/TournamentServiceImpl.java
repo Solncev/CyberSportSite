@@ -10,7 +10,11 @@ import ru.kpfu.itis.csport.repository.TournamentMatchRepository;
 import ru.kpfu.itis.csport.repository.TournamentRepository;
 import ru.kpfu.itis.csport.service.TournamentService;
 
+import javax.validation.constraints.Null;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static ru.kpfu.itis.csport.model.Tournament.Status.*;
 
@@ -23,11 +27,15 @@ public class TournamentServiceImpl implements TournamentService {
 
     private TournamentRepository tournamentRepository;
     private ComputerGameRepository computerGameRepository;
+    private TournamentMatchRepository tournamentMatchRepository;
+
     @Autowired
     public TournamentServiceImpl(TournamentRepository tournamentRepository,
-                                 ComputerGameRepository computerGameRepository){
+                                 ComputerGameRepository computerGameRepository,
+                                 TournamentMatchRepository tournamentMatchRepository){
         this.tournamentRepository = tournamentRepository;
         this.computerGameRepository = computerGameRepository;
+        this.tournamentMatchRepository = tournamentMatchRepository;
     }
 
     @Override
@@ -63,5 +71,21 @@ public class TournamentServiceImpl implements TournamentService {
     @Override
     public Tournament findById(int id) {
         return tournamentRepository.findOne(id);
+    }
+
+    @Override
+    public Map<String, List<TournamentMatch>> getTournamentGrid(Tournament tournament) {
+        Map<String, List<TournamentMatch>> grid = new HashMap<>();
+        grid.put("1", tournamentMatchRepository.getAllByTournamentAndRoundOrderByNextMatchIdAsc(tournament, 1));
+
+        for (int i=2; i<5; i++) {
+            grid.put((String.valueOf(i)), new ArrayList<>());
+            List<TournamentMatch> prevRound =  grid.get(String.valueOf(i-1));
+            for (int j=0; j<prevRound.size(); j+=2){
+                if (prevRound.get(j).getNextMatch() != null)
+                    grid.get(String.valueOf(i)).add(prevRound.get(j).getNextMatch());
+            }
+        }
+        return grid;
     }
 }

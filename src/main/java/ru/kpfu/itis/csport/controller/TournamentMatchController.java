@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import ru.kpfu.itis.csport.model.Team;
 import ru.kpfu.itis.csport.model.Tournament;
 import ru.kpfu.itis.csport.model.TournamentMatch;
 import ru.kpfu.itis.csport.model.User;
@@ -13,6 +14,7 @@ import ru.kpfu.itis.csport.service.UserService;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @AuthController
 @RequestMapping(path = "/tournament_matches")
@@ -43,8 +45,8 @@ public class TournamentMatchController {
         Tournament tournament = match.getTournament();
         modelMap.addAttribute("tournament", tournament);
 
-        List<TournamentMatch> tournamentMatches = tournament.getMatches();
-
+        Map<String,List<TournamentMatch>> matchesGrid = tournamentService.getTournamentGrid(tournament);
+        modelMap.addAttribute("matches_grid", matchesGrid);
         return "tournament_match";
     }
 
@@ -67,42 +69,38 @@ public class TournamentMatchController {
 
     @PostMapping("/{match_id}/send_result")
     public String sendResult(@PathVariable("match_id") int matchId,
-                             @RequestParam("result") String result) {
+                             @RequestParam("result") int result) {
 
         User currentUser = userService.findUser(SecurityContextHolder.getContext().getAuthentication().getName());
         TournamentMatch match = tournamentMatchService.getById(matchId);
 
+        System.out.println("\n0\n");
         if (currentUser.getUsername().equals(match.getTeam1().getLeader().getUsername())) {
-            if (result.equals("win"))
-                match.setTeam1Winner(1);
-            else
-                match.setTeam1Winner(2);
+            match.setTeam1Winner(result);
+            System.out.println("\n0\n");
         }
-
-        if (currentUser.getUsername().equals(match.getTeam2().getLeader().getUsername())) {
-            if (result.equals("win"))
-                match.setTeam1Winner(2);
-            else
-                match.setTeam1Winner(1);
+        else if (currentUser.getUsername().equals(match.getTeam2().getLeader().getUsername())) {
+            match.setTeam2Winner(result);
+            System.out.println("\n0\n");
         }
-
-        if (match.getTeam1Winner().equals(match.getTeam2Winner()))
-            match.setWinner(match.getTeam1Winner());
-
         tournamentMatchService.save(match);
+
+        if (match.getTeam1Winner().equals(match.getTeam2Winner())) {
+            System.out.println("\n1\n");
+            tournamentMatchService.setWinner(match, match.getTeam1Winner());
+        }
+
         return "redirect:/tournament_matches/" + matchId;
     }
 
 
     @PostMapping("/{match_id}/resolve_conflict")
-    public String resolveConflict(@PathVariable("match_id") int matchId,
-                             @RequestParam("result") int result) {
-        User currentUser = userService.findUser(SecurityContextHolder.getContext().getAuthentication().getName());
+    public String resolveConflict(  @PathVariable("match_id") int matchId,
+                                    @RequestParam("result") int result) {
+
         TournamentMatch match = tournamentMatchService.getById(matchId);
+        tournamentMatchService.setWinner(match, result);
 
-        match.setWinner(result);
-
-        tournamentMatchService.save(match);
         return "redirect:/tournament_matches/" + matchId;
     }
 }
