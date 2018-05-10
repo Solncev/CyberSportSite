@@ -171,8 +171,8 @@
 
         // Название и игроки
         $('#teamName').val(teamName);
-        var players = [1, 2, 3, 4, 5];
-        players.forEach(function (value) {
+        var teamSize = [1, 2, 3, 4, 5];
+        teamSize.forEach(function (value) {
             var playerName = $('#player_' + teamId + '_' + value).html();
             $('#player' + value).val(playerName);
         });
