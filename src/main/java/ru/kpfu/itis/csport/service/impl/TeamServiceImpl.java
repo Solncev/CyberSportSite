@@ -17,13 +17,8 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void create(Team team) throws Exception {
-        try {
-            teamRepository.save(team);
-        } catch (Exception e) {
-            throw new Exception();
-        }
-
+    public Team create(Team team) {
+        return teamRepository.save(team);
     }
 
     @Override

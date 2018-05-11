@@ -1,9 +1,8 @@
 package ru.kpfu.itis.csport.service;
 
-import ru.kpfu.itis.csport.model.Discipline;
-import ru.kpfu.itis.csport.model.Tournament;
-
 import java.util.List;
+
+import ru.kpfu.itis.csport.model.Tournament;
 
 /**
  * By Anton Krylov (anthony.kryloff@gmail.com)
@@ -16,6 +15,8 @@ public interface TournamentService {
     List<Tournament> getPast();
 
     Tournament create(Tournament tournament);
+
+    Tournament update(Tournament tournament);
 
     Tournament findById(int id);
 }

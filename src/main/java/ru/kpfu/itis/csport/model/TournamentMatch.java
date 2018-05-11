@@ -6,6 +6,7 @@ import javax.persistence.*;
  * @author krylov
  */
 @Entity
+@Table(name = "tournament_match")
 public class TournamentMatch {
 
   @Id
@@ -27,13 +28,14 @@ public class TournamentMatch {
   @Column
   private Integer winner;
 
-  @Column
+  @Column(name = "team1_winner")
   private Integer team1Winner;
 
-  @Column
+  @Column(name = "team2_winner")
   private Integer team2Winner;
 
   @ManyToOne
+  @JoinColumn(name = "next_match")
   private TournamentMatch nextMatch;
 
   public int getId() {

@@ -34,9 +34,7 @@
                         <h5 class="">Количество человек в команде: <span class="dis-count">${discipline.teamSize}</span>
                         </h5>
                         <p class="dis-description">
-                            <#if discipline.description??>
-                                ${discipline.description}
-                            </#if>
+                            <#if discipline.description??>${discipline.description}</#if>
                         </p>
                     </div>
                 <@security.authorize access="hasAnyRole('MANAGER')">
@@ -111,7 +109,7 @@
                         <br>
                         <form class="form" method="post" action="/disciplines/update">
                             <!--team id-->
-                            <input type="hidden" name="team_id" id="edit_id">
+                            <input type="hidden" name="teamId" id="edit_id">
 
                             <div class="discipline-create" id="editForm">
                                 <div class="form-group">
@@ -155,7 +153,7 @@
         var selectedDiscipline = $(e.target).parent().parent();
         // console.log(selectedDiscipline);
         var disciplineName = selectedDiscipline.find("h4[class='dis-name']").html();
-        var disciplineDescription = selectedDiscipline.find("p[class='dis-description']").html();
+        var disciplineDescription = selectedDiscipline.find("p[class='dis-description']").html().trim();
         var disciplineCount = selectedDiscipline.find("span[class='dis-count']").html();
         var disciplineId = selectedDiscipline.find("input[name='disId']").val();
 

@@ -107,7 +107,7 @@
                         <div class="list-group shadowed">
                             <#list upcoming as tournament>
                                 <a href="#" class="list-group-item list-group-item-action ov-h"
-                                   data-player-count="${tournament.discipline.teamSize}">
+                                   data-player-count="${tournament.discipline.teamSize}" data-id="${tournament.id}">
                                     <span class="square" style="background-image: url('images/work_4.jpg')"></span>
                                     <h4 class="tName">${tournament.name}</h4>
                                     <p>${tournament.description!""}</p>
@@ -126,7 +126,7 @@
                     <div class="tab-pane fade" id="progress">
                         <div class="list-group shadowed">
                             <#list active as tournament>
-                                <a href="#" class="list-group-item list-group-item-action ov-h">
+                                <a href="#" class="list-group-item list-group-item-action ov-h" data-id="${tournament.id}">
                                     <span class="square" style="background-image: url('images/work_2.jpg')"></span>
                                     <h4>${tournament.name}</h4>
                                     <p>${tournament.description!""}</p>
@@ -140,7 +140,7 @@
                     <!--Завершенные турниры-->
                     <div class="tab-pane fade" id="past">
                         <#list past as tournament>
-                            <a href="#" class="list-group-item list-group-item-action ov-h">
+                            <a href="#" class="list-group-item list-group-item-action ov-h" data-id="${tournament.id}">
                                 <span class="square" style="background-image: url('images/work_2.jpg')"></span>
                                 <h4>${tournament.name}</h4>
                                 <p>${tournament.description!""}</p>
@@ -166,15 +166,15 @@
                         <h4 class="text-center" id="modalTournamentName">Заявка на участие в турнире </h4>
                         <br>
 
-                        <form class="form">
+                        <form class="form" method="post" action="/tournaments/apply">
                             <!--tournament id-->
-                            <input type="hidden" name="" id="modalTournamentId">
+                            <input type="hidden" name="tournamentId" id="modalTournamentId">
 
                             <div class="form-group">
                                 <h5>Для участия в турнире выберите свою команду или создайте новую</h5>
                                 <label class="sr-only">Team</label>
-                                <select name="" class="form-control" id="teamSelect">
-                                    <option value="create">Создать команду</option>
+                                <select name="teamId" class="form-control" id="teamId">
+                                    <option value="-1">Создать команду</option>
                                     <#list currentUser.teams as team>
                                         <option value="${team.id}">${team.name}</option>
                                     </#list>
@@ -218,5 +218,78 @@
     </div>
     <!--/.container-->
 </div>
+</#macro>
 
+<#macro scripts>
+    <script>
+        //datepicker run
+        $('#tournamentStartDate').datepicker({
+            weekStart: 1,
+            language: "ru",
+            todayHighlight: true
+        });
+    </script>
+    <script>
+        //form validate
+        $.validate({
+            lang: 'ru'
+        });
+    </script>
+    <script>
+        $('button[name="openModal"]').click(insertModalData);
+
+        // Вставляем данные турнира в модальное окно (форму отправки заявки)
+        function insertModalData(e) {
+            var selectedTournament = $(e.target).parent();
+            // console.log(selectedTournament);
+            var tournamentName = selectedTournament.find("h4").html();
+            var tournamentId = selectedTournament.find("input[name='tournamentId']").val();
+
+            $('#modalTournamentName').text('Заявка на участие в турнире "' + tournamentName + '"');
+            $('#modalTournamentId').val(tournamentId);
+        }
+
+        // Прячем форму создания команды, если выбрана существующая команда
+        $('#teamId').on('change', function (e) {
+            var selectedOption = $("option:selected", this);
+            var selectedValue = this.value;
+
+            if (selectedValue === "-1") {
+                teamFormDisplay(true);
+            }
+            else {
+                teamFormDisplay(false);
+            }
+        });
+
+        // Включаем/Выключаем поля формы создания команды
+        function teamFormDisplay(bool) {
+            var form = $('#createTeamForm');
+            if (bool) {
+                form.show('slow');
+                form.find('input[id="teamName"]').prop('disabled', false);
+                form.find('input[id="player1"]').prop('disabled', false);
+                form.find('input[id="player2"]').prop('disabled', false);
+                form.find('input[id="player3"]').prop('disabled', false);
+                form.find('input[id="player4"]').prop('disabled', false);
+                form.find('input[id="player5"]').prop('disabled', false);
+            }
+            else {
+                form.hide('slow');
+                form.find('input[id="teamName"]').prop('disabled', true);
+                form.find('input[id="player1"]').prop('disabled', true);
+                form.find('input[id="player2"]').prop('disabled', true);
+                form.find('input[id="player3"]').prop('disabled', true);
+                form.find('input[id="player4"]').prop('disabled', true);
+                form.find('input[id="player5"]').prop('disabled', true);
+            }
+        }
+
+        // Обновляем страницу при изменении дисциплины
+        $('#disciplineSelect').on('change', function (e) {
+            var selectedValue = this.value;
+            var currentURL = 'http://' + window.location.hostname + window.location.pathname;
+            // window.location.href = currentURL + '?discipline=' + selectedValue;
+        });
+    </script>
 </#macro>
