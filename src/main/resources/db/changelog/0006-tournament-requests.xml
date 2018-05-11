@@ -7,6 +7,9 @@
 
   <changeSet id="001" author="krylov">
     <createTable tableName="tournament_request">
+      <column name="id" type="int" autoIncrement="true">
+        <constraints primaryKey="true"/>
+      </column>
       <column name="team_id" type="int">
         <constraints foreignKeyName="fk_request_team" referencedTableName="teams" referencedColumnNames="id"
                      nullable="false" deleteCascade="true"/>
@@ -15,6 +18,7 @@
         <constraints foreignKeyName="fk_request_tournament" referencedTableName="tournament" referencedColumnNames="id"
                      nullable="false" deleteCascade="true"/>
       </column>
+      <column name="accepted" type="boolean"/>
     </createTable>
   </changeSet>
 </databaseChangeLog>

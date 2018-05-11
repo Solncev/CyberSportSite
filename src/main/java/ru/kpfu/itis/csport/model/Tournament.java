@@ -44,14 +44,9 @@ public class Tournament {
     @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<TournamentMatch> matches = new ArrayList<>();
 
-    @ManyToMany
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "tournament")
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinTable(
-        name = "tournament_request",
-        joinColumns = {@JoinColumn(name = "tournament_id")},
-        inverseJoinColumns = {@JoinColumn(name = "team_id")}
-    )
-    private Collection<Team> requests = new ArrayList<>();
+    private Collection<TournamentRequest> requests = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -117,11 +112,11 @@ public class Tournament {
         this.matches = matches;
     }
 
-    public Collection<Team> getRequests() {
+    public Collection<TournamentRequest> getRequests() {
         return requests;
     }
 
-    public void setRequests(Collection<Team> requests) {
+    public void setRequests(Collection<TournamentRequest> requests) {
         this.requests = requests;
     }
 

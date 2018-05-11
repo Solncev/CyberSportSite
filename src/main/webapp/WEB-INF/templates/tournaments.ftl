@@ -106,7 +106,7 @@
                     <div class="tab-pane fade active in" id="future">
                         <div class="list-group shadowed">
                             <#list upcoming as tournament>
-                                <a href="#" class="list-group-item list-group-item-action ov-h"
+                                <a href="/tournaments/${tournament.id}/" class="list-group-item list-group-item-action ov-h"
                                    data-player-count="${tournament.discipline.teamSize}" data-id="${tournament.id}">
                                     <span class="square" style="background-image: url('images/work_4.jpg')"></span>
                                     <h4 class="tName">${tournament.name}</h4>
@@ -126,7 +126,7 @@
                     <div class="tab-pane fade" id="progress">
                         <div class="list-group shadowed">
                             <#list active as tournament>
-                                <a href="#" class="list-group-item list-group-item-action ov-h" data-id="${tournament.id}">
+                                <a href="/tournaments/${tournament.id}/" class="list-group-item list-group-item-action ov-h" data-id="${tournament.id}">
                                     <span class="square" style="background-image: url('images/work_2.jpg')"></span>
                                     <h4>${tournament.name}</h4>
                                     <p>${tournament.description!""}</p>
@@ -140,7 +140,7 @@
                     <!--Завершенные турниры-->
                     <div class="tab-pane fade" id="past">
                         <#list past as tournament>
-                            <a href="#" class="list-group-item list-group-item-action ov-h" data-id="${tournament.id}">
+                            <a href="/tournaments/${tournament.id}/" class="list-group-item list-group-item-action ov-h" data-id="${tournament.id}">
                                 <span class="square" style="background-image: url('images/work_2.jpg')"></span>
                                 <h4>${tournament.name}</h4>
                                 <p>${tournament.description!""}</p>

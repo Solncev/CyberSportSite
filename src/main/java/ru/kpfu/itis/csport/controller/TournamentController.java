@@ -2,6 +2,7 @@ package ru.kpfu.itis.csport.controller;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.csport.model.Team;
 import ru.kpfu.itis.csport.model.Tournament;
+import ru.kpfu.itis.csport.model.TournamentRequest;
 import ru.kpfu.itis.csport.model.User;
 import ru.kpfu.itis.csport.service.DisciplineService;
 import ru.kpfu.itis.csport.service.TeamService;
@@ -60,6 +62,39 @@ public class TournamentController {
         return "tournament";
     }
 
+    @GetMapping("/{id}/requests")
+    public String requests(ModelMap map, @PathVariable("id") int id) {
+        Tournament tournament = tournamentService.findById(id);
+        map.addAttribute("tournament", tournament);
+        map.addAttribute("requests", tournament.getRequests());
+        return "tournament_requests";
+    }
+
+    @PostMapping("/{id}/start")
+    public String start(ModelMap map, @PathVariable("id") int id, @RequestParam Map<String, String> allParams) {
+        Tournament tournament = tournamentService.findById(id);
+        List<Integer> acceptedIds = allParams.keySet().stream()
+            .map(Integer::parseInt)
+            .collect(Collectors.toList());
+        tournament.setStatus(Tournament.Status.ACTIVE);
+        tournament.getRequests().forEach(request -> {
+            if(acceptedIds.contains(request.getTeam().getId())) {
+                request.setAccepted(true);
+            }
+        });
+        tournamentService.update(tournament);
+        return "redirect:/tournaments";
+    }
+
+    @PostMapping("/{id}/finish")
+    public String finish(@PathVariable("id") int id) {
+        Tournament tournament = tournamentService.findById(id);
+        tournament.setStatus(Tournament.Status.PAST);
+        //todo check that its possible
+        tournamentService.update(tournament);
+        return "redirect:/tournaments";
+    }
+
     @PostMapping({"/new", "/create"})
     public String create(@ModelAttribute("form") @Valid TournamentForm form, BindingResult result, ModelMap modelMap) {
         if(result.hasErrors()) {
@@ -88,7 +123,12 @@ public class TournamentController {
         }
 
         Tournament tournament = tournamentService.findById(form.getTournamentId());
-        tournament.getRequests().add(team);
+
+        TournamentRequest request = new TournamentRequest();
+        request.setTeam(team);
+        request.setTournament(tournament);
+
+        tournament.getRequests().add(request);
         tournamentService.update(tournament);
 
         return "redirect:/tournaments";
