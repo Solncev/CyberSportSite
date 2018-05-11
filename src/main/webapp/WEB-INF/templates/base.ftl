@@ -95,9 +95,9 @@
 </footer>
 <!--/#footer-->
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.form-validator.min.js"></script>
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.form-validator.min.js"></script>
 <script>
     $.validate();
 </script>

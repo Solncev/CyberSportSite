@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+  <changeSet id="001" author="krylov">
+    <comment>Create computer_games table</comment>
+    <createTable tableName="computer_game">
+      <column name="id" type="int" autoIncrement="true">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="name" type="varchar(32)">
+        <constraints nullable="false" unique="true"/>
+      </column>
+      <column name="description" type="text"/>
+      <column name="team_size" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="photo_link" type="varchar(128)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="002" author="krylov">
+    <createTable tableName="tournament">
+      <column name="id" type="int" autoIncrement="true">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="game_id" type="int">
+        <constraints
+            foreignKeyName="fk_tournament_game" referencedTableName="computer_game" referencedColumnNames="id"
+            nullable="false"/>
+      </column>
+      <column name="team_count" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="name" type="varchar(45)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="status" type="varchar(16)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="date" type="date">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="text"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="003" author="krylov">
+    <comment>Create tournament matches</comment>
+    <createTable tableName="tournament_match">
+      <column name="id" type="int" autoIncrement="true">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="tournament_id" type="int">
+        <constraints nullable="false"
+                     foreignKeyName="fk_match_tournament" referencedTableName="tournament" referencedColumnNames="id"/>
+      </column>
+      <column name="team1_id" type="int"/>
+      <column name="team2_id" type="int"/>
+      <column name="description" type="text"/>
+      <column name="winner" type="int" remarks="Real winner team (1 or 2 or none)"/>
+      <column name="team1_winner" type="int" remarks="Winner as signaled by team1"/>
+      <column name="team2_winner" type="int" remarks="Winner as signaled by team2"/>
+      <column name="next_match" type="int">
+        <constraints foreignKeyName="fk_match_next" referencedTableName="tournament_match" referencedColumnNames="id"/>
+      </column>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>

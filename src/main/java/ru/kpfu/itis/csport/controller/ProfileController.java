@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.kpfu.itis.csport.model.User;
 import ru.kpfu.itis.csport.service.UserService;
 
-@Controller
+@AuthController
 public class ProfileController {
     private final UserService userService;
 
@@ -26,8 +26,6 @@ public class ProfileController {
     @GetMapping(value = "/profile")
     public String getProfilePage(Model model, @RequestParam(value = "userAlreadyExistError", required = false) String userAlreadyExistError,
                                  @RequestParam(value = "wrongPassword", required = false) String wrongPassword) {
-        User currentUser = userService.findUser(SecurityContextHolder.getContext().getAuthentication().getName());
-        model.addAttribute("currentUser", currentUser);
         if (wrongPassword != null) {
             model.addAttribute("wrongPassword", wrongPassword);
         }
