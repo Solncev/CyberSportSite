@@ -5,6 +5,14 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
+    <changeSet id="001" author="krylov">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="disciplines"/>
+        </preConditions>
+        <comment>Revert discipline table creation</comment>
+        <dropTable tableName="disciplines"/>
+    </changeSet>
+
     <changeSet id="002" author="krylov">
         <renameTable oldTableName="computer_game" newTableName="discipline"/>
         <renameColumn tableName="tournament" oldColumnName="game_id" newColumnName="discipline_id"/>
