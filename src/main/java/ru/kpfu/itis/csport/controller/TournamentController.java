@@ -5,6 +5,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.csport.model.Tournament;
+import ru.kpfu.itis.csport.service.DisciplineService;
 import ru.kpfu.itis.csport.service.TournamentService;
 import ru.kpfu.itis.csport.util.TournamentForm;
 import ru.kpfu.itis.csport.util.TournamentTransformer;
@@ -23,17 +24,19 @@ import java.util.stream.Collectors;
 public class TournamentController {
 
     private TournamentService tournamentService;
+    private DisciplineService disciplineService;
     private TournamentTransformer transformer;
 
     @Autowired
-    public TournamentController(TournamentService tournamentService) {
+    public TournamentController(TournamentService tournamentService, DisciplineService disciplineService) {
         this.tournamentService = tournamentService;
-        this.transformer = new TournamentTransformer(tournamentService);
+        this.transformer = new TournamentTransformer(disciplineService);
+        this.disciplineService = disciplineService;
     }
 
     @GetMapping({"", "/", "/all"})
     public String list(ModelMap modelMap) {
-        modelMap.addAttribute("all_games", tournamentService.getAllGames());
+        modelMap.addAttribute("all_disciplines", disciplineService.findAll());
 
         modelMap.addAttribute("upcoming", processList(tournamentService.getUpcoming()))
                 .addAttribute("active", processList(tournamentService.getActive()))

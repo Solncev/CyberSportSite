@@ -1,6 +1,7 @@
 package ru.kpfu.itis.csport.util;
 
 import ru.kpfu.itis.csport.model.Tournament;
+import ru.kpfu.itis.csport.service.DisciplineService;
 import ru.kpfu.itis.csport.service.TournamentService;
 
 import java.util.function.Function;
@@ -11,10 +12,10 @@ import java.util.function.Function;
  */
 public class TournamentTransformer implements Function<TournamentForm, Tournament> {
 
-    private TournamentService tournamentService;
+    private DisciplineService disciplineService;
 
-    public TournamentTransformer(TournamentService tournamentService) {
-        this.tournamentService = tournamentService;
+    public TournamentTransformer(DisciplineService disciplineService) {
+        this.disciplineService = disciplineService;
     }
 
     @Override
@@ -23,7 +24,7 @@ public class TournamentTransformer implements Function<TournamentForm, Tournamen
         t.setName(form.getName());
         t.setDescription(form.getDescription());
         t.setDate(form.getStartDate());
-        t.setGame(tournamentService.getGameById(form.getGame()));
+        t.setDiscipline(disciplineService.find(form.getGame()));
         return t;
     }
 }

@@ -9,7 +9,7 @@
     <include file="db/changelog/0001-users.xml"/>
     <include file="db/changelog/0002-tournaments.xml"/>
     <include file="db/changelog/0003-teams.xml"/>
-    <include file="db/changelog/0004-disciplines.xml"/>
     <include file="db/changelog/0004-teams-tournaments.xml"/>
+    <include file="db/changelog/0005-disciplines.xml"/>
 
 </databaseChangeLog>

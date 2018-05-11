@@ -18,7 +18,7 @@ public class Tournament {
     private int id;
 
     @ManyToOne(optional = false)
-    private ComputerGame game;
+    private Discipline discipline;
 
     @Column(name = "team_count", nullable = false)
     private int teamCount;
@@ -47,12 +47,12 @@ public class Tournament {
         this.id = id;
     }
 
-    public ComputerGame getGame() {
-        return game;
+    public Discipline getDiscipline() {
+        return discipline;
     }
 
-    public void setGame(ComputerGame game) {
-        this.game = game;
+    public void setDiscipline(Discipline discipline) {
+        this.discipline = discipline;
     }
 
     public int getTeamCount() {

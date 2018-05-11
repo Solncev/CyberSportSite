@@ -1,6 +1,6 @@
 package ru.kpfu.itis.csport.service;
 
-import ru.kpfu.itis.csport.model.ComputerGame;
+import ru.kpfu.itis.csport.model.Discipline;
 import ru.kpfu.itis.csport.model.Tournament;
 
 import java.util.List;
@@ -10,9 +10,6 @@ import java.util.List;
  * Date: 4/26/18 11:13 PM
  */
 public interface TournamentService {
-
-    List<ComputerGame> getAllGames();
-    ComputerGame getGameById(int id);
 
     List<Tournament> getUpcoming();
     List<Tournament> getActive();

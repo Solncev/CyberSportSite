@@ -15,8 +15,8 @@
                 <label>Дисциплина</label>
                 <select name="" class="form-control" id="disciplineSelect">
                     <option selected value="all">Все</option>
-                    <#list all_games as game>
-                        <option value="${game.id}">${game.name}</option>
+                    <#list all_disciplines as discipline>
+                        <option value="${discipline.id}">${discipline.name}</option>
                     </#list>
                 </select>
 
@@ -42,10 +42,10 @@
                             <@sf.form class="form" action="/tournaments/new" method="POST" modelAttribute="form">
                                 <div class="form-group">
                                     <label>Дисциплина</label>
-                                    <select name="game" class="form-control" id="game">
+                                    <select name="discipline" class="form-control" id="discipline">
                                         <option value="-1">Выбрать дисциплину</option>
-                                        <#list all_games as game>
-                                            <option value="${game.id}">${game.name}</option>
+                                        <#list all_disciplines as discipline>
+                                            <option value="${discipline.id}">${discipline.name}</option>
                                         </#list>
                                     </select>
                                 </div>
@@ -107,7 +107,7 @@
                         <div class="list-group shadowed">
                             <#list upcoming as tournament>
                                 <a href="#" class="list-group-item list-group-item-action ov-h"
-                                   data-player-count="${tournament.game.teamSize}">
+                                   data-player-count="${tournament.discipline.teamSize}">
                                     <span class="square" style="background-image: url('images/work_4.jpg')"></span>
                                     <h4 class="tName">${tournament.name}</h4>
                                     <p>${tournament.description!""}</p>

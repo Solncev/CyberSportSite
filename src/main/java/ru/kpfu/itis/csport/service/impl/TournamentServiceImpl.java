@@ -1,14 +1,12 @@
 package ru.kpfu.itis.csport.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.kpfu.itis.csport.model.ComputerGame;
 import ru.kpfu.itis.csport.model.Tournament;
-import ru.kpfu.itis.csport.repository.ComputerGameRepository;
 import ru.kpfu.itis.csport.repository.TournamentRepository;
 import ru.kpfu.itis.csport.service.TournamentService;
-
-import java.util.List;
 
 import static ru.kpfu.itis.csport.model.Tournament.Status.*;
 
@@ -20,22 +18,10 @@ import static ru.kpfu.itis.csport.model.Tournament.Status.*;
 public class TournamentServiceImpl implements TournamentService {
 
     private TournamentRepository tournamentRepository;
-    private ComputerGameRepository computerGameRepository;
 
     @Autowired
-    public TournamentServiceImpl(TournamentRepository tournamentRepository, ComputerGameRepository computerGameRepository) {
+    public TournamentServiceImpl(TournamentRepository tournamentRepository) {
         this.tournamentRepository = tournamentRepository;
-        this.computerGameRepository = computerGameRepository;
-    }
-
-    @Override
-    public List<ComputerGame> getAllGames() {
-        return computerGameRepository.findAll();
-    }
-
-    @Override
-    public ComputerGame getGameById(int id) {
-        return computerGameRepository.findOne(id);
     }
 
     @Override
