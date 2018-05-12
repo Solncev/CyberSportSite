@@ -87,6 +87,8 @@
                 <div class="col-xs-2 <#if round_index==1>col-xs-offset-1</#if> round-${round_index?c}">
 
                     <#list matches_grid[round_index?c] as tournament_match>
+
+                        <a <#if tournament_match.team1Winner?has_content && tournament_match.team2Winner?has_content> href="${tournament_match.id}"</#if>>
                         <div class="pair">
                             <#if tournament_match.winner?has_content>
                                 <input type="text" disabled value="${tournament_match.team1.name}" class="<#if tournament_match.winner==1>green<#else>red</#if>-border">
@@ -99,6 +101,7 @@
                                 <input type="text" disabled value="<#if tournament_match.team2?has_content>${tournament_match.team2.name}<#else>?</#if>" class="default-border">
                             </#if>
                         </div>
+                        </a>
                     </#list>
                 </div>
 
