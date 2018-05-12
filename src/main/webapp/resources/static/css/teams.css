@@ -1,0 +1,19 @@
+.team-block {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cccccc;
+    overflow: hidden;
+}
+
+@media (min-width: 0px) and (max-width: 991px) {
+    .fixed-button {
+        position: relative;
+        float: right;
+    }
+}
+@media (min-width: 992px) {
+    .fixed-button {
+        position: fixed;
+    }
+}

@@ -1,6 +1,10 @@
 package ru.kpfu.itis.csport.service;
 
+import ru.kpfu.itis.csport.model.Tournament;
+import ru.kpfu.itis.csport.model.TournamentMatch;
+
 import java.util.List;
+import java.util.Map;
 
 import ru.kpfu.itis.csport.model.Tournament;
 
@@ -19,4 +23,5 @@ public interface TournamentService {
     Tournament update(Tournament tournament);
 
     Tournament findById(int id);
+    Map<String, List<TournamentMatch>> getTournamentGrid(Tournament tournament);
 }

@@ -22,8 +22,11 @@ public class TournamentMatch {
   @ManyToOne
   private Team team2;
 
-  @Lob
+  @Column(columnDefinition = "text")
   private String description;
+
+  @Column
+  private int round;
 
   @Column
   private Integer winner;
@@ -108,5 +111,21 @@ public class TournamentMatch {
 
   public void setNextMatch(TournamentMatch nextMatch) {
     this.nextMatch = nextMatch;
+  }
+
+  public int getRound() {
+    return round;
+  }
+
+  public void setRound(int round) {
+    this.round = round;
+  }
+
+  public Team getWinnerTeam() {
+    if (winner == 1)
+      return team1;
+    else if (winner == 2)
+      return team2;
+    return null;
   }
 }

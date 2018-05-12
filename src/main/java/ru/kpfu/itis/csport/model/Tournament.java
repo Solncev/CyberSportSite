@@ -3,6 +3,7 @@ package ru.kpfu.itis.csport.model;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  * By Anton Krylov (anthony.kryloff@gmail.com)
@@ -36,8 +37,8 @@ public class Tournament {
     @Column(columnDefinition = "text")
     private String description;
 
-    @OneToMany(mappedBy = "tournament")
-    private Collection<TournamentMatch> matches;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "tournament")
+    private List<TournamentMatch> matches;
 
     public int getId() {
         return id;
@@ -95,11 +96,11 @@ public class Tournament {
         this.description = description;
     }
 
-    public Collection<TournamentMatch> getMatches() {
+    public List<TournamentMatch> getMatches() {
         return matches;
     }
 
-    public void setMatches(Collection<TournamentMatch> matches) {
+    public void setMatches(List<TournamentMatch> matches) {
         this.matches = matches;
     }
 
