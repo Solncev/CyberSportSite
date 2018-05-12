@@ -1,6 +1,10 @@
 package ru.kpfu.itis.csport.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -37,8 +41,13 @@ public class Tournament {
     @Column(columnDefinition = "text")
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "tournament")
-    private List<TournamentMatch> matches;
+    @OneToMany(mappedBy = "tournament")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<TournamentMatch> matches = new ArrayList<>();
+
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "tournament")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<TournamentRequest> requests = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -102,6 +111,14 @@ public class Tournament {
 
     public void setMatches(List<TournamentMatch> matches) {
         this.matches = matches;
+    }
+
+    public Collection<TournamentRequest> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<TournamentRequest> requests) {
+        this.requests = requests;
     }
 
 }

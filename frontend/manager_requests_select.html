@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Команды</title>
+    <!-- core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/manager_requests_select.css" rel="stylesheet">
+
+
+</head>
+<!--/head-->
+
+<body id="home" class="homepage">
+
+    <header id="header">
+        <nav id="main-menu" class="navbar navbar-default navbar-fixed-top top-nav-collapse" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="tournaments.html">
+                        <img src="images/logo.png" style="width: 170px;" alt="logo">
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="scroll">
+                            <a href="#home">Турниры </a>
+                        </li>
+                        <li class="scroll active">
+                            <a href="#services">Команды </a>
+                        </li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <!--если не авторизован-->
+                        <li class="scroll">
+                            <a href="#testimonial"> Регистрация </a>
+                        </li>
+                        <li class="scroll">
+                            <a href="#get-in-touch">Вход</a>
+                        </li>
+
+                        <!--если авторизован-->
+                        <li class="scroll">
+                            <a href="#portfolio">Профиль</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.container-->
+        </nav>
+        <!--/nav-->
+    </header>
+    <!--/header-->
+
+    <div class="content">
+        <div class="container mar-top-30 tournaments">
+            <div class="section-header">
+                <h2 class="section-title text-center">Заявки на турнир: ИМЯ_ТУРНИРА_ЗДЕСЬ</h2>
+            </div>
+
+            <div class="row">
+                <!--Форма-->
+                <form action="..." method="post" name="requestSelectForm" id="requestSelectForm">
+                    <!--Начать турнир-->
+                    <div class="col-md-2 col-md-push-10 col-sm-12 col-xs-12 mar-bot-10">
+                        <button type="button" class="btn btn-primary fixed-button" data-toggle="modal" data-target="#tournamentStartModal">Начать турнир</button>
+                    </div>
+
+                    <!--вкладки с типами турниров-->
+                    <div class="col-md-10 col-md-pull-2">
+
+                        <div class="col-xs-12">
+                            <div class="col-lg-4 col-lg-offset-1 col-sm-4 col-xs-6">
+                                <h4>Название</h4>
+                            </div>
+                            <div class="col-lg-3 col-sm-4 col-xs-6">
+                                <h4>Игроки</h4>
+                            </div>
+                            <div class="col-lg-offset-1 col-lg-3 col-sm-4 col-xs-12">
+                                <h4>Принять команду</h4>
+                            </div>
+                        </div>
+
+                        <!--for team in teams-->
+                        <div class="col-xs-12 team-block">
+                            <div class="col-lg-4 col-lg-offset-1 col-sm-4 col-xs-6">
+                                <p class="teamName">TeamName1</p>
+                            </div>
+                            <input type="hidden" name="teamId" value="1">
+                            <div class="col-lg-3 col-sm-4 col-xs-6">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Список игроков
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a>player2-CAPTAIN</a>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <a>player1-1</a>
+                                        </li>
+                                        <li>
+                                            <a>player1-2</a>
+                                        </li>
+                                        <li>
+                                            <a>player1-3</a>
+                                        </li>
+                                        <li>
+                                            <a>player1-4</a>
+                                        </li>
+                                        <li>
+                                            <a>player1-5</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-2 colcol-sm-4 col-xs-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="TEAM_1_ID" type="checkbox">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--next team here-->
+                        <div class="col-xs-12 team-block">
+                            <div class="col-lg-4 col-lg-offset-1 col-sm-4 col-xs-6">
+                                <p class="teamName">TeamName2</p>
+                            </div>
+                            <input type="hidden" name="teamId" value="2">
+                            <div class="col-lg-3 col-sm-4 col-xs-6">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Список игроков
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a>player2-CAPTAIN</a>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <a>player2-1</a>
+                                        </li>
+                                        <li>
+                                            <a>player2-2</a>
+                                        </li>
+                                        <li>
+                                            <a>player2-3</a>
+                                        </li>
+                                        <li>
+                                            <a>player2-4</a>
+                                        </li>
+                                        <li>
+                                            <a>player2-5</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-2 colcol-sm-4 col-xs-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="TEAM_1_ID" type="checkbox">
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--end for-->
+
+                    </div>
+                    <!--Подтвеждение модалка-->
+                    <div class="modal fade" id="tournamentStartModal" role="dialog">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title" id="countCheck"></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p id="message">Вы желаете начать турнир?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                                    <button type="submit" id="startButton" class="btn btn-primary">Начать</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                </form>
+
+            </div>
+
+
+
+
+        </div>
+        <!--/.container-->
+    </div>
+    <!--Турниры - tournaments -->
+
+
+    <footer id="footer">
+        <div class="container text-center">
+            Управление проектами © 2018 |
+            <a href="">Высшая Школа ИТИС </a>
+            <a href="http://kpfu.ru">КФУ</a>
+        </div>
+    </footer>
+    <!--/#footer-->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $("#tournamentStartModal").on('shown.bs.modal', function (e) {
+            let checked = $(":checkbox:checked").length;
+            let all = $(":checkbox").length;
+            $('#countCheck').text('Вы выбрали ' + checked + ' команд из ' + all);
+            if (checked < 2) {
+                document.getElementById("startButton").disabled = true;
+                $('#message').text('Нужно выбрать хотя бы 2 команды');
+            } else {
+                document.getElementById("startButton").disabled = false;
+                $('#message').text('Вы желаете начать турнир?');
+            }
+        });
+    </script>
+</body>
+
+</html>

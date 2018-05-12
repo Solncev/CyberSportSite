@@ -12,5 +12,6 @@
     <include file="db/changelog/0004-disciplines.xml"/>
     <include file="db/changelog/0004-teams-tournaments.xml"/>
     <include file="db/changelog/0005-disciplines.xml"/>
+    <include file="db/changelog/0006-tournament-requests.xml"/>
 
 </databaseChangeLog>
