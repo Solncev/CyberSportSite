@@ -1,25 +1,22 @@
 package ru.kpfu.itis.csport.controller;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.kpfu.itis.csport.model.Team;
-import ru.kpfu.itis.csport.model.Tournament;
-import ru.kpfu.itis.csport.model.TournamentRequest;
-import ru.kpfu.itis.csport.model.User;
+import ru.kpfu.itis.csport.model.*;
 import ru.kpfu.itis.csport.service.DisciplineService;
 import ru.kpfu.itis.csport.service.TeamService;
 import ru.kpfu.itis.csport.service.TournamentService;
 import ru.kpfu.itis.csport.util.TournamentApplicationForm;
 import ru.kpfu.itis.csport.util.TournamentForm;
 import ru.kpfu.itis.csport.util.TournamentTransformer;
+
+import javax.validation.Valid;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * By Anton Krylov (anthony.kryloff@gmail.com)
@@ -57,7 +54,11 @@ public class TournamentController {
     @GetMapping("/{id}")
     public String getOne(ModelMap map, @PathVariable("id") int id) {
         Tournament tournament = tournamentService.findById(id);
-        //todo matches
+
+        //todo copypasta from TournamentMatchController
+        Map<String,List<TournamentMatch>> matchesGrid = tournamentService.getTournamentGrid(tournament);
+        map.addAttribute("matches_grid", matchesGrid);
+
         map.addAttribute("tournament", tournament);
         return "tournament";
     }
@@ -76,13 +77,14 @@ public class TournamentController {
         List<Integer> acceptedIds = allParams.keySet().stream()
             .map(Integer::parseInt)
             .collect(Collectors.toList());
-        tournament.setStatus(Tournament.Status.ACTIVE);
+
         tournament.getRequests().forEach(request -> {
             if(acceptedIds.contains(request.getTeam().getId())) {
                 request.setAccepted(true);
             }
         });
         tournamentService.update(tournament);
+        tournamentService.start(tournament);
         return "redirect:/tournaments";
     }
 

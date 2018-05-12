@@ -52,94 +52,45 @@
 
         </div>
 
+        <#-- todo copypasta from TournamentMatchController -->
         <div class="row outer">
             <div class="tournament-table">
-                <div class="col-xs-2 col-xs-offset-1 round-1">
-                    <div class="pair">
-                        <input type="text" disabled value="VeryLongteamName" class="red-border">
-                        <input type="text" disabled value="teamName" class="green-border">
-                    </div>
 
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="red-border">
-                        <input type="text" disabled value="teamName" class="green-border">
-                    </div>
+            <#list 1..4 as round_index>
 
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="green-border">
-                        <input type="text" disabled value="teamName" class="red-border">
-                    </div>
+                <div class="col-xs-2 <#if round_index==1>col-xs-offset-1</#if> round-${round_index?c}">
 
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="red-border">
-                        <input type="text" disabled value="teamName" class="green-border">
-                    </div>
+                    <#list matches_grid[round_index?c] as tournament_match>
 
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="red-border">
-                        <input type="text" disabled value="teamName" class="green-border">
-                    </div>
-
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="green-border">
-                        <input type="text" disabled value="teamName" class="red-border">
-                    </div>
-
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="green-border">
-                        <input type="text" disabled value="teamName" class="red-border">
-                    </div>
-
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="green-border">
-                        <input type="text" disabled value="teamName" class="red-border">
-                    </div>
+                        <a <#if tournament_match.team1Winner?has_content && tournament_match.team2Winner?has_content> href="${tournament_match.id}"</#if>>
+                            <div class="pair">
+                            <#assign t1name = tournament_match.team1???then(tournament_match.team1.name, 'none') />
+                            <#assign t2name = tournament_match.team2???then(tournament_match.team2.name, 'none') />
+                            <#if tournament_match.winner?has_content>
+                                <input type="text" disabled value="${t1name}" class="<#if tournament_match.winner==1>green<#else>red</#if>-border">
+                                <input type="text" disabled value="${t2name}" class="<#if tournament_match.winner==2>green<#else>red</#if>-border">
+                            <#elseif tournament_match.team1Winner?has_content && tournament_match.team2Winner?has_content>
+                                <input type="text" disabled value="${t1name}" class="yellow-border">
+                                <input type="text" disabled value="${t2name}" class="yellow-border">
+                            <#else>
+                                <input type="text" disabled value="<#if tournament_match.team1?has_content>${tournament_match.team1.name}<#else>?</#if>" class="default-border">
+                                <input type="text" disabled value="<#if tournament_match.team2?has_content>${tournament_match.team2.name}<#else>?</#if>" class="default-border">
+                            </#if>
+                            </div>
+                        </a>
+                    </#list>
                 </div>
 
-                <div class="col-xs-2 round-2">
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="red-border">
-                        <input type="text" disabled value="teamName" class="green-border">
-                    </div>
-
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="red-border">
-                        <input type="text" disabled value="teamName" class="green-border">
-                    </div>
-
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="green-border">
-                        <input type="text" disabled value="teamName" class="red-border">
-                    </div>
-
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="red-border">
-                        <input type="text" disabled value="teamName" class="green-border">
-                    </div>
-                </div>
-
-                <div class="col-xs-2 round-3">
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="red-border">
-                        <input type="text" disabled value="teamName" class="green-border">
-                    </div>
-
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="default-border">
-                        <input type="text" disabled value="teamName" class="default-border">
-                    </div>
-                </div>
-
-                <div class="col-xs-2 round-4">
-                    <div class="pair">
-                        <input type="text" disabled value="teamName" class="yellow-border">
-                        <input type="text" disabled value="teamName" class="yellow-border">
-                    </div>
-                </div>
+            </#list>
 
                 <div class="col-xs-2 round-5">
                     <div class="pair">
-                        <input type="text" disabled value="teamName" class="default-border">
+                        <#assign last_match = matches_grid['4'][0] >
+                        <#if last_match.winner?has_content>
+                            <input type="text" disabled value="<#if last_match.winner == 1>${last_match.team1.name}<#else>${last_match.team2.name}</#if>" class="green-border">
+                        <#else>
+                            <input type="text" disabled value="?" class="default-border">
+                        </#if>
                     </div>
                 </div>
                 <div class="clearfix"></div>

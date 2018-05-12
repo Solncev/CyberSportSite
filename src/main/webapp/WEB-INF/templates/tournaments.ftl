@@ -13,7 +13,7 @@
             <!--Выбор дисциплины-->
             <div class="col-md-2 col-md-push-10 col-sm-4 col-xs-12 mar-bot-10">
                 <label>Дисциплина</label>
-                <select name="" class="form-control" id="disciplineSelect">
+                <select name="discipline" class="form-control" id="disciplineSelect">
                     <option selected value="all">Все</option>
                     <#list all_disciplines as discipline>
                         <option value="${discipline.id}">${discipline.name}</option>
@@ -106,7 +106,7 @@
                     <div class="tab-pane fade active in" id="future">
                         <div class="list-group shadowed">
                             <#list upcoming as tournament>
-                                <a href="/tournaments/${tournament.id}/" class="list-group-item list-group-item-action ov-h"
+                                <div class="list-group-item list-group-item-action ov-h"
                                    data-player-count="${tournament.discipline.teamSize}" data-id="${tournament.id}">
                                     <span class="square" style="background-image: url('images/work_4.jpg')"></span>
                                     <h4 class="tName">${tournament.name}</h4>
@@ -115,7 +115,7 @@
                                     <button class="btn btn-primary right" data-toggle="modal" data-target="#requestModal"
                                             id="requestModalBtn1" name="openModal">Подать заявку
                                     </button>
-                                </a>
+                                </div>
                             <#else>
                                 <h4 class="mar-top-30">Турниров пока нет...</h4>
                             </#list>

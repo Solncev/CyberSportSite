@@ -89,18 +89,20 @@
                     <#list matches_grid[round_index?c] as tournament_match>
 
                         <a <#if tournament_match.team1Winner?has_content && tournament_match.team2Winner?has_content> href="${tournament_match.id}"</#if>>
-                        <div class="pair">
+                            <div class="pair">
+                            <#assign t1name = tournament_match.team1???then(tournament_match.team1.name, 'none') />
+                            <#assign t2name = tournament_match.team2???then(tournament_match.team2.name, 'none') />
                             <#if tournament_match.winner?has_content>
-                                <input type="text" disabled value="${tournament_match.team1.name}" class="<#if tournament_match.winner==1>green<#else>red</#if>-border">
-                                <input type="text" disabled value="${tournament_match.team2.name}" class="<#if tournament_match.winner==2>green<#else>red</#if>-border">
+                                <input type="text" disabled value="${t1name}" class="<#if tournament_match.winner==1>green<#else>red</#if>-border">
+                                <input type="text" disabled value="${t2name}" class="<#if tournament_match.winner==2>green<#else>red</#if>-border">
                             <#elseif tournament_match.team1Winner?has_content && tournament_match.team2Winner?has_content>
-                                <input type="text" disabled value="${tournament_match.team1.name}" class="yellow-border">
-                                <input type="text" disabled value="${tournament_match.team2.name}" class="yellow-border">
+                                <input type="text" disabled value="${t1name}" class="yellow-border">
+                                <input type="text" disabled value="${t2name}" class="yellow-border">
                             <#else>
                                 <input type="text" disabled value="<#if tournament_match.team1?has_content>${tournament_match.team1.name}<#else>?</#if>" class="default-border">
                                 <input type="text" disabled value="<#if tournament_match.team2?has_content>${tournament_match.team2.name}<#else>?</#if>" class="default-border">
                             </#if>
-                        </div>
+                            </div>
                         </a>
                     </#list>
                 </div>

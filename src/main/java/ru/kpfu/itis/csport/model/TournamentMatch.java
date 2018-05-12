@@ -37,7 +37,7 @@ public class TournamentMatch {
   @Column(name = "team2_winner")
   private Integer team2Winner;
 
-  @ManyToOne
+  @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinColumn(name = "next_match")
   private TournamentMatch nextMatch;
 

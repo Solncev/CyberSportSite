@@ -13,7 +13,7 @@ import java.util.Date;
 public class TournamentForm {
 
     @NotNull
-    private int game;
+    private int discipline;
 
     @NotBlank
     private String name;
@@ -26,12 +26,12 @@ public class TournamentForm {
 
     private String photo;
 
-    public int getGame() {
-        return game;
+    public int getDiscipline() {
+        return discipline;
     }
 
-    public void setGame(int game) {
-        this.game = game;
+    public void setDiscipline(int discipline) {
+        this.discipline = discipline;
     }
 
     public String getName() {
