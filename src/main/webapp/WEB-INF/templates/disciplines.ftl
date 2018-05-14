@@ -29,7 +29,7 @@
                     <div class="col-lg-10 col-sm-9 col-xs-12">
                         <input type="hidden" name="disId" value="${discipline.id}">
                         <span class="square"
-                              style="background-image:url('images/work_3.jpg');"></span>
+                              style="background-image:url('${discipline.photoLink}');"></span>
                         <h4 class="dis-name">${discipline.name}</h4>
                         <h5 class="">Количество человек в команде: <span class="dis-count">${discipline.teamSize}</span>
                         </h5>
@@ -83,8 +83,13 @@
 
                                 <div class="form-group">
                                     <label>Количество игроков</label>
-                                    <input type="text" class="form-control mar-bot-10" placeholder="Первый игрок"
+                                    <input type="text" class="form-control" placeholder="Первый игрок"
                                            required id="new_count" value="5" max="10" min="1" name="players">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Ссылка на логотип</label>
+                                    <input type="text" class="form-control mar-bot-10" name="photo_link">
                                 </div>
                             </div>
                             <button class="btn btn-block btn-primary" type="submit" id="createSubmit">Создать
@@ -128,6 +133,11 @@
                                     <label>Количество игроков</label>
                                     <input type="text" class="form-control mar-bot-10"
                                            required id="edit_count" max="10" min="1" name="players">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Ссылка на логотип</label>
+                                    <input type="text" class="form-control mar-bot-10" name="photo_link">
                                 </div>
                             </div>
                             <button class="btn btn-block btn-primary" type="submit" id="editSubmit">Сохранить</button>
