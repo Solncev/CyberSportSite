@@ -1,5 +1,8 @@
 package ru.kpfu.itis.csport.service.impl;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.csport.model.Team;
@@ -9,9 +12,6 @@ import ru.kpfu.itis.csport.model.TournamentRequest;
 import ru.kpfu.itis.csport.repository.TournamentMatchRepository;
 import ru.kpfu.itis.csport.repository.TournamentRepository;
 import ru.kpfu.itis.csport.service.TournamentService;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 import static ru.kpfu.itis.csport.model.Tournament.Status.*;
 
@@ -65,6 +65,7 @@ public class TournamentServiceImpl implements TournamentService {
             TournamentMatch match = new TournamentMatch();
             match.setTournament(tournament);
             match.setRound(1);
+            match.setWinner(1);
             firstLevelGames.add(match);
         }
 
@@ -73,6 +74,7 @@ public class TournamentServiceImpl implements TournamentService {
         }
         for (int i = 0; i < firstLevelGames.size() && !acceptedTeams.isEmpty(); i++) {
             firstLevelGames.get(i).setTeam2(acceptedTeams.remove(0));
+            firstLevelGames.get(i).setWinner(null);
         }
 
         Map<Integer, List<TournamentMatch>> rounds = new HashMap<>();
@@ -89,22 +91,22 @@ public class TournamentServiceImpl implements TournamentService {
                 TournamentMatch game1 = games.get(i);
                 TournamentMatch game2 = games.get(i+1);
 
-                if(game1.getTeam1() == null && game1.getTeam2() != null) {
-                    game1.setWinner(2);
-                    nextGame.setTeam1(game1.getTeam2());
-                }
-                else if(game1.getTeam2() == null && game1.getTeam1() != null) {
-                    game1.setWinner(1);
-                    nextGame.setTeam1(game1.getTeam1());
+                if(game1.getWinner() != null) {
+                    nextGame.setTeam1(game1.getWinnerTeam());
                 }
 
-                if(game2.getTeam1() == null && game2.getTeam2() != null) {
-                    game2.setWinner(2);
-                    nextGame.setTeam2(game2.getTeam2());
+                if(game2.getWinner() != null) {
+                    nextGame.setTeam2(game2.getWinnerTeam());
                 }
-                else if(game2.getTeam2() == null && game2.getTeam1() != null) {
-                    game2.setWinner(1);
-                    nextGame.setTeam2(game2.getTeam1());
+
+                //propagate empty games
+                if(game1.getWinner() != null && game2.getWinner() != null) {
+                    if(nextGame.getTeam1() == null && nextGame.getTeam2() != null) {
+                        nextGame.setWinner(2);
+                    }
+                    else if(nextGame.getTeam2() == null) {
+                        nextGame.setWinner(1);
+                    }
                 }
 
                 game1.setNextMatch(nextGame);

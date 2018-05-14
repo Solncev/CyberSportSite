@@ -15,41 +15,6 @@
                     </form>
                 </@security.authorize>
             </div>
-            <h2 class="section-title text-center">Спорная ситуация</h2>
-            <div class="col-md-8 col-md-offset-2 ov-h">
-                <div class="col-sm-6 col-xs-12">
-                    <h4>Команда 7</h4>
-                    <p>Капитан: Никнейм 1</p>
-                    <p>Никнейм 2</p>
-                    <p>Никнейм 3</p>
-                    <p>Никнейм 4</p>
-                    <p>Никнейм 5</p>
-                </div>
-                <div class="col-sm-6 col-xs-12">
-                    <div class="right-block">
-                        <h4>Команда 8</h4>
-                        <p>Капитан: Никнейм 1</p>
-                        <p>Никнейм 2</p>
-                        <p>Никнейм 3</p>
-                        <p>Никнейм 4</p>
-                        <p>Никнейм 5</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-8 col-md-offset-2 mar-top-30 ov-h">
-                <div class="col-xs-12">
-                    <button class="btn btn-success">Победили "Команда 7"</button>
-                    <button class="btn btn-success right">Победили "Команда 8"</button>
-                </div>
-            </div>
-
-            <div class="col-xs-12">
-                <p class="text-center text-underlined mar-top-10">
-                    <a href="https://twitch.com">Ссылка на твич: https://twitch.com</a>
-                </p>
-            </div>
-
         </div>
 
         <#-- todo copypasta from TournamentMatchController -->
@@ -62,7 +27,7 @@
 
                     <#list matches_grid[round_index?c] as tournament_match>
 
-                        <a <#if tournament_match.team1Winner?has_content && tournament_match.team2Winner?has_content> href="${tournament_match.id}"</#if>>
+                        <a href="/tournament_matches/${tournament_match.id}">
                             <div class="pair">
                             <#assign t1name = tournament_match.team1???then(tournament_match.team1.name, 'none') />
                             <#assign t2name = tournament_match.team2???then(tournament_match.team2.name, 'none') />

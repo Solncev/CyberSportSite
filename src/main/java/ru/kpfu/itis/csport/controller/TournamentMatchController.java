@@ -1,20 +1,19 @@
 package ru.kpfu.itis.csport.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import ru.kpfu.itis.csport.model.Team;
 import ru.kpfu.itis.csport.model.Tournament;
 import ru.kpfu.itis.csport.model.TournamentMatch;
 import ru.kpfu.itis.csport.model.User;
 import ru.kpfu.itis.csport.service.TournamentMatchService;
 import ru.kpfu.itis.csport.service.TournamentService;
 import ru.kpfu.itis.csport.service.UserService;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
 @AuthController
 @RequestMapping(path = "/tournament_matches")
@@ -68,6 +67,7 @@ public class TournamentMatchController {
     }
 
     @PostMapping("/{match_id}/send_result")
+    @Transactional
     public String sendResult(@PathVariable("match_id") int matchId,
                              @RequestParam("result") int result) {
 
@@ -88,6 +88,13 @@ public class TournamentMatchController {
         if (match.getTeam1Winner().equals(match.getTeam2Winner())) {
             System.out.println("\n1\n");
             tournamentMatchService.setWinner(match, match.getTeam1Winner());
+        }
+
+        boolean allPlayed = match.getTournament().getMatches().stream()
+            .allMatch(tournamentMatch -> tournamentMatch.getWinner() == null || tournamentMatch.getWinner() == 0);
+        if(allPlayed) {
+          match.getTournament().setStatus(Tournament.Status.PAST);
+          tournamentService.update(match.getTournament());
         }
 
         return "redirect:/tournament_matches/" + matchId;

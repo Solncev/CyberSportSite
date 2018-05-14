@@ -1,9 +1,9 @@
 package ru.kpfu.itis.csport.util;
 
+import java.util.function.Function;
+
 import ru.kpfu.itis.csport.model.Tournament;
 import ru.kpfu.itis.csport.service.DisciplineService;
-
-import java.util.function.Function;
 
 /**
  * By Anton Krylov (anthony.kryloff@gmail.com)
@@ -24,7 +24,7 @@ public class TournamentTransformer implements Function<TournamentForm, Tournamen
         t.setDescription(form.getDescription());
         t.setDate(form.getStartDate());
         t.setDiscipline(disciplineService.find(form.getDiscipline()));
-        t.setTeamCount(32); //todo
+        t.setTeamCount(16); //todo
         return t;
     }
 }

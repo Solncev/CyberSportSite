@@ -13,7 +13,10 @@
                   <form action="/tournaments/${tournament.id}/start" method="post" name="requestSelectForm" id="requestSelectForm">
                       <!--Начать турнир-->
                       <div class="col-md-2 col-md-push-10 col-sm-12 col-xs-12 mar-bot-10">
-                          <button type="button" class="btn btn-primary fixed-button" data-toggle="modal" data-target="#tournamentStartModal">Начать турнир</button>
+                          <button type="button" class="btn btn-primary fixed-button" data-toggle="modal" data-target="#tournamentStartModal"
+                                  <#if .now < tournament.date?datetime>disabled </#if>>
+                              Начать турнир
+                          </button>
                       </div>
 
                       <div class="col-md-10 col-md-pull-2">
@@ -86,7 +89,7 @@
                                   </div>
                                   <div class="modal-footer">
                                       <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                                      <button type="submit" id="startButton" class="btn btn-primary" <#if .now < tournament.date>disabled </#if>>Начать</button>
+                                      <button type="submit" id="startButton" class="btn btn-primary">Начать</button>
                                   </div>
                               </div>
                               <!-- /.modal-content -->
