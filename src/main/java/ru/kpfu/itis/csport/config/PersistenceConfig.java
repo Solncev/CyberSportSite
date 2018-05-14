@@ -43,6 +43,7 @@ public class PersistenceConfig implements EnvironmentAware {
         config.setJdbcUrl(url);
         config.setUsername(user);
         config.setPassword(password);
+        config.setMaximumPoolSize(10);
 
         return new HikariDataSource(config);
     }
