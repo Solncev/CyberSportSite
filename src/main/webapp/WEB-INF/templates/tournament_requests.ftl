@@ -86,7 +86,7 @@
                                   </div>
                                   <div class="modal-footer">
                                       <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                                      <button type="submit" id="startButton" class="btn btn-primary">Начать</button>
+                                      <button type="submit" id="startButton" class="btn btn-primary" <#if .now < tournament.date>disabled </#if>>Начать</button>
                                   </div>
                               </div>
                               <!-- /.modal-content -->

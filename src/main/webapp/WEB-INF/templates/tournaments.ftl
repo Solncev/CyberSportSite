@@ -108,9 +108,15 @@
                             <#list upcoming as tournament>
                                 <div class="list-group-item list-group-item-action ov-h"
                                    data-player-count="${tournament.discipline.teamSize}" data-id="${tournament.id}">
-                                    <span class="square" style="background-image: url('images/work_4.jpg')"></span>
-                                    <h4 class="tName">${tournament.name}</h4>
-                                    <p>${tournament.description!""}</p>
+                                    <a
+                                      <@security.authorize access="hasRole('ROLE_MANAGER')">
+                                        href="/tournaments/${tournament.id}/requests"
+                                      </@security.authorize>
+                                    >
+                                        <span class="square" style="background-image: url('images/work_4.jpg')"></span>
+                                        <h4 class="tName">${tournament.name}</h4>
+                                        <p>${tournament.description!""}</p>
+                                    </a>
                                     <input type="hidden" name="tournamentId" value="${tournament.id}">
                                     <button class="btn btn-primary right" data-toggle="modal" data-target="#requestModal"
                                             id="requestModalBtn1" name="openModal">Подать заявку
