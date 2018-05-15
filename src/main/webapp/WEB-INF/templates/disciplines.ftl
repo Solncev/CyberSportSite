@@ -114,7 +114,7 @@
                         <br>
                         <form class="form" method="post" action="/disciplines/update">
                             <!--team id-->
-                            <input type="hidden" name="teamId" id="edit_id">
+                            <input type="hidden" name="discipline_id" id="edit_id">
 
                             <div class="discipline-create" id="editForm">
                                 <div class="form-group">
