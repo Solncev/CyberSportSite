@@ -1,8 +1,5 @@
 package ru.kpfu.itis.csport.service.impl;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.csport.model.Team;
@@ -12,6 +9,9 @@ import ru.kpfu.itis.csport.model.TournamentRequest;
 import ru.kpfu.itis.csport.repository.TournamentMatchRepository;
 import ru.kpfu.itis.csport.repository.TournamentRepository;
 import ru.kpfu.itis.csport.service.TournamentService;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static ru.kpfu.itis.csport.model.Tournament.Status.*;
 
@@ -69,7 +69,8 @@ public class TournamentServiceImpl implements TournamentService {
             firstLevelGames.add(match);
         }
 
-        for (int i = 0; i < firstLevelGames.size() && !acceptedTeams.isEmpty(); i++) {
+        int step = Math.max(1, firstLevelGames.size() / acceptedTeams.size());
+        for (int i = 0; i < firstLevelGames.size() && !acceptedTeams.isEmpty(); i += step) {
             firstLevelGames.get(i).setTeam1(acceptedTeams.remove(0));
         }
         for (int i = 0; i < firstLevelGames.size() && !acceptedTeams.isEmpty(); i++) {
@@ -93,10 +94,16 @@ public class TournamentServiceImpl implements TournamentService {
 
                 if(game1.getWinner() != null) {
                     nextGame.setTeam1(game1.getWinnerTeam());
+                    if(nextGame.getTeam1() == null) {
+                        nextGame.setTeam1Winner(2);
+                    }
                 }
 
                 if(game2.getWinner() != null) {
                     nextGame.setTeam2(game2.getWinnerTeam());
+                    if(nextGame.getTeam2() == null) {
+                        nextGame.setTeam2Winner(1);
+                    }
                 }
 
                 //propagate empty games

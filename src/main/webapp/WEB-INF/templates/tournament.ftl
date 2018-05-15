@@ -29,8 +29,8 @@
 
                         <a href="/tournament_matches/${tournament_match.id}">
                             <div class="pair">
-                            <#assign t1name = tournament_match.team1???then(tournament_match.team1.name, 'none') />
-                            <#assign t2name = tournament_match.team2???then(tournament_match.team2.name, 'none') />
+                            <#assign t1name = tournament_match.team1???then(tournament_match.team1.name, '-') />
+                            <#assign t2name = tournament_match.team2???then(tournament_match.team2.name, '-') />
                             <#if tournament_match.winner?has_content>
                                 <input type="text" disabled value="${t1name}" class="<#if tournament_match.winner==1>green<#else>red</#if>-border">
                                 <input type="text" disabled value="${t2name}" class="<#if tournament_match.winner==2>green<#else>red</#if>-border">

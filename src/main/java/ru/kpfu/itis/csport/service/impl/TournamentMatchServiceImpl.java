@@ -7,6 +7,8 @@ import ru.kpfu.itis.csport.model.TournamentMatch;
 import ru.kpfu.itis.csport.repository.TournamentMatchRepository;
 import ru.kpfu.itis.csport.service.TournamentMatchService;
 
+import java.util.Objects;
+
 @Service
 public class TournamentMatchServiceImpl implements TournamentMatchService {
 
@@ -34,10 +36,19 @@ public class TournamentMatchServiceImpl implements TournamentMatchService {
             TournamentMatch nextMatch = match.getNextMatch();
             Team winnerTeam = match.getWinnerTeam();
 
-            if (nextMatch.getTeam1() == null)
+            if (nextMatch.getTeam1() == null){
                 nextMatch.setTeam1(winnerTeam);
-            else
+                if(Objects.equals(nextMatch.getTeam2Winner(), 1)) {
+                    //set win automatically
+                    setWinner(nextMatch, 1);
+                }
+            }
+            else{
                 nextMatch.setTeam2(winnerTeam);
+                if(Objects.equals(nextMatch.getTeam1Winner(), 2)) {
+                    setWinner(nextMatch, 2);
+                }
+            }
 
             this.save(nextMatch);
         }
