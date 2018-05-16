@@ -1,5 +1,9 @@
 <#include "base.ftl">
 <#macro title>Дисциплины</#macro>
+<#macro extrahead>
+    <link href="/css/disciplines.css" rel="stylesheet">
+    <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+</#macro>
 <#macro content>
 
 <div class="content">
@@ -29,14 +33,12 @@
                     <div class="col-lg-10 col-sm-9 col-xs-12">
                         <input type="hidden" name="disId" value="${discipline.id}">
                         <span class="square"
-                              style="background-image:url('images/work_3.jpg');"></span>
+                              style="background-image:url('${discipline.photoLink}');"></span>
                         <h4 class="dis-name">${discipline.name}</h4>
                         <h5 class="">Количество человек в команде: <span class="dis-count">${discipline.teamSize}</span>
                         </h5>
                         <p class="dis-description">
-                            <#if discipline.description??>
-                                ${discipline.description}
-                            </#if>
+                            <#if discipline.description??>${discipline.description}</#if>
                         </p>
                     </div>
                 <@security.authorize access="hasAnyRole('MANAGER')">
@@ -85,8 +87,19 @@
 
                                 <div class="form-group">
                                     <label>Количество игроков</label>
-                                    <input type="text" class="form-control mar-bot-10" placeholder="Первый игрок"
+                                    <input type="text" class="form-control"
                                            required id="new_count" value="5" max="10" min="1" name="players">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Ссылка на логотип</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" maxlength="128"
+                                               name="photo_link">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-primary selectPhoto">Загрузить</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <button class="btn btn-block btn-primary" type="submit" id="createSubmit">Создать
@@ -111,7 +124,7 @@
                         <br>
                         <form class="form" method="post" action="/disciplines/update">
                             <!--team id-->
-                            <input type="hidden" name="team_id" id="edit_id">
+                            <input type="hidden" name="discipline_id" id="edit_id">
 
                             <div class="discipline-create" id="editForm">
                                 <div class="form-group">
@@ -130,6 +143,17 @@
                                     <label>Количество игроков</label>
                                     <input type="text" class="form-control mar-bot-10"
                                            required id="edit_count" max="10" min="1" name="players">
+                                </div>
+
+                                <div class="form-group mar-bot-10">
+                                    <label>Ссылка на логотип</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" maxlength="128"
+                                               name="photo_link">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-primary selectPhoto">Загрузить</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <button class="btn btn-block btn-primary" type="submit" id="editSubmit">Сохранить</button>
@@ -155,7 +179,7 @@
         var selectedDiscipline = $(e.target).parent().parent();
         // console.log(selectedDiscipline);
         var disciplineName = selectedDiscipline.find("h4[class='dis-name']").html();
-        var disciplineDescription = selectedDiscipline.find("p[class='dis-description']").html();
+        var disciplineDescription = selectedDiscipline.find("p[class='dis-description']").html().trim();
         var disciplineCount = selectedDiscipline.find("span[class='dis-count']").html();
         var disciplineId = selectedDiscipline.find("input[name='disId']").val();
 
@@ -182,4 +206,13 @@
         );
     });
 </script>
+    <script>
+        $('.selectPhoto').on('click', function (e) {
+            cloudinary.openUploadWidget({ cloud_name: 'dsjur1mdb', upload_preset: 'ciep6t8f', multiple: false}, function(error, result) {
+                console.log(error, result);
+                var url = result[0].url;
+                $('input[name="photo_link"]').val(url);
+            });
+        });
+    </script>
 </#macro>

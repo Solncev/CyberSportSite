@@ -41,3 +41,7 @@
     margin-top: 20px;
     margin-bottom: 30px;
 }
+
+.content {
+    min-height: calc(100vh - 137px);
+}

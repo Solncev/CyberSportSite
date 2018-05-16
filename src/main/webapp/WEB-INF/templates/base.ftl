@@ -17,10 +17,7 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="/css/main.css" rel="stylesheet">
-    <link href="/css/profile.css" rel="stylesheet">
-    <link href="/css/disciplines.css" rel="stylesheet">
-
-
+    <@extrahead/>
 </head>
 <!--/head-->
 
@@ -95,10 +92,22 @@
 </footer>
 <!--/#footer-->
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
-<@scripts/>
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<script src="/js/bootstrap-datepicker.ru.min.js"></script>
+<script src="/js/jquery.form-validator.min.js"></script>
+<script src="/js/jquery.challonge.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
+<script>
+    $.validate();
+</script>
+
+<#if scripts??>
+    <@scripts/>
+</#if>
 
 </body>
 

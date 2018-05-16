@@ -12,7 +12,7 @@ public class Team {
     @Column(unique = true, updatable = true, nullable = false)
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "leader_id")
     private User leader;
 

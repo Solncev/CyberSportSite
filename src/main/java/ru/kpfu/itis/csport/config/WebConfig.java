@@ -1,5 +1,8 @@
 package ru.kpfu.itis.csport.config;
 
+import java.io.IOException;
+import java.util.Properties;
+
 import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,9 +15,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
-
-import java.io.IOException;
-import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
@@ -57,13 +57,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/js/*")
+        registry.addResourceHandler("/js/**/*")
                 .addResourceLocations("/resources/static/js/")
                 .setCachePeriod(86400);
-        registry.addResourceHandler("/css/*")
+        registry.addResourceHandler("/css/**/*")
                 .addResourceLocations("/resources/static/css/")
                 .setCachePeriod(86400);
-        registry.addResourceHandler("/images/*")
+        registry.addResourceHandler("/images/**/*")
                 .addResourceLocations("/resources/static/images/")
                 .setCachePeriod(86400);
         registry.addResourceHandler("/fonts/*")

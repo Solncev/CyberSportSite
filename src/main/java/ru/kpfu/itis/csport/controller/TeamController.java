@@ -2,7 +2,6 @@ package ru.kpfu.itis.csport.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.csport.model.Team;
@@ -10,7 +9,7 @@ import ru.kpfu.itis.csport.model.User;
 import ru.kpfu.itis.csport.service.TeamService;
 import ru.kpfu.itis.csport.service.UserService;
 
-@Controller
+@AuthController
 public class TeamController {
     private final UserService userService;
     private final TeamService teamService;

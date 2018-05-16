@@ -1,0 +1,75 @@
+.tournament-table {
+    overflow: hidden;
+    min-width: 970px;
+    border: crimson;
+    margin-top: 30px;
+    margin-bottom: -60px;
+}
+
+.pair input {
+    text-align: center;
+    max-width: 160px !important;
+}
+
+.outer {
+    width:100%;
+    overflow:auto;
+    max-width: 100%;
+}
+
+.round-1 .pair {
+    margin-bottom: 10px;
+}
+
+.round-2 .pair {
+    margin-top: 34px;
+    margin-bottom: 80px;
+}
+
+.round-3 .pair {
+    margin-top: 100px;
+    margin-bottom: 223px;
+}
+
+.round-4 .pair {
+    margin-top: 243px;
+}
+
+.round-5 {
+    margin-top: 259px;
+}
+
+.red-border {
+    border: 1px solid #d00100;
+    background-color: #c5010069;
+}
+
+.green-border {
+    border: 1px solid #3fba00;
+    background-color: #3fba0038;
+}
+
+.yellow-border {
+    border: 1px solid #e1e13b;
+    background-color: #f8f70078;
+}
+
+.default-border {
+    border: 1px solid #bfbfbf;
+    background-color: #f7f7f7;
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+    .right-block {
+        float: left;
+    }
+}
+@media (min-width: 768px) {
+    .right-block {
+        float: right;
+    }
+}
+
+.content {
+    min-height: calc(100vh - 117px);
+}

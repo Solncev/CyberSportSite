@@ -1,13 +1,13 @@
 package ru.kpfu.itis.csport.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import ru.kpfu.itis.csport.model.Discipline;
 import ru.kpfu.itis.csport.repository.DisciplineRepository;
 import ru.kpfu.itis.csport.service.DisciplineService;
-
-import java.util.List;
 
 @Service
 public class DisciplineServiceImpl implements DisciplineService {
@@ -19,12 +19,8 @@ public class DisciplineServiceImpl implements DisciplineService {
     }
 
     @Override
-    public void add(Discipline discipline) throws Exception {
-        try {
-            disciplineRepository.save(discipline);
-        } catch (Exception e) {
-            throw new Exception();
-        }
+    public void add(Discipline discipline) {
+        disciplineRepository.save(discipline);
     }
 
     @Override

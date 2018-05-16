@@ -124,7 +124,7 @@ hr {
     background: #cf0100;
 }
 .btn {
-    border-width: 0;
+    /*border-width: 0;*/
     border-bottom-width: 3px;
     border-radius: 3px;
 }
@@ -135,6 +135,14 @@ hr {
 .btn.btn-primary:hover,
 .btn.btn-primary:focus {
     background: #cf0100;
+}
+.btn.btn-default {
+    background: #ffffff;
+    border-color: #ebebeb; border-radius:25px;
+}
+.btn.btn-default:hover,
+.btn.btn-default:focus {
+    background: #f2f2f2;
 }
 .column-title {
     margin-top: 0;
@@ -302,7 +310,7 @@ ul.nostyle i {
 ************************/
 #footer {
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 11px;
     color: #fff;
     background: #2e2e2e;
 }
@@ -369,7 +377,7 @@ a:hover {
 }
 
 .error {
-    color: #d00100;
+    color: red;
 }
 
 .no-border {
@@ -408,4 +416,8 @@ a:hover {
         background-repeat: no-repeat;
         background-size: cover;
     }
+}
+
+.text-underlined {
+    text-decoration: underline;
 }

@@ -27,14 +27,17 @@ public class DisciplinesController {
     @PostMapping(value = "/disciplines/new")
     public String createDiscipline(@RequestParam("name") String name,
                                    @RequestParam("description") String description,
-                                   @RequestParam("players") int players) {
+                                   @RequestParam("players") int players,
+                                   @RequestParam("photo_link") String photoLink) {
         Discipline discipline = new Discipline();
         discipline.setName(name);
         discipline.setDescription(description);
         discipline.setTeamSize(players);
+        discipline.setPhotoLink(photoLink);
         try {
             disciplineService.add(discipline);
         } catch (Exception e) {
+            e.printStackTrace();
             return "redirect:/disciplines?disciplineAlreadyExistError=true";
         }
         return "redirect:/disciplines";
@@ -42,14 +45,16 @@ public class DisciplinesController {
 
 
     @PostMapping(value = "/disciplines/update")
-    public String updateDiscipline(@RequestParam("team_id") int id,
+    public String updateDiscipline(@RequestParam("discipline_id") int id,
                                    @RequestParam("name") String name,
                                    @RequestParam("description") String description,
-                                   @RequestParam("players") int players) {
+                                   @RequestParam("players") int players,
+                                   @RequestParam("photo_link") String photoLink) {
         Discipline discipline = disciplineService.find(id);
         discipline.setName(name);
         discipline.setDescription(description);
         discipline.setTeamSize(players);
+        discipline.setPhotoLink(photoLink);
         disciplineService.update(discipline);
         return "redirect:/disciplines";
     }

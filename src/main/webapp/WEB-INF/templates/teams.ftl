@@ -1,5 +1,8 @@
 <#include "base.ftl">
 <#macro title>Команды</#macro>
+<#macro extrahead>
+    <link href="/css/teams.css" rel="stylesheet">
+</#macro>
 <#macro content>
 
 

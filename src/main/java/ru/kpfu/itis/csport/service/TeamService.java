@@ -3,7 +3,7 @@ package ru.kpfu.itis.csport.service;
 import ru.kpfu.itis.csport.model.Team;
 
 public interface TeamService {
-    void create(Team team) throws Exception;
+    Team create(Team team);
 
     void update(Team team);
 
