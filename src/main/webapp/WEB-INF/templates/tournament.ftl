@@ -31,7 +31,7 @@
 
                     <#list matches_grid[round_index?c] as tournament_match>
 
-                        <a href="/tournament_matches/${tournament_match.id}">
+                        <a <#if tournament_match.team1?? && tournament_match.team2??>href="/tournament_matches/${tournament_match.id}"</#if>>
                             <div class="pair">
                             <#assign t1name = tournament_match.team1???then(tournament_match.team1.name, '-') />
                             <#assign t2name = tournament_match.team2???then(tournament_match.team2.name, '-') />

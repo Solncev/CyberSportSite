@@ -83,6 +83,7 @@
 
         </div>
 
+    <#-- todo copypasta -->
         <div class="row outer">
             <div class="tournament-table">
 
@@ -92,7 +93,7 @@
 
                     <#list matches_grid[round_index?c] as tournament_match>
 
-                        <a <#if tournament_match.team1Winner?has_content && tournament_match.team2Winner?has_content> href="${tournament_match.id}"</#if>>
+                        <a <#if tournament_match.team1?? && tournament_match.team2??>href="/tournament_matches/${tournament_match.id}"</#if>>
                             <div class="pair">
                             <#assign t1name = tournament_match.team1???then(tournament_match.team1.name, '-') />
                             <#assign t2name = tournament_match.team2???then(tournament_match.team2.name, '-') />
