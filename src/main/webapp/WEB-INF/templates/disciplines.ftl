@@ -2,6 +2,7 @@
 <#macro title>Дисциплины</#macro>
 <#macro extrahead>
     <link href="/css/disciplines.css" rel="stylesheet">
+    <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 </#macro>
 <#macro content>
 
@@ -92,8 +93,13 @@
 
                                 <div class="form-group">
                                     <label>Ссылка на логотип</label>
-                                    <input type="text" class="form-control mar-bot-10" maxlength="128"
-                                           name="photo_link">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" maxlength="128"
+                                               name="photo_link">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-primary selectPhoto">Загрузить</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <button class="btn btn-block btn-primary" type="submit" id="createSubmit">Создать
@@ -139,10 +145,15 @@
                                            required id="edit_count" max="10" min="1" name="players">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group mar-bot-10">
                                     <label>Ссылка на логотип</label>
-                                    <input type="text" class="form-control mar-bot-10" maxlength="128"
-                                           name="photo_link">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" maxlength="128"
+                                               name="photo_link">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-primary selectPhoto">Загрузить</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <button class="btn btn-block btn-primary" type="submit" id="editSubmit">Сохранить</button>
@@ -158,7 +169,7 @@
 
 </#macro>
 
-
+<#macro scripts>
 <script>
 
     $('button[name="openModal"]').click(insertModalData);
@@ -195,4 +206,13 @@
         );
     });
 </script>
-
+    <script>
+        $('.selectPhoto').on('click', function (e) {
+            cloudinary.openUploadWidget({ cloud_name: 'dsjur1mdb', upload_preset: 'ciep6t8f', multiple: false}, function(error, result) {
+                console.log(error, result);
+                var url = result[0].url;
+                $('input[name="photo_link"]').val(url);
+            });
+        });
+    </script>
+</#macro>

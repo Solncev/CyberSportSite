@@ -2,6 +2,7 @@
 <#macro title>Список турниров</#macro>
 <#macro extrahead>
     <link href="/css/tournaments.css" rel="stylesheet">
+    <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 </#macro>
 <#macro content>
 
@@ -61,9 +62,13 @@
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label for="photo">Фото</label>
-                                        <#-- TODO file upload -->
-                                        <#--<input type="file" id="photo" name="photo">-->
-                                            <input type="text" id="photo" name="photo">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" maxlength="128"
+                                                       name="photo">
+                                                <div class="input-group-btn">
+                                                    <button type="button" class="btn btn-primary" id="selectPhoto">Загрузить</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-xs-6">
@@ -310,4 +315,14 @@
             // window.location.href = currentURL + '?discipline=' + selectedValue;
         });
     </script>
+    <script>
+        $('#selectPhoto').on('click', function (e) {
+            cloudinary.openUploadWidget({ cloud_name: 'dsjur1mdb', upload_preset: 'ciep6t8f', multiple: false}, function(error, result) {
+                console.log(error, result);
+                var url = result[0].url;
+                $('input[name="photo"]').val(url);
+            });
+        });
+    </script>
+
 </#macro>
