@@ -37,34 +37,34 @@
 
                           <!--for team in teams-->
                           <#list requests as req>
-                            <div class="col-xs-12 team-block">
+                            <div class="col-xs-12 team-block mar-top-30">
                                 <div class="col-lg-4 col-lg-offset-1 col-sm-4 col-xs-6">
                                     <p class="teamName">${req.team.name}</p>
                                 </div>
                                 <div class="col-lg-3 col-sm-4 col-xs-6">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Список игроков
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a>${req.team.leader.username}</a>
-                                            </li>
-                                            <li role="separator" class="divider"></li>
-                                            <li>
-                                                <a>${req.team.firstPlayer}</a>
-                                            </li>
-                                            <li>
-                                                <a>${req.team.secondPlayer}</a>
-                                            </li>
-                                            <li>
-                                                <a>${req.team.thirdPlayer}</a>
-                                            </li>
-                                            <li>
+                                    <#--<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                                    <#--Список игроков-->
+                                    <#--<span class="caret"></span>-->
+                                    <#--</button>-->
+                                    <#--<ul class="dropdown-menu">-->
+                                    <#--<li>-->
+                                        <a>${req.team.leader.username}</a> - капитан команды,
+                                    <#--</li>-->
+                                    <#--<li role="separator" class="divider"></li>-->
+                                    <#--<li>-->
+                                        игроки: <a>${req.team.firstPlayer}</a>,
+                                    <#--</li>-->
+                                    <#--<li>-->
+                                        <a>${req.team.secondPlayer}</a>,
+                                    <#--</li>-->
+                                    <#--<li>-->
+                                        <a>${req.team.thirdPlayer}</a>,
+                                    <#--</li>-->
+                                    <#--<li>-->
                                                 <a>${req.team.fourthPlayer}</a>
-                                            </li>
-                                        </ul>
+                                    <#--</li>-->
+                                    <#--</ul>-->
                                     </div>
                                 </div>
                                 <div class="col-lg-offset-2 col-lg-2 colcol-sm-4 col-xs-12">

@@ -2,6 +2,7 @@
 <#macro title>${tournament.name} | ${match.team1.name} - ${match.team2.name}</#macro>
 <#macro extrahead>
     <link href="/css/tournaments.css" rel="stylesheet">
+    <link href="/css/game.css" rel="stylesheet">
 </#macro>
 <#macro content>
 
