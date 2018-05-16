@@ -71,7 +71,7 @@
                     <div class="modal-body">
                         <h4 class="text-center" id="modalTournamentName">Создание дисциплины</h4>
                         <br>
-                        <form class="form" action="/disciplines/new" method="post">
+                        <form class="form" action="/disciplines/new" method="post" id="create_discipline_form">
                             <div class="discipline-create" id="createForm">
                                 <div class="form-group">
                                     <label>Название</label>
@@ -122,7 +122,7 @@
                     <div class="modal-body">
                         <h4 class="text-center" id="modalName">Редактирование дисциплины </h4>
                         <br>
-                        <form class="form" method="post" action="/disciplines/update">
+                        <form class="form" method="post" action="/disciplines/update" id="edit_discipline_form">
                             <!--team id-->
                             <input type="hidden" name="discipline_id" id="edit_id">
 
@@ -170,6 +170,12 @@
 </#macro>
 
 <#macro scripts>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/messages_ru.min.js"></script>
+    <script>
+        $('#create_discipline_form').validate();
+        $('#edit_discipline_form').validate();
+    </script>
 <script>
 
     $('button[name="openModal"]').click(insertModalData);

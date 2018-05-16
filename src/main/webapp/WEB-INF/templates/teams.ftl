@@ -78,7 +78,7 @@
                     <div class="modal-body">
                         <h4 class="text-center" id="modalTournamentName">Создание команды</h4>
                         <br>
-                        <form class="form" method="post" action="/teams/new">
+                        <form class="form" method="post" action="/teams/new" id="create_team_form">
                             <div class="team-create" id="createTeamForm">
                                 <div class="form-group">
                                     <label>Название команды</label>
@@ -116,7 +116,7 @@
                     <div class="modal-body">
                         <h4 class="text-center" id="modalTeamName">Редактирование команды </h4>
                         <br>
-                        <form class="form" method="post" action="/teams/update">
+                        <form class="form" method="post" action="/teams/update" id="edit_team_form">
                             <!--team id-->
                             <input type="hidden" name="teamId" id="modalTeamId">
 
@@ -154,6 +154,13 @@
 </#macro>
 
 <#macro scripts>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/messages_ru.min.js"></script>
+    <#--<script src="js/additional-methods.min.js"></script>-->
+    <script>
+        $('#create_team_form').validate();
+        $('#edit_team_form').validate();
+    </script>
 
 <script>
     $('button[name="openModal"]').click(insertModalData);
