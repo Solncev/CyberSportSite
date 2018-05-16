@@ -41,6 +41,9 @@ public class Tournament {
     @Column(columnDefinition = "text")
     private String description;
 
+    @Column(name = "photo_link")
+    private String photoLink;
+
     @OneToMany(mappedBy = "tournament", cascade = {CascadeType.ALL})
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<TournamentMatch> matches = new ArrayList<>();
@@ -103,6 +106,14 @@ public class Tournament {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPhotoLink() {
+        return photoLink;
+    }
+
+    public void setPhotoLink(String photoLink) {
+        this.photoLink = photoLink;
     }
 
     public List<TournamentMatch> getMatches() {

@@ -114,7 +114,6 @@
                             <#list upcoming as tournament>
                                 <div class="list-group shadowed">
                                     <div class="list-group-item list-group-item-action ov-h"
-                                         data-player-count="${tournament.discipline.teamSize}"
                                          data-id="${tournament.id}">
                                         <a
                                       <@security.authorize access="hasRole('ROLE_MANAGER')">
@@ -122,7 +121,7 @@
                                       </@security.authorize>
                                         >
                                             <span class="square"
-                                                  style="background-image: url('images/work_4.jpg')"></span>
+                                                  style="background-image: url('${tournament.photoLink!"/images/work_2.jpg"}')"></span>
                                             <h4 class="tName">${tournament.name}</h4>
                                             <p>${tournament.description!""}</p>
                                         </a>
@@ -144,7 +143,7 @@
                                 <div class="list-group shadowed">
                                     <a href="/tournaments/${tournament.id}/"
                                        class="list-group-item list-group-item-action ov-h" data-id="${tournament.id}">
-                                        <span class="square" style="background-image: url('images/work_2.jpg')"></span>
+                                        <span class="square" style="background-image: url('${tournament.photoLink!"/images/work_2.jpg"}')"></span>
                                         <h4>${tournament.name}</h4>
                                         <p>${tournament.description!""}</p>
                                     </a>
@@ -159,7 +158,7 @@
                         <#list past as tournament>
                             <a href="/tournaments/${tournament.id}/" class="list-group-item list-group-item-action ov-h"
                                data-id="${tournament.id}">
-                                <span class="square" style="background-image: url('images/work_2.jpg')"></span>
+                                <span class="square" style="background-image: url('${tournament.photoLink!"/images/work_2.jpg"}')"></span>
                                 <h4>${tournament.name}</h4>
                                 <p>${tournament.description!""}</p>
                             </a>

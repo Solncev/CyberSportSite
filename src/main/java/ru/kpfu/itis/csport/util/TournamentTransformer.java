@@ -24,6 +24,7 @@ public class TournamentTransformer implements Function<TournamentForm, Tournamen
         t.setDescription(form.getDescription());
         t.setDate(form.getStartDate());
         t.setDiscipline(disciplineService.find(form.getDiscipline()));
+        t.setPhotoLink(form.getPhoto());
         t.setTeamCount(16); //todo
         return t;
     }
