@@ -2,6 +2,8 @@
 <#macro title>Список турниров</#macro>
 <#macro extrahead>
     <link href="/css/tournaments.css" rel="stylesheet">
+    <link href="/css/jquery-ui.css" rel="stylesheet">
+
     <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 </#macro>
 <#macro content>
@@ -47,8 +49,8 @@
                             <@sf.form class="form" action="/tournaments/new" method="POST" modelAttribute="form">
                                 <div class="form-group">
                                     <label>Дисциплина</label>
-                                    <select name="discipline" class="form-control" id="discipline">
-                                        <option value="-1">Выбрать дисциплину</option>
+                                    <select name="discipline" class="form-control" id="discipline" required>
+                                        <option value="-1" disabled selected>Выбрать дисциплину</option>
                                         <#list all_disciplines as discipline>
                                             <option value="${discipline.id}">${discipline.name}</option>
                                         </#list>
@@ -66,7 +68,9 @@
                                                 <input type="text" class="form-control" maxlength="128"
                                                        name="photo">
                                                 <div class="input-group-btn">
-                                                    <button type="button" class="btn btn-primary" id="selectPhoto">Загрузить</button>
+                                                    <button type="button" class="btn btn-primary" id="selectPhoto">
+                                                        Загрузить
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -148,7 +152,8 @@
                                 <div class="list-group shadowed">
                                     <a href="/tournaments/${tournament.id}/"
                                        class="list-group-item list-group-item-action ov-h" data-id="${tournament.id}">
-                                        <span class="square" style="background-image: url('${tournament.photoLink!"/images/work_2.jpg"}')"></span>
+                                        <span class="square"
+                                              style="background-image: url('${tournament.photoLink!"/images/work_2.jpg"}')"></span>
                                         <h4>${tournament.name}</h4>
                                         <p>${tournament.description!""}</p>
                                     </a>
@@ -163,7 +168,8 @@
                         <#list past as tournament>
                             <a href="/tournaments/${tournament.id}/" class="list-group-item list-group-item-action ov-h"
                                data-id="${tournament.id}">
-                                <span class="square" style="background-image: url('${tournament.photoLink!"/images/work_2.jpg"}')"></span>
+                                <span class="square"
+                                      style="background-image: url('${tournament.photoLink!"/images/work_2.jpg"}')"></span>
                                 <h4>${tournament.name}</h4>
                                 <p>${tournament.description!""}</p>
                             </a>
@@ -244,20 +250,41 @@
 </#macro>
 
 <#macro scripts>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/datepicker-ru.js"></script>
     <script>
-        //datepicker run
-        $('#tournamentStartDate').datepicker({
-            weekStart: 1,
-            language: "ru",
-            todayHighlight: true
+        $('#startDate').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "2017:+nn"
         });
     </script>
+
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/messages_ru.min.js"></script>
+
     <script>
-        //form validate
-        $.validate({
-            lang: 'ru'
+
+
+        $('#form').validate({
+            rules: {
+                name: {
+                    required: true
+                    // sorry, regex is not working :(
+                    // regex : /^[\d\s]+$/
+                },
+                discipline: {
+                    required: true
+                },
+                startDate: {
+                    required: true
+                }
+            }
         });
+        $("#startDate").rules("add", { regex: "^(3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.((?:19|20)\\d{2})$" })
     </script>
+
+
     <script>
         $('button[name="openModal"]').click(insertModalData);
 
@@ -317,7 +344,11 @@
     </script>
     <script>
         $('#selectPhoto').on('click', function (e) {
-            cloudinary.openUploadWidget({ cloud_name: 'dsjur1mdb', upload_preset: 'ciep6t8f', multiple: false}, function(error, result) {
+            cloudinary.openUploadWidget({
+                cloud_name: 'dsjur1mdb',
+                upload_preset: 'ciep6t8f',
+                multiple: false
+            }, function (error, result) {
                 console.log(error, result);
                 var url = result[0].url;
                 $('input[name="photo"]').val(url);
