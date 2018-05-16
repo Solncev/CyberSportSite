@@ -1,5 +1,8 @@
 <#include 'base.ftl'>
 <#macro title>${tournament.name} | Заявки</#macro>
+<#macro extrahead>
+    <link href="/css/tournaments.css" rel="stylesheet">
+</#macro>
 
 <#macro content>
       <div class="content">

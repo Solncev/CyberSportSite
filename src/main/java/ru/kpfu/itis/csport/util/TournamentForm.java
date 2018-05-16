@@ -10,7 +10,8 @@ import java.util.Date;
  * By Anton Krylov (anthony.kryloff@gmail.com)
  * Date: 4/28/18 5:26 PM
  */
-public class TournamentForm {
+public class
+TournamentForm {
 
     @NotNull
     private int discipline;

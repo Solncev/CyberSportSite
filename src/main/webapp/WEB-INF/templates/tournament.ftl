@@ -1,5 +1,9 @@
 <#include 'base.ftl'>
 <#macro title>${tournament.name}</#macro>
+<#macro extrahead>
+    <link href="/css/game.css" rel="stylesheet">
+    <link href="/css/tournaments.css" rel="stylesheet">
+</#macro>
 <#macro content>
 <div class="content">
     <div class="container mar-top-30 tournaments">

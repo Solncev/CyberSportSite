@@ -1,5 +1,8 @@
 <#include "base.ftl">
 <#macro title>Дисциплины</#macro>
+<#macro extrahead>
+    <link href="/css/disciplines.css" rel="stylesheet">
+</#macro>
 <#macro content>
 
 <div class="content">
@@ -83,13 +86,14 @@
 
                                 <div class="form-group">
                                     <label>Количество игроков</label>
-                                    <input type="text" class="form-control" placeholder="Первый игрок"
+                                    <input type="text" class="form-control"
                                            required id="new_count" value="5" max="10" min="1" name="players">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Ссылка на логотип</label>
-                                    <input type="text" class="form-control mar-bot-10" name="photo_link">
+                                    <input type="text" class="form-control mar-bot-10" maxlength="128"
+                                           name="photo_link">
                                 </div>
                             </div>
                             <button class="btn btn-block btn-primary" type="submit" id="createSubmit">Создать
@@ -137,7 +141,8 @@
 
                                 <div class="form-group">
                                     <label>Ссылка на логотип</label>
-                                    <input type="text" class="form-control mar-bot-10" name="photo_link">
+                                    <input type="text" class="form-control mar-bot-10" maxlength="128"
+                                           name="photo_link">
                                 </div>
                             </div>
                             <button class="btn btn-block btn-primary" type="submit" id="editSubmit">Сохранить</button>

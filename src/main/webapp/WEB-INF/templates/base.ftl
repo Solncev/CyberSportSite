@@ -17,9 +17,7 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="/css/main.css" rel="stylesheet">
-    <link href="/css/profile.css" rel="stylesheet">
-    <link href="/css/disciplines.css" rel="stylesheet">
-    <link href="/css/game.css" rel="stylesheet">
+    <@extrahead/>
 </head>
 <!--/head-->
 

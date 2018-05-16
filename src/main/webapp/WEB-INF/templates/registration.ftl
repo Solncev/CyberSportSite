@@ -1,5 +1,7 @@
 <#include "base.ftl">
 <#macro title>Регистрация</#macro>
+<#macro extrahead>
+</#macro>
 <#macro content>
 
 

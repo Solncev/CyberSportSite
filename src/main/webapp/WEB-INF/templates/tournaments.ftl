@@ -1,6 +1,10 @@
 <#include "base.ftl">
 <#macro title>Список турниров</#macro>
+<#macro extrahead>
+    <link href="/css/tournaments.css" rel="stylesheet">
+</#macro>
 <#macro content>
+
 
 <div class="content">
     <div class="container mar-top-30 tournaments">
@@ -57,20 +61,22 @@
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label for="photo">Фото</label>
-                                            <#-- TODO file upload -->
-                                            <#--<input type="file" id="photo" name="photo">-->
+                                        <#-- TODO file upload -->
+                                        <#--<input type="file" id="photo" name="photo">-->
                                             <input type="text" id="photo" name="photo">
                                         </div>
                                     </div>
                                     <div class="col-xs-6">
-                                        <label for="startDate">Дата начала</label> <!--format: "dd.mm.yyyy" look at script below-->
-                                        <input id="startDate" name="startDate" type="text" class="form-control">
+                                        <label for="startDate">Дата начала</label>
+                                        <!--format: "dd.mm.yyyy" look at script below-->
+                                        <input id="startDate" name="startDate" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="description">Описание</label>
-                                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                                    <textarea class="form-control" id="description" name="description"
+                                              rows="3"></textarea>
                                 </div>
 
                                 <#if creationError??>
@@ -104,49 +110,55 @@
 
                     <!--Предстоящие турниры-->
                     <div class="tab-pane fade active in" id="future">
-                        <div class="list-group shadowed">
+
                             <#list upcoming as tournament>
-                                <div class="list-group-item list-group-item-action ov-h"
-                                   data-player-count="${tournament.discipline.teamSize}" data-id="${tournament.id}">
-                                    <a
+                                <div class="list-group shadowed">
+                                    <div class="list-group-item list-group-item-action ov-h"
+                                         data-player-count="${tournament.discipline.teamSize}"
+                                         data-id="${tournament.id}">
+                                        <a
                                       <@security.authorize access="hasRole('ROLE_MANAGER')">
                                         href="/tournaments/${tournament.id}/requests"
                                       </@security.authorize>
-                                    >
-                                        <span class="square" style="background-image: url('images/work_4.jpg')"></span>
-                                        <h4 class="tName">${tournament.name}</h4>
-                                        <p>${tournament.description!""}</p>
-                                    </a>
-                                    <input type="hidden" name="tournamentId" value="${tournament.id}">
-                                    <button class="btn btn-primary right" data-toggle="modal" data-target="#requestModal"
-                                            id="requestModalBtn1" name="openModal">Подать заявку
-                                    </button>
+                                        >
+                                            <span class="square"
+                                                  style="background-image: url('images/work_4.jpg')"></span>
+                                            <h4 class="tName">${tournament.name}</h4>
+                                            <p>${tournament.description!""}</p>
+                                        </a>
+                                        <input type="hidden" name="tournamentId" value="${tournament.id}">
+                                        <button class="btn btn-primary right" data-toggle="modal"
+                                                data-target="#requestModal"
+                                                id="requestModalBtn1" name="openModal">Подать заявку
+                                        </button>
+                                    </div>
                                 </div>
                             <#else>
                                 <h4 class="mar-top-30">Турниров пока нет...</h4>
                             </#list>
-                        </div>
                     </div>
 
                     <!--Начавшиеся турниры-->
                     <div class="tab-pane fade" id="progress">
-                        <div class="list-group shadowed">
                             <#list active as tournament>
-                                <a href="/tournaments/${tournament.id}/" class="list-group-item list-group-item-action ov-h" data-id="${tournament.id}">
-                                    <span class="square" style="background-image: url('images/work_2.jpg')"></span>
-                                    <h4>${tournament.name}</h4>
-                                    <p>${tournament.description!""}</p>
-                                </a>
+                                <div class="list-group shadowed">
+                                    <a href="/tournaments/${tournament.id}/"
+                                       class="list-group-item list-group-item-action ov-h" data-id="${tournament.id}">
+                                        <span class="square" style="background-image: url('images/work_2.jpg')"></span>
+                                        <h4>${tournament.name}</h4>
+                                        <p>${tournament.description!""}</p>
+                                    </a>
+                                </div>
                             <#else>
                                 <h4 class="mar-top-30">Турниров пока нет...</h4>
                             </#list>
-                        </div>
                     </div>
 
                     <!--Завершенные турниры-->
                     <div class="tab-pane fade" id="past">
                         <#list past as tournament>
-                            <a href="/tournaments/${tournament.id}/" class="list-group-item list-group-item-action ov-h" data-id="${tournament.id}">
+                            <a href="/tournaments/${tournament.id}/" class="list-group-item list-group-item-action ov-h"
+                               data-id="${tournament.id}">
                                 <span class="square" style="background-image: url('images/work_2.jpg')"></span>
                                 <h4>${tournament.name}</h4>
                                 <p>${tournament.description!""}</p>
@@ -210,7 +222,8 @@
                             </div>
 
                             <div class="form-group error" id="forgot-error">
-                                <h5 class="text-center" style="display: none;">Пользователя с таким e-mail нет в нашей базе данных</h5>
+                                <h5 class="text-center" style="display: none;">Пользователя с таким e-mail нет в нашей
+                                    базе данных</h5>
                             </div>
 
                             <button class="btn btn-block btn-primary" id="forgot-submit">Подать заявку</button>

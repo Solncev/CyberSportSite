@@ -1,5 +1,7 @@
 <#include "base.ftl">
 <#macro title>Вход</#macro>
+<#macro extrahead>
+</#macro>
 <#macro content>
 
 <h5 class="text-center" <#if registrationSuccessfulMessage??><#else>hidden</#if>>Регистрация прошла успешно!</h5>

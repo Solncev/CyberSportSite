@@ -1,5 +1,8 @@
 <#include "base.ftl">
 <#macro title>Профиль</#macro>
+<#macro extrahead>
+    <link href="/css/profile.css" rel="stylesheet">
+</#macro>
 <#macro content>
 
 <div class="content">
@@ -145,7 +148,7 @@
                    
                     <#if wrongPassword??>wrongPassword</#if>
 
-                    <label>Commands here</label>
+                <#--<label>Commands here</label>-->
                     <!-- <form action="#" method="post" name="edit" id="edit">
                         <label for="username">Uname</label>
                         <input type="text" id="username" placeholder="Name" class="form-control" name="username" />

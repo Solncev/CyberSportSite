@@ -17,3 +17,7 @@
         position: fixed;
     }
 }
+
+.content {
+    min-height: calc(100vh - 137px);
+}
