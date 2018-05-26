@@ -70,3 +70,5 @@
 </div>
 <!--Турниры - tournaments -->
 </#macro>
+
+<#macro scripts></#macro>
