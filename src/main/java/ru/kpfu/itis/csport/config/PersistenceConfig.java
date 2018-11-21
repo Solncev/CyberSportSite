@@ -1,26 +1,26 @@
 package ru.kpfu.itis.csport.config;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.EnvironmentAware;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
-
 @Configuration
-@PropertySource("classpath:persistence.properties")
-@PropertySource(value = "classpath:application-heroku.properties", ignoreResourceNotFound = true)
-@EnableJpaRepositories("ru.kpfu.itis.csport.repository")
+@EnableJpaRepositories("ru.kpfu.itis.csport")
 @EnableTransactionManagement
 public class PersistenceConfig implements EnvironmentAware {
 
@@ -32,34 +32,36 @@ public class PersistenceConfig implements EnvironmentAware {
     }
 
     @Bean
-    public DataSource dataSource() throws PropertyVetoException {
+    public DataSource dataSource() {
         String driver = env.getProperty("spring.datasource.driver-class-name");
         String url = env.getProperty("spring.datasource.url");
         String user = env.getProperty("spring.datasource.username");
         String password = env.getProperty("spring.datasource.password");
 
-        ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        dataSource.setDriverClass(driver);
-        dataSource.setJdbcUrl(url);
-        dataSource.setUser(user);
-        dataSource.setPassword(password);
-        return dataSource;
+        HikariConfig config = new HikariConfig();
+        config.setDriverClassName(driver);
+        config.setJdbcUrl(url);
+        config.setUsername(user);
+        config.setPassword(password);
+        config.setMaximumPoolSize(10);
+
+        return new HikariDataSource(config);
     }
 
     @Bean
     @DependsOn("liquibase")
-    public EntityManagerFactory entityManagerFactory() throws PropertyVetoException {
+    public EntityManagerFactory entityManagerFactory(DataSource dataSource) {
         // Jpa vendor adapter
         HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         jpaVendorAdapter.setShowSql(true);
-        jpaVendorAdapter.setGenerateDdl(true);
+        jpaVendorAdapter.setGenerateDdl(false);
 
         // Entity manager factory
         LocalContainerEntityManagerFactoryBean entityManagerFactory =
                 new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter);
-        entityManagerFactory.setDataSource(dataSource());
-        entityManagerFactory.setPackagesToScan("ru.kpfu.itis.csport.model");
+        entityManagerFactory.setDataSource(dataSource);
+        entityManagerFactory.setPackagesToScan("ru.kpfu.itis.csport");
         entityManagerFactory.afterPropertiesSet();
         return entityManagerFactory.getObject();
     }
@@ -75,11 +77,6 @@ public class PersistenceConfig implements EnvironmentAware {
     @Bean
     public PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslator() {
         return new PersistenceExceptionTranslationPostProcessor();
-    }
-
-    @Bean
-    public PersistenceAnnotationBeanPostProcessor persistenceAnnotationBean() {
-        return new PersistenceAnnotationBeanPostProcessor();
     }
 
     @Bean

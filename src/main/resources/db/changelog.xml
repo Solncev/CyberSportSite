@@ -4,7 +4,15 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
     <include file="db/changelog/0001-users.xml"/>
+    <include file="db/changelog/0002-tournaments.xml"/>
+    <include file="db/changelog/0003-teams.xml"/>
+    <include file="db/changelog/0004-disciplines.xml"/>
+    <include file="db/changelog/0004-teams-tournaments.xml"/>
+    <include file="db/changelog/0005-disciplines.xml"/>
+    <include file="db/changelog/0006-tournament-requests.xml"/>
+    <include file="db/changelog/0007-tournament-photo-link.xml"/>
 
 </databaseChangeLog>

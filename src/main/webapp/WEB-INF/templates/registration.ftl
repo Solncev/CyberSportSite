@@ -1,5 +1,7 @@
 <#include "base.ftl">
 <#macro title>Регистрация</#macro>
+<#macro extrahead>
+</#macro>
 <#macro content>
 
 
@@ -11,7 +13,7 @@
         </div>
         <div class="panel-body">
 
-            <@sf.form action="/registration" method="post" modelAttribute="userForm">
+            <@sf.form action="/registration" method="post" modelAttribute="userForm" id="registerForm">
                 <div class="form-group">
                     <label for="">Никнейм</label>
                     <@sf.input path="username" type="text" class="form-control"/>
@@ -28,7 +30,8 @@
                 </div>
 
                 <#if error??>
-                <p class="error">Пользователь с таким <#if error == "email_error">email<#elseif error == "username_error">никнейном</#if> уже существует</p>
+                <p class="error">Пользователь с таким <#if error == "email_error">
+                    email<#elseif error == "username_error">никнейном</#if> уже существует</p>
                 </#if>
 
                 <div class="form-group">
@@ -42,6 +45,29 @@
         </div>
     </div>
 </div>
+</#macro>
 
+<#macro scripts>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/messages_ru.min.js"></script>
+<#--<script src="js/additional-methods.min.js"></script>-->
+<script>
+    $('#registerForm').validate({
+        rules: {
+            username: {
+                required: true
+                // sorry, regex is not working :(
+                // regex : /^[\d\s]+$/
+            },
+            email: {
+                required: true
+            },
+            password: {
+                required: true,
+                minlength: 6
+            }
+        }
+    });
+</script>
 
 </#macro>

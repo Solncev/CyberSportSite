@@ -1,0 +1,17 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="001" author="krylov">
+        <addForeignKeyConstraint baseTableName="tournament_match" baseColumnNames="team1_id"
+                                 constraintName="fk_match_team1"
+                                 referencedTableName="teams"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="tournament_match" baseColumnNames="team2_id"
+                                 constraintName="fk_match_team2"
+                                 referencedTableName="teams"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -17,9 +17,7 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="/css/main.css" rel="stylesheet">
-    <link href="/css/profile.css" rel="stylesheet">
-
-
+    <@extrahead/>
 </head>
 <!--/head-->
 
@@ -45,10 +43,14 @@
                     <li class="scroll <#if springMacroRequestContext.requestUri?starts_with("/tournaments")>active</#if>">
                         <a href="/tournaments">Турниры </a>
                     </li>
-                    <li class="scroll <#if springMacroRequestContext.requestUri?starts_with("/commands")>active</#if>">
-                        <a href="/commands">Команды </a>
+                    <li class="scroll <#if springMacroRequestContext.requestUri?starts_with("/teams")>active</#if>">
+                        <a href="/teams">Команды </a>
                     </li>
-
+                    <@security.authorize access="hasAnyRole('MANAGER')">
+                    <li class="scroll <#if springMacroRequestContext.requestUri?starts_with("/disciplines")>active</#if>">
+                        <a href="/disciplines">Дисциплины </a>
+                    </li>
+                    </@security.authorize>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!--если не авторизован-->
@@ -90,12 +92,14 @@
 </footer>
 <!--/#footer-->
 
-<script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.form-validator.min.js"></script>
-    <script>
-        $.validate();
-</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<#--<script src="/js/jquery.form-validator.min.js"></script>-->
+<#--<script src="/js/jquery.challonge.js"></script>-->
+<#--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>-->
+
+<@scripts/>
 
 </body>
 

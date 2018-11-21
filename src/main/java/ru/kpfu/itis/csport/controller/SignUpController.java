@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.kpfu.itis.csport.model.User;
 import ru.kpfu.itis.csport.service.UserService;
 import ru.kpfu.itis.csport.util.UserForm;
@@ -46,7 +47,7 @@ public class SignUpController {
             }
             else {
                 userService.save(userFormToUserTransformer.apply(userForm));
-                return "redirect:/login";
+                return "redirect:/login?registrationSuccessful=true";
             }
         }
         return "registration";
